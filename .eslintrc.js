@@ -11,14 +11,24 @@ module.exports = {
     sourceType: 'module',
     project: './tsconfig.json',
   },
-  rules: {
-    settings: {
-      'import/resolver': {
-        node: {
-          extensions: ['.js', '.jsx', '.ts', '.tsx'],
-        },
+  settings: {
+    'import/resolver': {
+      node: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
       },
     },
+  },
+  rules: {
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      {
+        js: 'never',
+        jsx: 'never',
+        ts: 'never',
+        tsx: 'never',
+      },
+    ],
     'import/no-unresolved': 'off',
     indent: ['error', 2, { SwitchCase: 1 }],
     quotes: ['error', 'single'],

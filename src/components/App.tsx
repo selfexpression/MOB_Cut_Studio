@@ -1,3 +1,39 @@
-export const App = () => {
+import React from 'react';
+import {
+  BrowserRouter as Router, Routes, Route,
+} from 'react-router-dom';
+// import routes from '../utils/routes';
+// import Header from './Header';
+// import Navbar from './Navbar';
+// import Slider from './Slider';
+// import Services from './Services';
+// import Video from './Video';
+// import Team from './Team';
+// import Footer from './Footer';
 
-};
+import { BookingWidget } from './BookingWidget';
+
+const Main = () => (
+  <>
+    {/* <Header />
+    <Video />
+    <Services />
+    <Carousel />
+    <Footer /> */}
+    <BookingWidget />
+  </>
+);
+
+const App: React.FC = () => (
+  <Router>
+    <div className="d-flex flex-column h-100 w-100">
+      <Navbar />
+      <Routes>
+        <Route path={routes.mainPage} element={<Main />} />
+        <Route path={routes.teamPage} element={<Team />} />
+      </Routes>
+    </div>
+  </Router>
+);
+
+export default App;
