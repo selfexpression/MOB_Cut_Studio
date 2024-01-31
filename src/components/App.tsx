@@ -2,7 +2,8 @@ import React from 'react';
 import {
   BrowserRouter as Router, Routes, Route,
 } from 'react-router-dom';
-// import routes from '../utils/routes';
+
+import { pageRoutes } from '../utils/routes';
 // import Header from './Header';
 // import Navbar from './Navbar';
 // import Slider from './Slider';
@@ -24,16 +25,14 @@ const Main = () => (
   </>
 );
 
-const App: React.FC = () => (
+export const App: React.FC = () => (
   <Router>
     <div className="d-flex flex-column h-100 w-100">
-      <Navbar />
+      {/* <Navbar /> */}
       <Routes>
-        <Route path={routes.mainPage} element={<Main />} />
-        <Route path={routes.teamPage} element={<Team />} />
+        <Route path={pageRoutes.mainPage()} element={<Main />} />
+        {/* <Route path={routes.teamPage} element={<Team />} /> */}
       </Routes>
     </div>
   </Router>
 );
-
-export default App;

@@ -11,7 +11,7 @@ import { App } from './components/App';
 import resources from './locales/index';
 import reportWebVitals from './reportWebVitals';
 
-const runApp = async () => {
+export const runApp = async () => {
   const i18n = i18next.createInstance();
 
   await i18n
@@ -43,7 +43,5 @@ const runApp = async () => {
     </React.StrictMode>,
   );
 };
-
-export default runApp;
 
 reportWebVitals();

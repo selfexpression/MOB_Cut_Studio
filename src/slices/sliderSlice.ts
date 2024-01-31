@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+
 const initialState = {
   currentSlide: 0,
   images: [],

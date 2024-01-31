@@ -1,0 +1,230 @@
+@use "sass:map";
+
+$rem-list: 0 , 0.25rem, 0.5rem, 1rem, 1.5rem, 3rem;
+
+$rounded-values: 0, 0.125rem, 0.25rem, 0.3rem, 0.375rem, 0.5rem;
+
+$units: (percent: '%', vh: 'vh', h: 'h', px: 'px');
+
+$display-values: (block, none, inline, flex);
+
+$flex-justify-content-values: (
+  start: flex-start,
+  end: flex-end,
+  center: center,
+  between: space-between,
+  around: space-around,
+  evenly: space-evenly
+);
+
+$flex-align-items-values: (
+  start: flex-start,
+  end: flex-end,
+  center: center,
+  baseline: baseline, 
+  stretch: stretch
+);
+
+$flex-self-values: (
+  stretch: stretch,
+  center: center,
+  start: start,
+  end: end,
+);
+
+$auto-value: (auto: auto);
+
+$flex-align-self-values: map.merge($auto-value, $flex-align-items-values);
+
+@each $key, $value in $flex-justify-content-values {
+  .justify-content-#{$key} {
+    justify-content: $value;
+  }
+}
+
+@each $key, $value in $flex-align-items-values {
+  .align-items-#{$key} {
+    align-items: $value;
+  }
+}
+
+@each $key, $value in $flex-self-values {
+  .align-self-#{$key} {
+    align-self: $value;
+  }
+
+  .justify-self-#{$key} {
+    justify-self: $value;
+  }
+}
+
+@each $value in $display-values {
+  .d-#{$value} {
+    display: $value !important;
+  }
+}
+
+@for $i from 1 through 5 {
+  .flex-#{$i} {
+    flex: $i !important;
+  }
+}
+
+@each $value in $rem-list {
+  $index: index($rem-list, $value) - 1;
+
+    .py-#{$index} {
+      padding: $value !important;
+    }
+
+    .m-#{$index} {
+      margin: $value !important;
+    }
+
+    .mb-#{$index} {
+      margin-bottom: $value !important;
+    }
+
+    .ml-#{$index} {
+      margin-left: $value !important;
+    }
+    
+    .mt-#{$index} {
+      margin-top: $value !important;
+    }
+
+    .mr-#{$index} {
+      margin-right: $value !important;
+    }
+
+    .p-#{$index} {
+      padding: $value !important;
+    }
+}
+
+@each $value in $rounded-values {
+  $index: index($rem-list, $value) - 1;
+
+  .rounded-#{$index} {
+    border-radius: $value !important;
+  }
+}
+
+@function add-unit($value, $unit) {
+  $result: #{$value}#{$unit};
+  @return $result;
+}
+
+@for $i from 1 through 10 {
+  $value: $i * 10;
+  $percent: map.get($units, percent);
+  $vh: map.get($units, vh);
+
+  .w-#{$value} {
+    width: add-unit($value, $percent) !important;
+  }
+
+  .h-#{$value} {
+    height: add-unit($value, $percent) !important;
+  }
+
+  .vh-#{$value} {
+    height: add-unit($value, $vh) !important;
+  }
+
+  .vh-min-#{$value} {
+    min-height: add-unit($value, $vh) !important;
+  }
+}
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin font-style-size($style-value, $font-value) {
+  font-weight: $style-value;
+  font-size: $font-value;
+}
+
+.absolute {
+  position: absolute !important;
+}
+
+.relative {
+  position: relative !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.text-start {
+  text-align: start !important;
+}
+
+.text-end {
+  text-align: end !important;
+}
+
+.flex-column {
+  flex-direction: column !important;
+}
+
+.flex-wrap {
+  flex-wrap: wrap !important;
+}
+
+.m-auto {
+  margin: auto !important;
+}
+
+.mt-auto {
+  margin-top: auto !important;
+}
+
+.ml-auto {
+  margin-left: auto !important;
+}
+
+.bg-light {
+  background-color: $light !important;
+}
+
+.bg-dark {
+  background-color: $dark !important;
+}
+
+.no-wrap {
+  white-space: nowrap !important;
+}
+
+.color-light {
+  color: $light !important;
+}
+
+.aqua-color {
+  color: $aqua !important;
+}
+
+.uppercase {
+  text-transform: uppercase !important;
+}
+
+.font-large {
+  font-size: large !important;
+}
+
+.no-decoration {
+  text-decoration: none !important;
+  color: inherit !important;
+}
+
+.bold {
+  font-weight: bold !important;
+}
+
+.max-content {
+  height: max-content;
+}
