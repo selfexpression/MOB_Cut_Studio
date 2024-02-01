@@ -4,20 +4,20 @@ import {
 } from 'react-router-dom';
 
 import { pageRoutes } from '../utils/routes';
-// import Header from './Header';
+
 // import Navbar from './Navbar';
 // import Slider from './Slider';
 // import Services from './Services';
 // import Video from './Video';
 // import Team from './Team';
 // import Footer from './Footer';
-
+import { Header } from './Header';
 import { BookingWidget } from './BookingWidget';
 
 const Main = () => (
   <>
-    {/* <Header />
-    <Video />
+    <Header />
+    {/* <Video />
     <Services />
     <Carousel />
     <Footer /> */}

@@ -4,14 +4,14 @@ import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
 
 import { actions } from '../slices/bookingWidgetSlice';
-import { getBooking } from '../utils/selectors';
+import { getBookingWidgetState } from '../utils/selectors';
 
 import { CloseIcon } from './icons/CloseIcon';
 
 export const BookingWidget: React.FC = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  const { isOpenWidget } = useSelector(getBooking);
+  const { isOpenWidget } = useSelector(getBookingWidgetState);
   const formLink = process.env.REACT_APP_YCLIENTS_FORM;
 
   const handleToggleWidget = () => {

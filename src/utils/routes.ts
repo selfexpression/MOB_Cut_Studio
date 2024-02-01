@@ -3,6 +3,14 @@ export const pageRoutes = {
   teamPage: () => '/team',
 };
 
+export const firebaseApiRoutes = {
+  carts: () => 'carts',
+  productImagesApi: (id: number) => `product-images/${id}.jpg`,
+  categories: () => 'categories',
+  products: () => 'products',
+  backgroundImages: () => 'background',
+};
+
 export const linkRoutes = {
   whatsapp: () => 'https://wa.me/+79692281139',
   telegram: () => 'https://t.me/+79692281139',

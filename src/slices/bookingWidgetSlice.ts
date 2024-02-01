@@ -5,7 +5,7 @@ const initialState = {
 };
 
 const slice = createSlice({
-  name: 'booking',
+  name: 'bookingWidget',
   initialState,
   reducers: {
     toggleWidget: (state, { payload }: { payload: boolean }) => {

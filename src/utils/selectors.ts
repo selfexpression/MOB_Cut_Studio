@@ -1,7 +1,9 @@
 import { RootState } from '../types/aliases';
 
-export const getBooking = (state: RootState) => state.booking;
+export const getBookingWidgetState = (state: RootState) => state.bookingWidget;
 
-export const getNavbar = (state: RootState) => state.navbar;
+export const getNavbarState = (state: RootState) => state.navbar;
 
-export const getSlider = (state: RootState) => state.slider;
+export const getSliderState = (state: RootState) => state.slider;
+
+export const getImageState = (state: RootState) => state.image;
