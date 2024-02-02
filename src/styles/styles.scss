@@ -1,4 +1,15 @@
-@import "./components/Main/header.scss";
+@import "./components/main/header.scss";
+@import "./components/main/bookingWidget.scss";
+
+@font-face {
+  font-family: 'Quicksand-Regular';
+  src: url('../assets/fonts/Quicksand-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'TenorSans-Regular';
+  src: url('../assets/fonts/TenorSans-Regular.ttf') format('truetype');
+}
 
 body {
   margin: 0;

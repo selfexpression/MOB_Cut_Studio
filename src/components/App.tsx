@@ -12,7 +12,7 @@ import { pageRoutes } from '../utils/routes';
 // import Team from './Team';
 // import Footer from './Footer';
 import { Header } from './Main/Header';
-// import { BookingWidget } from './BookingWidget';
+import { BookingWidget } from './Main/BookingWidget';
 
 const Main = () => (
   <>
@@ -21,7 +21,7 @@ const Main = () => (
     <Services />
     <Carousel />
     <Footer /> */}
-    {/* <BookingWidget /> */}
+    <BookingWidget />
   </>
 );
 

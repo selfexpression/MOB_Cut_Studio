@@ -22,23 +22,20 @@ export const BookingWidget: React.FC = () => {
       'show-booking': isOpenWidget,
       'hide-booking': !isOpenWidget,
     })}>
-      <div className="booking-header d-flex justify-content-end align-items-end">
-        <button
-          type="button"
-          aria-label={t('ariaLabels.closeBtn')}
-          onClick={handleToggleWidget}
-          className="interactive-button booking-widget-btn p-0"
-        >
-          <CloseIcon />
-        </button>
-      </div>
-      <div className="p-0 m-0">
-        <iframe
-          title={t('others.yclients')}
-          src={formLink}
-          className="p-0 m-0 w-100 vh-100 booking-frame"
-        />
-      </div>
+      <iframe
+        title={t('others.yclients')}
+        src={formLink}
+        className="booking-frame"
+      >
+      </iframe>
+      <button
+        type="button"
+        aria-label={t('ariaLabels.closeBtn')}
+        onClick={handleToggleWidget}
+        className="close-btn"
+      >
+        <CloseIcon />
+      </button>
     </aside>
   );
 };
