@@ -5,7 +5,7 @@ import {
 
 import { pageRoutes } from '../utils/routes';
 
-// import Navbar from './Navbar';
+import { Navbar } from './Navbar';
 // import Slider from './Slider';
 // import Services from './Services';
 // import Video from './Video';
@@ -28,7 +28,7 @@ const Main = () => (
 export const App: React.FC = () => (
   <Router>
     <div className="d-flex flex-column">
-      {/* <Navbar /> */}
+      <Navbar />
       <Routes>
         <Route path={pageRoutes.mainPage()} element={<Main />} />
         {/* <Route path={routes.teamPage} element={<Team />} /> */}
