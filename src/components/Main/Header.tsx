@@ -2,33 +2,26 @@ import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParallaxController } from 'react-scroll-parallax';
-import cn from 'classnames';
 import { useMediaQuery } from '@reactuses/core';
 
-import { actions } from '../slices/bookingWidgetSlice';
-import { useScrollY } from '../hooks/index';
-import { getBookingWidgetState, getImageState } from '../utils/selectors';
-import { loadImageFolder } from '../thunks/imagesThunk';
-import { firebaseApiRoutes } from '../utils/routes';
-import { AppDispatch } from '../types/aliases';
+import { actions } from '../../slices/bookingWidgetSlice';
+import { useScrollY } from '../../hooks/index';
+import { getBookingWidgetState, getImageState } from '../../utils/selectors';
+import { loadImageFolder } from '../../thunks/imagesThunk';
+import { firebaseApiRoutes, pageRoutes } from '../../utils/routes';
+import { AppDispatch } from '../../types/aliases';
 
 const Background: React.FC = () => {
   const { t } = useTranslation();
   const { scrollY } = useScrollY();
-  const dispatch = useDispatch<AppDispatch>();
   const { backgroundImages } = useSelector(getImageState);
   const parallaxController = useParallaxController();
   const isWide = useMediaQuery('(min-width: 768px)');
   const isHeight = useMediaQuery('(min-height: 1024px)');
+
   const handleImageLoad = () => parallaxController?.update();
 
   useEffect(() => {
-    if (!backgroundImages.length) {
-      dispatch(loadImageFolder({
-        folderPath: firebaseApiRoutes.backgroundImages(),
-      }));
-    }
-
     handleImageLoad();
   }, [parallaxController]);
 
@@ -37,7 +30,7 @@ const Background: React.FC = () => {
 
   return (
     <picture
-      className="parallax-banner parallax-wrapper banner"
+      className="parallax-banner"
       style={isWide && isHeight ? { transform: translateBanner } : undefined}
     >
       {backgroundImages.map(({ width, url }) => (
@@ -51,7 +44,7 @@ const Background: React.FC = () => {
       ))}
       <img
         alt={t('alts.background')}
-        className="parallax-layer parallax-wrapper layer"
+        className="parallax-layer"
         style={isWide && isHeight ? { transform: translateLayer } : undefined}
         onLoad={handleImageLoad}
       />
@@ -61,37 +54,47 @@ const Background: React.FC = () => {
 
 export const Header: React.FC = () => {
   const { t } = useTranslation();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
+  const { backgroundImages } = useSelector(getImageState);
   const { isOpenWidget } = useSelector(getBookingWidgetState);
-  const buttonClasses = cn(
-    'btn-info-booking',
-    'booking-btn',
-    'head-booking-btn',
-    'mt-4 rounded-0',
-  );
 
-  const handleWidget = () => {
+  const handleToggleWidget = () => {
     dispatch(actions.toggleWidget(!isOpenWidget));
   };
 
+  useEffect(() => {
+    if (!backgroundImages.length) {
+      dispatch(loadImageFolder({
+        folderPath: firebaseApiRoutes.backgroundImages(),
+      }));
+    }
+  }, []);
+
   return (
-    <header id="/" className="main-header bg-light vh-100">
-      <Background />
-      <main
-        className="main-content main-content-animation d-flex flex-column align-items-center"
-      >
-        <p className="text-content color-light text-center m-0">
-          {t('header.text')}
-        </p>
-        <button
-          type="button"
-          aria-label={t('ariaLabels.bookingBtn')}
-          className={buttonClasses}
-          onClick={handleWidget}
-        >
-          <span>{t('header.onlineBooking')}</span>
-        </button>
-      </main>
+    <header id={pageRoutes.mainPage()} className="main-header">
+      {backgroundImages.length
+        ? (
+          <>
+            <Background />
+            <main
+              className="main-content"
+            >
+              <p className="text-content color-light text-center m-0">
+                {t('header.text')}
+              </p>
+              <button
+                type="button"
+                aria-label={t('ariaLabels.bookingBtn')}
+                className="booking-btn"
+                onClick={handleToggleWidget}
+              >
+                <span>{t('header.onlineBooking')}</span>
+              </button>
+            </main>
+          </>
+        ) : (
+          <div className="spinner-loader" />
+        )}
     </header>
   );
 };

@@ -16,7 +16,7 @@ export default {
       description: 'Our works, our space, our atmosphere.',
     },
     header: {
-      text: 'A place where style meets convenience.',
+      text: 'A place where style meets convenience',
       onlineBooking: 'Book Now',
     },
     navbar: {

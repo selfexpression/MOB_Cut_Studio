@@ -3,10 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
 
-import { actions } from '../slices/bookingWidgetSlice';
-import { getBookingWidgetState } from '../utils/selectors';
-
-import { CloseIcon } from './icons/CloseIcon';
+import { actions } from '../../slices/bookingWidgetSlice';
+import { getBookingWidgetState } from '../../utils/selectors';
+import { CloseIcon } from '../Icons/CloseIcon';
 
 export const BookingWidget: React.FC = () => {
   const dispatch = useDispatch();

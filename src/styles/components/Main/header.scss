@@ -1,0 +1,77 @@
+@mixin parallax-wrapper {
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+
+  will-change: transform;
+}
+
+.main-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+
+  background-color: $light;
+
+  .parallax-banner {
+    position: fixed;
+  
+    overflow: hidden;
+    @include parallax-wrapper;
+
+    .parallax-layer {
+      position: absolute;
+      object-fit: cover;
+      @include parallax-wrapper;
+    }
+  }
+
+  .main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+
+    position: relative;
+    height: max-content;
+    margin-right: 10rem;
+    // opacity: 0;
+    z-index: 1;
+  
+    animation: scaleUp 1s ease-in-out 0s forwards;
+
+    .text-content {
+      font-size: $font-size;
+      font-weight: normal;
+    
+      color: $dark;
+    }
+
+    .booking-btn {
+      width: 14em;
+      height: 2em;
+      margin-top: 1.5rem;
+  
+      color: $light;
+      background: none;
+      border: 1px solid $light;
+      font-size: $btn-font-size;
+      border-radius: 0;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+   .main-header {
+    align-items: center;
+    justify-content: flex-end;
+
+    .main-content {
+      margin: 3rem;
+    }
+   }
+}

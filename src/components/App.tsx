@@ -11,8 +11,8 @@ import { pageRoutes } from '../utils/routes';
 // import Video from './Video';
 // import Team from './Team';
 // import Footer from './Footer';
-import { Header } from './Header';
-import { BookingWidget } from './BookingWidget';
+import { Header } from './Main/Header';
+// import { BookingWidget } from './BookingWidget';
 
 const Main = () => (
   <>
@@ -21,13 +21,13 @@ const Main = () => (
     <Services />
     <Carousel />
     <Footer /> */}
-    <BookingWidget />
+    {/* <BookingWidget /> */}
   </>
 );
 
 export const App: React.FC = () => (
   <Router>
-    <div className="d-flex flex-column h-100 w-100">
+    <div className="d-flex flex-column">
       {/* <Navbar /> */}
       <Routes>
         <Route path={pageRoutes.mainPage()} element={<Main />} />
