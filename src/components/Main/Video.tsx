@@ -25,7 +25,8 @@ export const Video: React.FC = () => {
         <div className={cn('video-text', {
           'fade-up': isScrolled,
         })}>
-          <p className="text-content aqua-color p-5">{t('video.paragraph')}</p>
+          <p className="text-content aqua-color m-1">{t('video.paragraph1')}</p>
+          <p className="text-content aqua-color m-1">{t('video.paragraph2')}</p>
         </div>
         <div className="video-wrapper">
           <video

@@ -4,7 +4,8 @@ export default {
       currentLang: 'en',
     },
     video: {
-      paragraph: 'Experienced masters, individual approach, and impeccable service create a unique atmosphere where every client is a true VIP.',
+      paragraph1: 'Experienced masters, individual approach, and impeccable service',
+      paragraph2: 'create a unique atmosphere where every client is a true VIP.',
     },
     footer: {
       ourContacts: 'Contacts',
