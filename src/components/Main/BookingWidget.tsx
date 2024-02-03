@@ -5,7 +5,7 @@ import classNames from 'classnames';
 
 import { actions } from '../../slices/bookingWidgetSlice';
 import { getBookingWidgetState } from '../../utils/selectors';
-import { CloseIcon } from '../Icons/CloseIcon';
+import { CloseIcon } from '../temp/CloseIcon';
 
 export const BookingWidget: React.FC = () => {
   const dispatch = useDispatch();
