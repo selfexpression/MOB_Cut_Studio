@@ -1,0 +1,39 @@
+@mixin flex-width {
+  flex: 1 1 50%;
+  min-width: 0; 
+}
+
+.video-container {
+  display: flex;
+  flex-direction: column;
+
+  width: 100vw;
+
+  .video-text {
+    text-align: center;
+    padding: 5rem;
+    opacity: 0;
+  }
+
+  .video-wrapper {
+    display: flex;
+
+    .videoframe {
+      @include flex-width;
+    }
+    
+    .video-image {
+      @include flex-width;
+    
+      background-image: url("../../../assets/video/girl-model2.jpg");
+      background-position: center;
+      background-size: cover;
+    
+      transition: background-image .3s;
+    
+      &:hover {
+        background-image: url("../../../assets/video/girl-model.jpg");
+      }
+    }
+  }
+}

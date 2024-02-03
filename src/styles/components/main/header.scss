@@ -1,0 +1,75 @@
+@mixin parallax-wrapper {
+  height: 100%;
+  width: 100%;
+
+  will-change: transform;
+}
+
+.main-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  z-index: -1;
+  
+  background-color: $light;
+
+  .parallax-banner {
+    position: fixed;
+  
+    overflow: hidden;
+    @include parallax-wrapper;
+
+    .parallax-layer {
+      position: absolute;
+      object-fit: cover;
+      @include parallax-wrapper;
+    }
+  }
+
+  .main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+
+    position: relative;
+    height: max-content;
+    margin-right: 10rem;
+    opacity: 0;
+  
+    animation: scale-up 1s ease-in-out 0s forwards;
+
+    .booking-btn {
+      width: 14em;
+      height: 2em;
+  
+      color: $light;
+      background: none;
+      border: 1px solid $light;
+      font-size: $btn-font-size;
+      border-radius: 0;
+      text-transform: uppercase;
+      font-family: TenorSans-Regular, "Times New Roman", sans-serif;
+
+      &:hover {
+        color: $light;
+        border: $dark;
+        background-color: $dark;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+   .main-header {
+    align-items: center;
+    justify-content: flex-end;
+
+    .main-content {
+      margin: 3rem;
+    }
+   }
+}
