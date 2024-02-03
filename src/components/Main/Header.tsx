@@ -15,7 +15,6 @@ const Background: React.FC = () => {
   const { scrollY } = useScrollY();
   const parallaxController = useParallaxController();
   const isWide = useMediaQuery('(min-width: 768px)');
-  const isHeight = useMediaQuery('(min-height: 1024px)');
 
   const handleImageLoad = () => parallaxController?.update();
 
@@ -29,7 +28,7 @@ const Background: React.FC = () => {
   return (
     <picture
       className="parallax-banner"
-      style={isWide && isHeight ? { transform: translateBanner } : undefined}
+      style={isWide ? { transform: translateBanner } : undefined}
     >
       {backgroundImages.map(({ width, srcSet }) => (
         <source
@@ -43,7 +42,7 @@ const Background: React.FC = () => {
       <img
         alt={t('alts.background')}
         className="parallax-layer"
-        style={isWide && isHeight ? { transform: translateLayer } : undefined}
+        style={isWide ? { transform: translateLayer } : undefined}
         onLoad={handleImageLoad}
       />
     </picture>
