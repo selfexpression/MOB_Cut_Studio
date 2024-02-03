@@ -1,8 +1,4 @@
-@import "./components/main/header.scss";
-@import "./components/main/bookingWidget.scss";
-@import "./components/main/video.scss";
-@import "./components/main/services.scss";
-@import "./components/navbar.scss";
+@import "./components/index.scss";
 
 @font-face {
   font-family: 'Quicksand-Regular';
@@ -48,8 +44,4 @@ body {
 
 .scale-down {
   animation: scale-down .8s ease-in-out .2s forwards;
-}
-
-.scale-up-btn {
-  animation: scale-up .6s ease-in-out .6s forwards;
 }

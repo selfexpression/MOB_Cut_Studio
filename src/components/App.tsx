@@ -6,7 +6,7 @@ import {
 import { pageRoutes } from '../utils/routes';
 
 import { Navbar } from './Navbar';
-// import Slider from './Slider';
+import { Slider } from './Main/Slider';
 import { Services } from './Main/Services';
 import { Video } from './Main/Video';
 // import Team from './Team';
@@ -19,8 +19,8 @@ const Main = () => (
     <Header />
     <Video />
     <Services />
-    {/* <Carousel />
-    <Footer /> */}
+    <Slider />
+    {/* <Footer /> */}
     <BookingWidget />
   </>
 );

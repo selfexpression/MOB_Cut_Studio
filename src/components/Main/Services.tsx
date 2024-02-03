@@ -5,7 +5,7 @@ import cn from 'classnames';
 
 import { actions } from '../../slices/bookingWidgetSlice';
 import { useScrollY } from '../../hooks/index';
-import serviceImages from '../../assets/services/index';
+import { serviceImages } from '../../assets/services/index';
 import { getBookingWidgetState } from '../../utils/selectors';
 
 interface Props {
@@ -66,12 +66,12 @@ const BookingButton: React.FC<Props> = ({ isScrolled }) => {
   };
 
   return (
-    <div className="mt-5">
+    <div className="p-5">
       <button
         type="button"
         aria-label={t('ariaLabels.bookingBtn')}
         className={cn('services-btn', {
-          'scale-up-btn': isScrolled,
+          'scale-up': isScrolled,
         })}
         onClick={handleToggleWidget}
       >

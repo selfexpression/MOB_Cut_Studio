@@ -1,8 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import { sliderImages } from '../assets/slider';
+
 const initialState = {
   currentSlide: 0,
-  images: [],
+  images: sliderImages,
 };
 
 const slice = createSlice({

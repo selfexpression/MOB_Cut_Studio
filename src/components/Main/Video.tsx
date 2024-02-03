@@ -17,7 +17,7 @@ export const Video: React.FC = () => {
     if (scrollY > 170) {
       setScrolled(true);
     }
-  });
+  }, [scrollY]);
 
   return (
     <section id="video" className="bg-light">

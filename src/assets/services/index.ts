@@ -6,7 +6,7 @@ import service5 from './service5.jpg';
 import service6 from './service6.jpg';
 import service7 from './service7.jpg';
 
-export default [
+export const serviceImages = [
   { image: service1, id: 1 },
   { image: service2, id: 2 },
   { image: service3, id: 3 },
