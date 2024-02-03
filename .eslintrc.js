@@ -18,6 +18,9 @@ module.exports = {
       },
     },
   },
+  globals: {
+    ymaps: 'readonly',
+  },
   rules: {
     'import/extensions': [
       'error',

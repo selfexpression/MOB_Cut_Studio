@@ -5,6 +5,28 @@
   will-change: transform;
 }
 
+@mixin booking-btn($width, $color, $hover-color) {
+  .booking-btn {
+    width: $width;
+    height: 2rem;
+
+    color: $color;
+    background: none;
+    border: 1px solid $color;
+    font-size: $btn-font-size;
+    text-transform: uppercase;
+    font-family: TenorSans-Regular, "Times New Roman", sans-serif;
+
+    @content;
+
+    &:hover {
+      @content;
+      border: $hover-color;
+      background-color: $hover-color;
+    }
+  }
+}
+
 .main-header {
   display: flex;
   flex-direction: column;
@@ -12,7 +34,6 @@
   justify-content: center;
   height: 100vh;
   width: 100vw;
-  z-index: -1;
   
   background-color: $light;
 
@@ -42,23 +63,8 @@
   
     animation: scale-up 1s ease-in-out 0s forwards;
 
-    .booking-btn {
-      width: 14em;
-      height: 2em;
-  
-      color: $light;
-      background: none;
-      border: 1px solid $light;
-      font-size: $btn-font-size;
+    @include booking-btn(14rem, $light, $dark) {
       border-radius: 0;
-      text-transform: uppercase;
-      font-family: TenorSans-Regular, "Times New Roman", sans-serif;
-
-      &:hover {
-        color: $light;
-        border: $dark;
-        background-color: $dark;
-      }
     }
   }
 }
@@ -68,8 +74,13 @@
     align-items: center;
     justify-content: flex-end;
 
+    .parallax-banner {
+      position: absolute;
+    }
+
     .main-content {
       margin: 3rem;
+      z-index: 0;
     }
    }
 }

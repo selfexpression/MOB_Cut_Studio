@@ -11,7 +11,7 @@ import { actions } from '../slices/navbarSlice';
 import { pageRoutes, linkRoutes } from '../utils/routes';
 import { getNavbarState } from '../utils/selectors';
 
-import { Logo } from './temp/Logo';
+import { Logo } from './Icons/Logo';
 
 const NavLink: React.FC = () => {
   const { t } = useTranslation();

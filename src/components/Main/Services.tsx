@@ -70,7 +70,7 @@ const BookingButton: React.FC<Props> = ({ isScrolled }) => {
       <button
         type="button"
         aria-label={t('ariaLabels.bookingBtn')}
-        className={cn('services-btn', {
+        className={cn('booking-btn', {
           'scale-up': isScrolled,
         })}
         onClick={handleToggleWidget}

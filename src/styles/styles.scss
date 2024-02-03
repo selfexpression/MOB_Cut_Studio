@@ -45,3 +45,7 @@ body {
 .scale-down {
   animation: scale-down .8s ease-in-out .2s forwards;
 }
+
+.vibrating-phone {
+  animation: vibrating .2s linear infinite;
+}

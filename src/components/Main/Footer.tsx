@@ -5,12 +5,13 @@ import {
 import { useTranslation } from 'react-i18next';
 import { useYMaps } from '@pbe/react-yandex-maps';
 import { useDispatch, useSelector } from 'react-redux';
+import cn from 'classnames';
 
 import { actions } from '../../slices/bookingWidgetSlice';
 import { linkRoutes } from '../../utils/routes';
 import { getBookingWidgetState } from '../../utils/selectors';
 
-const Ymap = () => {
+const Ymap: React.FC = () => {
   const ymaps = useYMaps(['Map', 'Placemark']);
   const mapRef = useRef(null);
 
@@ -21,17 +22,15 @@ const Ymap = () => {
       zoom: 14,
     };
 
-    if (!ymaps || !mapRef.current) {
-      return;
-    }
+    if (!ymaps || !mapRef.current) return;
 
-    mapRef.current = new ymaps.Map(mapRef.current, {
+    const map = new ymaps.Map(mapRef.current, {
       center: settings.center,
       zoom: settings.zoom,
     });
 
-    const placemark = new ymaps.Placemark(settings.placemark);
-    mapRef.current.geoObjects.add(placemark);
+    const placemark = new ymaps.Placemark(settings.placemark, {});
+    map.geoObjects.add(placemark);
   }, [ymaps]);
 
   return (
@@ -39,23 +38,19 @@ const Ymap = () => {
   );
 };
 
-const InteractiveElements = () => {
+const InteractiveElements: React.FC = () => {
   const { t } = useTranslation();
   const [isVibrating, setVibrating] = useState(false);
   const dispatch = useDispatch();
   const { isOpenWidget } = useSelector(getBookingWidgetState);
 
-  const handleWidgetShow = () => {
+  const handleToggleWidget = () => {
     dispatch(actions.toggleWidget(!isOpenWidget));
   };
 
   useEffect(() => {
-    const toggleVibration = () => {
-      setVibrating((prevVibrating) => !prevVibrating);
-    };
-
     const toggleInterval = setInterval(() => {
-      toggleVibration();
+      setVibrating((prevVibrating) => !prevVibrating);
     }, 1000);
 
     return () => clearInterval(toggleInterval);
@@ -66,28 +61,30 @@ const InteractiveElements = () => {
       <button
         type="button"
         aria-label={t('ariaLabels.bookingBtn')}
-        className="btn-info-booking booking-btn rounded-1 mb-3"
-        onClick={handleWidgetShow}
+        className="booking-btn"
+        onClick={handleToggleWidget}
       >
         <span>{t('navbar.onlineBooking')}</span>
       </button>
-      <div className="footer-social d-flex align-items-center">
-        <a href={linkRoutes.whatsapp()} className="d-flex align-items-center">
-          <Whatsapp className="me-1" />
+      <div className="social-links">
+        <a href={linkRoutes.whatsapp()} className="link">
+          <Whatsapp className="mr-1" />
           {t('navbar.whatsapp')}
         </a>
-        <a href={linkRoutes.telegram()} className="ms-2 d-flex align-items-center">
-          <Telegram className="me-1" />
+        <a href={linkRoutes.telegram()} className="link">
+          <Telegram className="mr-1" />
           {t('navbar.telegram')}
         </a>
       </div>
       <div className="d-flex align-items-center mt-3">
-        <Telephone className={isVibrating ? 'vibrating-phone' : ''} />
+        <Telephone className={cn('mr-2', {
+          'vibrating-phone': isVibrating,
+        })} />
         <a href={linkRoutes.phoneNumber()}>
           <button
             type="button"
             aria-label={t('ariaLabels.callBtn')}
-            className="rounded-5 m-2 btn-info-booking call-btn booking-btn"
+            className="booking-btn"
           >
             <span>{t('navbar.phoneNumber')}</span>
           </button>
@@ -97,21 +94,21 @@ const InteractiveElements = () => {
   );
 };
 
-const Footer = () => {
+export const Footer: React.FC = () => {
   const { t } = useTranslation();
 
   return (
-    <footer id="footer" className="bg-dark">
+    <footer id="footer">
       <div className="footer-container">
-        <div className="footer-contacts text-center">
-          <h1 className="footer-head m-2">{t('footer.ourContacts')}</h1>
-          <div className="m-3 footer-text">
+        <div className="footer-contacts text-content">
+          <h2 className="m-2 uppercase">{t('footer.ourContacts')}</h2>
+          <div className="footer-interactive">
             <InteractiveElements />
-            <p className="footer-text no-wrap">{t('footer.location')}</p>
+            <p className="no-wrap">{t('footer.location')}</p>
           </div>
         </div>
-        <div className="map-container">
-          <h2 className="footer-head m-3 p-3 text-center">
+        <div className="map-container ">
+          <h2 className="text-content">
             {t('footer.findUsOnMap')}
           </h2>
           <Ymap />
@@ -120,5 +117,3 @@ const Footer = () => {
     </footer>
   );
 };
-
-export default Footer;

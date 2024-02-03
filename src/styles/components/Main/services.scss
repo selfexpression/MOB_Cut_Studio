@@ -1,62 +1,55 @@
-.services-flow {
-  position: relative;
-  display: flex;
-  align-items: center;
-
-  margin-right: 0.5rem;
-  height: 25em;
-  overflow-x: auto;
-  opacity: 0;
-
-  .services-card {
+#services {
+  .services-flow {
     position: relative;
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    align-items: center;
   
-    min-height: 20%;
-    height: 22em;
-    margin-left: 1rem;
+    margin-right: 0.5rem;
+    height: 25em;
+    overflow-x: auto;
+    opacity: 0;
   
-    flex: 1 0 18rem;
-    overflow-y: hidden;
+    .services-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    
+      min-height: 20%;
+      height: 22em;
+      margin-left: 1rem;
+    
+      flex: 1 0 18rem;
+      overflow-y: hidden;
+    
+      background-color: $white;
+      border: 0.5px solid $grey;
+      border-radius: 0.5rem;
+      transition: transform .6s ease-in-out;
   
-    background-color: $white;
-    border: 0.5px solid $grey;
+      &:hover {
+        transform: scale(1.1);
+      }
+  
+      img {
+        opacity: 0;
+      }
+    }
+  }
+  
+  .services-text {
+    opacity: 0;
+    text-align: center;
+  
+    padding: 1.5rem;
+  }
+  
+  @include booking-btn(18rem, $aqua, $aqua) {
+    opacity: 0;
     border-radius: 0.5rem;
-    transition: transform .6s ease-in-out;
-
+  
     &:hover {
-      transform: scale(1.1);
+      color: $light;
     }
-
-    img {
-      opacity: 0;
-    }
-  }
-}
-
-.services-text {
-  opacity: 0;
-  text-align: center;
-
-  padding: 1.5rem;
-}
-
-.services-btn {
-  width: 18rem;
-  height: 2rem;
-
-  color: $aqua;
-  background: none;
-  border: 1px solid $aqua;
-  border-radius: 0.5rem;
-  text-transform: uppercase;
-  opacity: 0;
-  font-size: $btn-font-size;
-
-  &:hover {
-    color: $light;
-    background-color: $aqua;
-  }
+  }  
 }

@@ -10,7 +10,7 @@ import { Slider } from './Main/Slider';
 import { Services } from './Main/Services';
 import { Video } from './Main/Video';
 // import Team from './Team';
-// import Footer from './Footer';
+import { Footer } from './Main/Footer';
 import { Header } from './Main/Header';
 import { BookingWidget } from './Main/BookingWidget';
 
@@ -20,7 +20,7 @@ const Main = () => (
     <Video />
     <Services />
     <Slider />
-    {/* <Footer /> */}
+    <Footer />
     <BookingWidget />
   </>
 );
