@@ -1,5 +1,6 @@
 @import "./components/main/header.scss";
 @import "./components/main/bookingWidget.scss";
+@import "./components/main/video.scss";
 @import "./components/navbar.scss";
 
 @font-face {
@@ -19,4 +20,11 @@ body {
 
 * {
   box-sizing: border-box;
+}
+
+.text-content {
+  font-size: $font-size;
+  color: $dark;
+
+  font-family: TenorSans-Regular, "Times New Roman", sans-serif;
 }

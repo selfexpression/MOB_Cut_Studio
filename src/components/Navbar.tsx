@@ -133,7 +133,7 @@ const ToggleButton: React.FC = () => {
   const dispatch = useDispatch();
   const { isOpenMenu } = useSelector(getNavbarState);
 
-  const handleToggle = () => {
+  const handleToggleMenu = () => {
     dispatch(actions.toggleMenu(!isOpenMenu));
   };
 
@@ -145,7 +145,7 @@ const ToggleButton: React.FC = () => {
       type="button"
       aria-label='open-navbar'
       aria-expanded={isOpenMenu}
-      onClick={handleToggle}
+      onClick={handleToggleMenu}
     >
       <div className="line" />
       <div className="line" />
@@ -165,9 +165,7 @@ export const Navbar: React.FC = () => {
   const { scrollToTop } = animateScroll;
 
   return (
-    <nav
-      className="navbar"
-    >
+    <nav className="navbar">
       <div
         className="navbar-logo"
         onClick={isMainPage ? scrollToTop : () => navigate(pageRoutes.mainPage())}

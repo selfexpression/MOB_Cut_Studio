@@ -94,6 +94,8 @@
     color: $light;
     cursor: pointer;
     transition: transform .3s ease-in-out;
+
+    @content;
   }
 }
 
@@ -129,7 +131,11 @@
     display: flex;
     align-items: center;
 
-    @include nav-link;
+    @include nav-link {
+      &:hover {
+        transform: scale(1.2);
+      }
+    }
   }
 
   @include lang-switch-btn;

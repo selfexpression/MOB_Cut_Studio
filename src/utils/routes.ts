@@ -8,7 +8,6 @@ export const firebaseApiRoutes = {
   productImagesApi: (id: number) => `product-images/${id}.jpg`,
   categories: () => 'categories',
   products: () => 'products',
-  backgroundImages: () => 'background',
 };
 
 export const linkRoutes = {

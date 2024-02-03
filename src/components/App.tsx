@@ -8,7 +8,7 @@ import { pageRoutes } from '../utils/routes';
 import { Navbar } from './Navbar';
 // import Slider from './Slider';
 // import Services from './Services';
-// import Video from './Video';
+import { Video } from './Main/Video';
 // import Team from './Team';
 // import Footer from './Footer';
 import { Header } from './Main/Header';
@@ -17,8 +17,8 @@ import { BookingWidget } from './Main/BookingWidget';
 const Main = () => (
   <>
     <Header />
-    {/* <Video />
-    <Services />
+    <Video />
+    {/* <Services />
     <Carousel />
     <Footer /> */}
     <BookingWidget />

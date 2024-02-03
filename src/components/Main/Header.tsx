@@ -6,15 +6,13 @@ import { useMediaQuery } from '@reactuses/core';
 
 import { actions } from '../../slices/bookingWidgetSlice';
 import { useScrollY } from '../../hooks/index';
-import { getBookingWidgetState, getImageState } from '../../utils/selectors';
-import { loadImageFolder } from '../../thunks/imagesThunk';
-import { firebaseApiRoutes, pageRoutes } from '../../utils/routes';
-import { AppDispatch } from '../../types/aliases';
+import { getBookingWidgetState } from '../../utils/selectors';
+import { pageRoutes } from '../../utils/routes';
+import { backgroundImages } from '../../assets/background';
 
 const Background: React.FC = () => {
   const { t } = useTranslation();
   const { scrollY } = useScrollY();
-  const { backgroundImages } = useSelector(getImageState);
   const parallaxController = useParallaxController();
   const isWide = useMediaQuery('(min-width: 768px)');
   const isHeight = useMediaQuery('(min-height: 1024px)');
@@ -33,12 +31,12 @@ const Background: React.FC = () => {
       className="parallax-banner"
       style={isWide && isHeight ? { transform: translateBanner } : undefined}
     >
-      {backgroundImages.map(({ width, url }) => (
+      {backgroundImages.map(({ width, srcSet }) => (
         <source
           key={width}
           media={`(max-width: ${width}px)`}
           type="image/jpeg"
-          srcSet={url}
+          srcSet={srcSet}
           onLoad={handleImageLoad}
         />
       ))}
@@ -54,21 +52,12 @@ const Background: React.FC = () => {
 
 export const Header: React.FC = () => {
   const { t } = useTranslation();
-  const dispatch = useDispatch<AppDispatch>();
-  const { backgroundImages } = useSelector(getImageState);
+  const dispatch = useDispatch();
   const { isOpenWidget } = useSelector(getBookingWidgetState);
 
   const handleToggleWidget = () => {
     dispatch(actions.toggleWidget(!isOpenWidget));
   };
-
-  useEffect(() => {
-    if (!backgroundImages.length) {
-      dispatch(loadImageFolder({
-        folderPath: firebaseApiRoutes.backgroundImages(),
-      }));
-    }
-  }, []);
 
   return (
     <header id={pageRoutes.mainPage()} className="main-header">
