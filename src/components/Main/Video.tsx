@@ -10,12 +10,12 @@ import { useScrollY } from '../../hooks';
 export const Video: React.FC = () => {
   const { t } = useTranslation();
   const isWide = useMediaQuery('(min-width: 768px)');
-  const [isScrollToText, setScrollToText] = useState(false);
+  const [isScrolled, setScrolled] = useState(false);
   const { scrollY } = useScrollY();
 
   useEffect(() => {
     if (scrollY > 170) {
-      setScrollToText(true);
+      setScrolled(true);
     }
   });
 
@@ -23,7 +23,7 @@ export const Video: React.FC = () => {
     <section id="video" className="bg-light">
       <div className="video-container">
         <div className={cn('video-text', {
-          'fade-up': isScrollToText,
+          'fade-up': isScrolled,
         })}>
           <p className="text-content aqua-color p-5">{t('video.paragraph')}</p>
         </div>

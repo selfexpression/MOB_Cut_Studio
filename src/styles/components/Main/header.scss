@@ -16,7 +16,6 @@
   width: 100vw;
   
   background-color: $light;
-  z-index: -1;
 
   .parallax-banner {
     position: fixed;
@@ -44,7 +43,6 @@
     z-index: 0;
   
     animation: scale-up 1s ease-in-out 0s forwards;
-    // font-family: TenorSans-Regular, "Times New Roman", sans-serif;
 
     .booking-btn {
       width: 14em;

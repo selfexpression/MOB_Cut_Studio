@@ -7,7 +7,7 @@ import { pageRoutes } from '../utils/routes';
 
 import { Navbar } from './Navbar';
 // import Slider from './Slider';
-// import Services from './Services';
+import { Services } from './Main/Services';
 import { Video } from './Main/Video';
 // import Team from './Team';
 // import Footer from './Footer';
@@ -18,8 +18,8 @@ const Main = () => (
   <>
     <Header />
     <Video />
-    {/* <Services />
-    <Carousel />
+    <Services />
+    {/* <Carousel />
     <Footer /> */}
     <BookingWidget />
   </>
