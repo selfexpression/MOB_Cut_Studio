@@ -19,25 +19,12 @@
 
     width: 2.5em;
     height: 2.5em;
-    top: 5em;
-    left: -3em;
+    top: 0;
+    left: 0;
 
     background: none;
-    border: 1px solid black;
-    border-radius: 3em;
+    border: none;
     cursor: pointer;
-
-    .close-logo {
-      color: black;
-
-      &:hover {
-        color: $light;
-      }
-    }
-
-    &:hover {
-      background-color: $dark;
-    }
   }
 }
 
@@ -66,14 +53,5 @@
 @media screen and (max-width: 560px) {
   .booking-widget {
     width: 100%;
-
-    .close-btn {
-      width: 2em;
-      height: 2em;
-      top: 0;
-      left: 0;
-
-      border: none;
-    }
   }
 }
