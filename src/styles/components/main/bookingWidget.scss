@@ -16,9 +16,8 @@
   .close-btn {
     @include flex-center;
     position: absolute;
+    padding: 0;
 
-    width: 2.5em;
-    height: 2.5em;
     top: 0;
     left: 0;
 
