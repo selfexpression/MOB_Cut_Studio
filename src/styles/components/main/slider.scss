@@ -17,6 +17,7 @@
 
 .slider-text {
   @include flex-center;
+  text-align: center;
   
   p {
     border-top: 1px solid $grey;
@@ -62,5 +63,14 @@
   .next {
     @include arrow-btn;
     right: 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .slider-text {    
+    p {
+      padding: 0.5rem;
+      width: 80vw;
+    }
   }
 }

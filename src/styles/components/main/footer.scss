@@ -8,7 +8,7 @@
   .footer-contacts {
     text-align: center;
     color: $light;
-    padding: 3rem;
+    padding: 2rem;
 
     .footer-interactive {
       @include flex-center;
@@ -50,7 +50,7 @@
     }
 
     .map {
-      height: 40rem;
+      height: 30rem;
     }
   }
 }
