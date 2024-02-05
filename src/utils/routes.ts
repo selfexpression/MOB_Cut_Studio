@@ -1,6 +1,8 @@
 export const pageRoutes = {
   mainPage: () => '/',
   teamPage: () => '/team',
+  storePage: () => '/store',
+  currentProduct: (id: number) => `/product/${id}`,
 };
 
 export const firebaseApiRoutes = {

@@ -1,0 +1,66 @@
+.collection-products {
+  scroll-snap-type: y mandatory;
+  z-index: -1;
+  font-family: Quicksand-Regular, "Times New Roman", serif;
+
+    .collection-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+
+      .collection-item {
+        flex-basis: 33.3333%;
+        scroll-snap-align: start;
+      
+        border: $white-grey-border;
+
+        .item-image {
+          height: 20em;
+          width: 100%;
+          padding: 4em;
+        
+          object-fit: contain;
+          object-position: center;
+          border-bottom: $white-grey-border;
+
+          &.out-of-stock {
+            opacity: 0.2 !important;
+          }
+         }
+      }
+
+      .not-found-items {
+        @include flex-center;
+        height: 100vh;
+        width: 100%;
+
+        text-align: center;
+        font-size: 1.2em;
+        font-family: TenorSans-Regular, "Times New Roman", serif;
+      }
+    }
+}
+
+@media screen and (max-width: 1024px) {
+  .collection-products {
+    .collection-wrapper {
+      .collection-item {
+        flex-basis: 50%;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .collection-products {
+    .collection-wrapper {
+      .collection-item {
+        flex-basis: 100%;
+      }
+
+      .not-found-items {
+        font-size: 1em;
+      }
+    }
+  }
+}

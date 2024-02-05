@@ -3,11 +3,17 @@ import { configureStore } from '@reduxjs/toolkit';
 import { actions as bookingWidgetActions, reducer as bookingWidgetSlice } from './bookingWidgetSlice';
 import { actions as navbarWidgetActions, reducer as navbarWidgetSlice } from './navbarSlice';
 import { actions as sliderActions, reducer as sliderSlice } from './sliderSlice';
+import { actions as databaseActions, reducer as databaseSlice } from './databaseSlice';
+import { actions as sortMenuActions, reducer as sortMenuSlice } from './sortMenuSlice';
+import { reducer as filterMenuSlice, actions as filterMenuActions } from './filterMenuSlice';
 
 export const actions = {
   ...bookingWidgetActions,
   ...navbarWidgetActions,
   ...sliderActions,
+  ...databaseActions,
+  ...sortMenuActions,
+  ...filterMenuActions,
 };
 
 export const store = configureStore({
@@ -15,5 +21,8 @@ export const store = configureStore({
     bookingWidget: bookingWidgetSlice,
     navbar: navbarWidgetSlice,
     slider: sliderSlice,
+    database: databaseSlice,
+    sort: sortMenuSlice,
+    filter: filterMenuSlice,
   },
 });

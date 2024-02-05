@@ -12,6 +12,7 @@ import { pageRoutes, linkRoutes } from '../utils/routes';
 import { getNavbarState } from '../utils/selectors';
 
 import { Logo } from './Icons/Logo';
+import { HomeIcon } from './Icons/HomeIcon';
 
 const NavLink: React.FC = () => {
   const { t } = useTranslation();
@@ -26,6 +27,7 @@ const NavLink: React.FC = () => {
 
   const pagesMap = {
     services: ScrollLink,
+    store: RouterLink,
     team: RouterLink,
     slider: ScrollLink,
     footer: ScrollLink,
@@ -54,7 +56,7 @@ const NavLink: React.FC = () => {
             onClick={handleToggleMenu}
             className="nav-link"
           >
-            {t('navbar.main')}
+            {HomeIcon()}
           </RouterLink>
         )
       }
@@ -96,7 +98,7 @@ const NavbarBody: React.FC = () => {
     isWide
       ? (
         <div className="navbar-links">
-          <div className="d-flex mr-4">
+          <div className="mr-1">
             <NavLink />
           </div>
           <LangSwitcher />
