@@ -11,6 +11,7 @@ export const Video: React.FC = () => {
   const { t } = useTranslation();
   const isWide = useMediaQuery('(min-width: 768px)');
   const [isScrolled, setScrolled] = useState(false);
+  const videoParagraphs = t('video', { returnObjects: true });
   const { scrollY } = useScrollY();
 
   useEffect(() => {
@@ -25,8 +26,11 @@ export const Video: React.FC = () => {
         <div className={cn('video-text', {
           'fade-up': isScrolled,
         })}>
-          <p className="text-content aqua-color m-1">{t('video.paragraph1')}</p>
-          <p className="text-content aqua-color m-1">{t('video.paragraph2')}</p>
+          {Object.entries(videoParagraphs).map(([key, value]) => (
+            <p key={key} className="text-content aqua-color m-1">
+              {value}
+            </p>
+          ))}
         </div>
         <div className="video-wrapper">
           <video

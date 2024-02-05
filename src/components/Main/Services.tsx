@@ -20,7 +20,7 @@ const ServiceText: React.FC<Props> = ({ isScrolled }) => {
       'fade-down': isScrolled,
     })}>
       <h1 className="text-header">
-        {t('services.heading')}
+        {t('services.header')}
       </h1>
       <p className="p-3 text-content">
         {t('services.description')}
@@ -86,7 +86,7 @@ export const Services: React.FC = () => {
   const [isScrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    if (scrollY > 1500) {
+    if (scrollY > 1400) {
       setScrolled(true);
     }
   }, [scrollY]);

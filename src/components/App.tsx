@@ -9,7 +9,7 @@ import { Navbar } from './Navbar';
 import { Slider } from './Main/Slider';
 import { Services } from './Main/Services';
 import { Video } from './Main/Video';
-// import Team from './Team';
+import { Team } from './Main/Team';
 import { Footer } from './Main/Footer';
 import { Header } from './Main/Header';
 import { BookingWidget } from './Main/BookingWidget';
@@ -31,7 +31,7 @@ export const App: React.FC = () => (
       <Navbar />
       <Routes>
         <Route path={pageRoutes.mainPage()} element={<Main />} />
-        {/* <Route path={routes.teamPage} element={<Team />} /> */}
+        <Route path={pageRoutes.teamPage()} element={<Team />} />
       </Routes>
     </div>
   </Router>

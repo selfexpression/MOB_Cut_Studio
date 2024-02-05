@@ -71,11 +71,20 @@
   }
 }
 
-@media screen and (max-width: 768px) {
-   .main-header {
+@media screen and (max-width: 1023px) {
+  .main-header {
     align-items: center;
     justify-content: flex-end;
 
+    .main-content {
+      margin-right: 0;
+      margin-bottom: 3rem;
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+   .main-header {
     .parallax-banner {
       position: absolute;
       height: 100vh;
@@ -83,7 +92,6 @@
     }
 
     .main-content {
-      margin: 3rem;
       z-index: 0;
     }
    }

@@ -101,7 +101,7 @@ export const Footer: React.FC = () => {
     <footer id="footer">
       <div className="footer-container">
         <div className="footer-contacts text-content">
-          <h2 className="m-2 uppercase">{t('footer.ourContacts')}</h2>
+          <h2 className="m-2 uppercase">{t('footer.contacts')}</h2>
           <div className="footer-interactive">
             <InteractiveElements />
             <p className="no-wrap">{t('footer.location')}</p>

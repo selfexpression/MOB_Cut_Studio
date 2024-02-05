@@ -8,7 +8,7 @@ export default {
       paragraph2: 'create a unique atmosphere where every client is a true VIP.',
     },
     footer: {
-      ourContacts: 'Contacts',
+      contacts: 'Contacts',
       findUsOnMap: 'Find us on the map',
       location: 'Novosibirsk, Oktyabrskaya Street 81',
       phoneNumber: '+7-(999)-465-2506',
@@ -31,7 +31,7 @@ export default {
       whatsapp: 'Whatsapp',
     },
     services: {
-      heading: 'Services',
+      header: 'Services',
       description: 'Our chairs are the throne of style, and the atmosphere is the whirlwind of creativity. We not only follow trends but set them.',
       chooseService: 'Choose Service',
       names: {
@@ -45,8 +45,12 @@ export default {
       },
     },
     team: {
-      heading: 'Team',
-      description: '«MOB Cut Studio» is not just a salon, it is a guide to the world of elegance and style. Entrust your appearance to professionals, and your hair will become not just a haircut but an art that speaks of your unique individuality.',
+      header: 'Team',
+      description: {
+        paragraph1: '«MOB Cut Studio» is not just a salon, it is a guide to the world of elegance and style.',
+        paragraph2: 'Entrust your appearance to professionals, and your hair will become not just a haircut',
+        paragraph3: 'but an art that speaks of your unique individuality.',
+      },
       teammates: {
         1: 'Employee 1',
         2: 'Employee 2',
