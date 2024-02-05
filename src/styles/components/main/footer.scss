@@ -14,7 +14,7 @@
       @include flex-center;
       flex-direction: column;
 
-      @include booking-btn(12rem, $light, $light) {
+      @include booking-btn(14rem, $light, $light) {
         border-radius: 0.5rem;
 
         &:hover {

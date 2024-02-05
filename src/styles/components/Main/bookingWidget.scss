@@ -22,15 +22,21 @@
     top: 5em;
     left: -3em;
 
-    color: black;
     background: none;
     border: 1px solid black;
     border-radius: 3em;
     cursor: pointer;
 
+    .close-logo {
+      color: black;
+
+      &:hover {
+        color: $light;
+      }
+    }
+
     &:hover {
-      background-color: black;
-      color: $light;
+      background-color: $dark;
     }
   }
 }
