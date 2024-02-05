@@ -22,14 +22,14 @@
     top: 5em;
     left: -3em;
 
+    color: black;
     background: none;
-    // border: 1px solid $dark;
-    border: none;
+    border: 1px solid black;
     border-radius: 3em;
     cursor: pointer;
 
     &:hover {
-      background-color: $dark;
+      background-color: black;
       color: $light;
     }
   }
@@ -66,6 +66,8 @@
       height: 2em;
       top: 0;
       left: 0;
+
+      border: none;
     }
   }
 }

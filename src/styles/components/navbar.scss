@@ -102,6 +102,7 @@
 .navbar {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   position: fixed;
   top: 0;
   left: 0;
@@ -174,5 +175,11 @@
   
   .navbar-body-hide {
     display: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .navbar {
+    justify-content: flex-start;
   }
 }
