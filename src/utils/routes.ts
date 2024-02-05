@@ -11,7 +11,7 @@ export const firebaseApiRoutes = {
 };
 
 export const linkRoutes = {
-  whatsapp: () => 'https://wa.me/+79692281139',
-  telegram: () => 'https://t.me/+79692281139',
-  phoneNumber: () => 'tel:+79692281139',
+  whatsapp: () => 'https://wa.me/+79994652506',
+  telegram: () => 'https://t.me/+79994652506',
+  phoneNumber: () => 'tel:+79994652506',
 };

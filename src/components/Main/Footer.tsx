@@ -64,7 +64,7 @@ const InteractiveElements: React.FC = () => {
         className="booking-btn"
         onClick={handleToggleWidget}
       >
-        <span>{t('navbar.onlineBooking')}</span>
+        <span>{t('header.onlineBooking')}</span>
       </button>
       <div className="social-links">
         <a href={linkRoutes.whatsapp()} className="link">
@@ -86,7 +86,7 @@ const InteractiveElements: React.FC = () => {
             aria-label={t('ariaLabels.callBtn')}
             className="booking-btn"
           >
-            <span>{t('navbar.phoneNumber')}</span>
+            <span>{t('footer.phoneNumber')}</span>
           </button>
         </a>
       </div>

@@ -23,7 +23,8 @@
     left: -3em;
 
     background: none;
-    border: 1px solid $dark;
+    // border: 1px solid $dark;
+    border: none;
     border-radius: 3em;
     cursor: pointer;
 
@@ -63,8 +64,8 @@
     .close-btn {
       width: 2em;
       height: 2em;
-      top: 1.5em;
-      left: 80vw;
+      top: 0;
+      left: 0;
     }
   }
 }

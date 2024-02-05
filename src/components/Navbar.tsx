@@ -27,7 +27,7 @@ const NavLink: React.FC = () => {
   const pagesMap = {
     services: ScrollLink,
     team: RouterLink,
-    carousel: ScrollLink,
+    slider: ScrollLink,
     footer: ScrollLink,
   };
 

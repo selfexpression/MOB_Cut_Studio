@@ -11,6 +11,7 @@ export default {
       ourContacts: 'Contacts',
       findUsOnMap: 'Find us on the map',
       location: 'Novosibirsk, Oktyabrskaya Street 81',
+      phoneNumber: '+7-(999)-465-2506',
 
     },
     carousel: {
@@ -26,10 +27,6 @@ export default {
       services: 'Services',
       team: 'Team',
       footer: 'Contact Us',
-      location: 'Oktyabrskaya Street 81',
-      city: 'Novosibirsk',
-      phoneNumber: '+7-(969)-228-1139',
-      onlineBooking: 'Book Now',
       telegram: 'Telegram',
       whatsapp: 'Whatsapp',
     },

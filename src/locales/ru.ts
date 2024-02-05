@@ -11,6 +11,7 @@ export default {
       ourContacts: 'Контакты',
       findUsOnMap: 'Найти нас на карте',
       location: 'Новосибирск, ул. Октябрьская 81',
+      phoneNumber: '+7-(999)-465-2506',
     },
     carousel: {
       description: 'Наши работы, наше пространство, наша атмосфера.',
@@ -21,14 +22,10 @@ export default {
     },
     navbar: {
       main: 'Главная страница',
-      carousel: 'Галерея',
+      slider: 'Галерея',
       services: 'Услуги',
       team: 'Команда',
       footer: 'Связаться с нами',
-      city: 'Новосибирск',
-      location: 'ул. Октябрьская 81',
-      phoneNumber: '+7-(969)-228-1139',
-      onlineBooking: 'Записаться',
       telegram: 'Telegram',
       whatsapp: 'Whatsapp',
     },
