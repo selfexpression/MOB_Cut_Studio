@@ -1,0 +1,152 @@
+.cart-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .cart-wrapper {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 4em;
+  
+    background-color: $white;
+    font-family: TenorSans-Regular, "Times New Roman", serif;
+  
+    .cart-outer {
+      margin-right: 4em;
+  
+      table {
+        border-collapse: collapse;
+      }
+    
+      .cart-item {
+        border-top: $white-grey-border;
+        border-bottom: $white-grey-border;
+
+        .cart-product-img {
+          img {
+            max-width: 3em;
+          }
+        }
+      }
+    }
+  }
+}
+
+.form-field {
+  width: 25em;
+  border: 1px solid $grey;
+}
+
+.submit-btn {
+  width: 25em;
+  height: 3em;
+  background-color: $dark;
+  color: $white;
+  border: 1px solid $dark;
+
+  text-transform: uppercase;
+
+  &:hover {
+    background-color: $white;
+    color: $dark;
+  }
+}
+
+.counter-items {
+  display: flex;
+  justify-content: space-between;
+  width: 10em;
+  height: 3em;
+  align-items: center;
+  border: $white-grey-border;
+
+  button[aria-label="decrement"],
+  button[aria-label="increment"] {
+    background-color: $white;
+    border: none;
+    cursor: pointer;
+  }
+}
+
+.empty-cart-items {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  font-size: 1.3em;
+  font-family: TenorSans-Regular, "Times New Roman", serif;
+
+  .empty-cart-image {
+    max-width: 15em;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+.small-screen-item {
+  display: none;
+}
+
+.is-valid {
+  border: 1px solid $aqua;
+}
+
+.is-invalid {
+  border: 1px solid red;
+}
+
+.invalid-tooltip {
+  font-size: 0.7em;
+  color: red;
+}
+
+.cart-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+ }
+
+@media screen and (max-width: 1024px) {
+  .cart-container {
+    .cart-wrapper {
+      flex-direction: column;
+      align-items: center;
+
+      .cart-outer {
+        margin: 0;
+      }
+    }
+
+    .empty-cart-items {
+      font-size: 1.1em;
+    }
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .item-name,
+  .item-price,
+  .item-quantity {
+    display: none;
+  }
+
+  .small-screen-item {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .cart-footer {
+    display: block;
+    padding: 1em;
+    text-align: center;
+  }
+
+  .form-field,
+    .submit-btn {
+      width: 20em;
+  }
+}

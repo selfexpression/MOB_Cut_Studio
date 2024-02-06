@@ -19,17 +19,6 @@ body {
   box-sizing: border-box;
 }
 
-.text-content {
-  font-size: $font-size;
-  font-family: TenorSans-Regular, "Times New Roman", sans-serif;
-}
-
-.text-header {
-  font-size: $header-font-size;
-  text-transform: uppercase;
-  color: $aqua;
-}
-
 .scale-up {
   animation: scale-up .6s ease-in-out .3s forwards;
 }

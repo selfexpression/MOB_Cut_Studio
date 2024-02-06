@@ -12,8 +12,8 @@ export const getFilterState = (state: RootState) => state.filter;
 
 export const getSortState = (state: RootState) => state.sort;
 
-// export const getProductCardState = (state: RootState) => state.productCard;
+export const getProductCardState = (state: RootState) => state.product;
 
-// export const getCartState = (state: RootState) => state.cart;
+export const getCartState = (state: RootState) => state.cart;
 
-// export const getCurrentBrandNames = (state: RootState) => state.filter.currentBrandNames;
+export const getCurrentBrandNames = (state: RootState) => state.filter.currentBrandNames;

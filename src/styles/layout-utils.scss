@@ -228,3 +228,14 @@ $flex-align-self-values: map.merge($auto-value, $flex-align-items-values);
 .max-content {
   height: max-content;
 }
+
+.text-content {
+  font-size: $font-size;
+  font-family: TenorSans-Regular, "Times New Roman", sans-serif;
+}
+
+.text-header {
+  font-size: $header-font-size;
+  text-transform: uppercase;
+  color: $aqua;
+}

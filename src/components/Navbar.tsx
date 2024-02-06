@@ -13,16 +13,18 @@ import { getNavbarState } from '../utils/selectors';
 
 import { Logo } from './Icons/Logo';
 import { HomeIcon } from './Icons/HomeIcon';
+import { CartIcon } from './Icons/CartIcon';
 
-const NavLink: React.FC = () => {
+interface NavLinkProps {
+  isMainPage: boolean;
+}
+
+const PageNavLink: React.FC<NavLinkProps> = ({ isMainPage }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const location = useLocation();
-  const { isOpenMenu } = useSelector(getNavbarState);
-  const isMainPage = location.pathname === pageRoutes.mainPage();
 
   const handleToggleMenu = () => {
-    dispatch(actions.toggleMenu(!isOpenMenu));
+    dispatch(actions.toggleMenu(false));
   };
 
   const pagesMap = {
@@ -34,37 +36,49 @@ const NavLink: React.FC = () => {
   };
 
   return (
-    <>
-      {isMainPage
-        ? (
-          Object.entries(pagesMap).map(([pageName, Link]) => (
+    isMainPage
+      ? (
+        <div className="page-link-wrapper">
+          {Object.entries(pagesMap).map(([pageName, Link]) => (
             <Link
+              className='page-link'
               key={pageName}
               to={pageName}
               duration={500}
               smooth="true"
-              className="nav-link"
               onClick={handleToggleMenu}
             >
               {t(`navbar.${pageName}`)}
             </Link>
-          ))
-        )
-        : (
-          <RouterLink
-            to={pageRoutes.mainPage()}
-            onClick={handleToggleMenu}
-            className="nav-link"
-          >
-            {HomeIcon()}
-          </RouterLink>
-        )
-      }
-    </>
+          ))}
+        </div>
+      )
+      : (
+        null
+      )
   );
 };
 
-const LangSwitcher: React.FC = () => {
+const HomePageButton: React.FC = () => {
+  const dispatch = useDispatch();
+
+  const handleToggleMenu = () => {
+    dispatch(actions.toggleMenu(false));
+  };
+
+  return (
+    <div className="home-page-btn">
+      <RouterLink
+        to={pageRoutes.mainPage()}
+        onClick={handleToggleMenu}
+      >
+        <HomeIcon />
+      </RouterLink>
+    </div>
+  );
+};
+
+const LanguageToggleButton: React.FC = () => {
   const { t, i18n } = useTranslation();
 
   const handleLangSwitch = () => {
@@ -85,8 +99,47 @@ const LangSwitcher: React.FC = () => {
   );
 };
 
-const NavbarBody: React.FC = () => {
-  const isWide = useMediaQuery('(min-width: 768px)');
+const NavbarLogo: React.FC<NavLinkProps> = () => {
+  const location = useLocation();
+  const isMainPage = location.pathname === pageRoutes.mainPage();
+  const navigate = useNavigate();
+  const { scrollToTop } = animateScroll;
+
+  return (
+    <div
+      className="navbar-logo"
+      onClick={isMainPage
+        ? scrollToTop
+        : () => navigate(pageRoutes.mainPage())
+      }
+    >
+      <Logo />
+    </div>
+  );
+};
+
+const CartLink: React.FC = () => (
+  <RouterLink
+    className="no-decoration cart-link"
+    to={pageRoutes.cartPage()}
+  >
+    <CartIcon />
+  </RouterLink>
+);
+
+const NavbarLinks: React.FC<NavLinkProps> = ({ isMainPage }) => (
+  <div className="navbar-links">
+    <NavbarLogo isMainPage={isMainPage} />
+    <PageNavLink isMainPage={isMainPage} />
+    <div className="d-flex align-items-center">
+      {!isMainPage ? <HomePageButton /> : null}
+      <CartLink />
+      <LanguageToggleButton />
+    </div>
+  </div>
+);
+
+const NavbarBody: React.FC<NavLinkProps> = ({ isMainPage }) => {
   const { isOpenMenu } = useSelector(getNavbarState);
 
   const socialLinks = {
@@ -95,43 +148,31 @@ const NavbarBody: React.FC = () => {
   };
 
   return (
-    isWide
-      ? (
-        <div className="navbar-links">
-          <div className="mr-1">
-            <NavLink />
-          </div>
-          <LangSwitcher />
+    <div className={cn('navbar-body', {
+      'navbar-body-show': isOpenMenu,
+      'navbar-body-hide': !isOpenMenu,
+    })}>
+      <PageNavLink isMainPage={isMainPage} />
+      {!isMainPage ? <HomePageButton /> : null}
+      <div className="navbar-footer">
+        <div className="navbar-contacts">
+          {Object.entries(socialLinks).map(([contact, Icon]) => (
+            <a
+              key={contact}
+              href={linkRoutes[contact as keyof typeof socialLinks]()}
+              className="contact-links"
+            >
+              <Icon />
+            </a>
+          ))}
         </div>
-      )
-      : (
-        <div className={cn('navbar-body', {
-          'navbar-body-show': isOpenMenu,
-          'navbar-body-hide': !isOpenMenu,
-        })}>
-          <div className="d-flex flex-column p-2">
-            <NavLink />
-          </div>
-          <div className="navbar-footer">
-            <div className="navbar-contacts">
-              {Object.entries(socialLinks).map(([contact, Icon]) => (
-                <a
-                  key={contact}
-                  href={linkRoutes[contact as keyof typeof socialLinks]()}
-                  className="contact-links"
-                >
-                  <Icon />
-                </a>
-              ))}
-            </div>
-            <LangSwitcher />
-          </div>
-        </div>
-      )
+        <LanguageToggleButton />
+      </div>
+    </div>
   );
 };
 
-const ToggleButton: React.FC = () => {
+const MenuToggleButton: React.FC = () => {
   const dispatch = useDispatch();
   const { isOpenMenu } = useSelector(getNavbarState);
 
@@ -160,22 +201,21 @@ const ToggleButton: React.FC = () => {
 };
 
 export const Navbar: React.FC = () => {
+  const isWide = useMediaQuery('(min-width: 1024px)');
   const location = useLocation();
   const isMainPage = location.pathname === pageRoutes.mainPage();
-  const isWide = useMediaQuery('(min-width: 768px)');
-  const navigate = useNavigate();
-  const { scrollToTop } = animateScroll;
 
   return (
     <nav className="navbar">
-      <div
-        className="navbar-logo"
-        onClick={isMainPage ? scrollToTop : () => navigate(pageRoutes.mainPage())}
-      >
-        <Logo />
-      </div>
-      {!isWide ? <ToggleButton /> : null}
-      <NavbarBody />
+      {isWide
+        ? <NavbarLinks isMainPage={isMainPage} />
+        : <div className="d-flex align-items-center">
+          <NavbarLogo isMainPage={isMainPage} />
+          <CartLink />
+          <MenuToggleButton />
+        </div>
+      }
+      <NavbarBody isMainPage={isMainPage} />
     </nav>
   );
 };

@@ -20,6 +20,8 @@ import { Footer } from './Main/Footer';
 import { Header } from './Main/Header';
 import { BookingWidget } from './Main/BookingWidget';
 import { Store } from './Store/Main';
+import { ProductCard } from './Store/ProductCard';
+import { Cart } from './Store/Cart';
 
 interface AuthContextProviderProps {
   children: ReactNode;
@@ -65,7 +67,9 @@ export const App: React.FC = () => (
         <Routes>
           <Route path={pageRoutes.mainPage()} element={<Main />} />
           <Route path={pageRoutes.storePage()} element={<Store />} />
+          <Route path={pageRoutes.productPage()} element={<ProductCard />} />
           <Route path={pageRoutes.teamPage()} element={<Team />} />
+          <Route path={pageRoutes.cartPage()} element={<Cart />} />
         </Routes>
       </div>
     </Router>

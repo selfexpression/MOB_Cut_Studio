@@ -73,36 +73,39 @@
     width: 1.9em;
     height: 1.9em;
   
+    font-size: 1rem;
     text-transform: uppercase;
     color: $light;
-    border: 1px solid $light;
-    border-radius: 2em;
+    border: none;
     background-color: black;
+    transition: transform .5s ease-in-out;
+
+    cursor: pointer;
+    font-family: TenorSans-Regular, "Times New Roman", sans-serif;
 
     &:hover {
-      color: black;
-      background-color: $light;
+      transform: scale(1.2);
     }
   }
 }
 
-@mixin nav-link {
-  .nav-link {
-    font-size: $font-size;
-    text-decoration: none;
-    padding: 0.8em;
-    color: $light;
-    cursor: pointer;
-    transition: transform .3s ease-in-out;
+@mixin page-link {
+  font-size: $font-size;
+  text-decoration: none;
+  padding: 0.8em;
+  color: $light;
+  cursor: pointer;
+  transition: transform .5s ease-in-out;
 
-    @content;
+  &:hover {
+    color: $grey;
+    transform: scale(1.2);
   }
 }
 
 .navbar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   position: fixed;
   top: 0;
   left: 0;
@@ -113,6 +116,13 @@
   background-color: black;
   z-index: 1;
   font-family: TenorSans-Regular, "Times New Roman", sans-serif;
+
+  .navbar-links {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%; 
+  }
 
   .navbar-logo {
     height: 2em;
@@ -125,16 +135,15 @@
       width: 6rem;
       margin-left: 1rem;
     }
-  }
+  } 
 
-  .navbar-links {
-    display: flex;
-    align-items: center;
+  .cart-link {
+    margin: 0.5rem;
+    transition: transform .5s ease-in-out;
+    color: aliceblue !important;
 
-    @include nav-link {
-      &:hover {
-        transform: scale(1.2);
-      }
+    &:hover {
+      transform: scale(1.2);
     }
   }
 
@@ -144,19 +153,18 @@
 
   .navbar-body {
     position: absolute;
-    top: 4em;
+    top: 3em;
     left: 0;
     width: 100%;
     background-color: black;
 
-    @include nav-link;
+    @include page-link;
 
     .navbar-footer {
       display: flex;
       align-items: center;
       justify-content: space-between;
-
-      padding: 0.8em;
+      padding: 0.5em;
       font-size: $font-size;
 
       .contact-links {
@@ -171,6 +179,11 @@
 
   .navbar-body-show {
     display: block;
+
+    .home-page-btn {
+      margin-left: 1em;
+      margin-bottom: 1em;
+    }
   }
   
   .navbar-body-hide {
@@ -178,8 +191,23 @@
   }
 }
 
-@media screen and (max-width: 768px) {
+.page-link-wrapper {
+  .page-link {
+    @include page-link;
+  }
+}
+
+@media screen and (max-width: 1023px) {
   .navbar {
-    justify-content: flex-start;
+    .cart-link {
+      margin: 0;
+      position: fixed;
+      right: 4em;
+    }
+
+    .page-link-wrapper {
+      display: flex;
+      flex-direction: column;
+    }
   }
 }

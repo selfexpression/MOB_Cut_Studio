@@ -65,7 +65,7 @@
   
     animation: scale-up 1s ease-in-out 0s forwards;
 
-    @include booking-btn(16rem, $light, $dark) {
+    @include booking-btn(16rem, $light, black) {
       border-radius: 0;
     }
   }
