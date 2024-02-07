@@ -19,6 +19,31 @@ interface NavLinkProps {
   isMainPage: boolean;
 }
 
+const StoreLink: React.FC = () => {
+  const { t } = useTranslation();
+  const dispatch = useDispatch();
+  const isStorePage = location.pathname === pageRoutes.storePage();
+
+  const handleToggleMenu = () => {
+    dispatch(actions.toggleMenu(false));
+  };
+
+  return (
+    !isStorePage
+      ? (
+        <RouterLink
+          className='text-content no-decoration color-light d-block p-3'
+          to={pageRoutes.storePage()}
+          onClick={handleToggleMenu}
+        >
+          {t('navbar.store')}
+        </RouterLink>
+      ) : (
+        null
+      )
+  );
+};
+
 const PageNavLink: React.FC<NavLinkProps> = ({ isMainPage }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
@@ -54,7 +79,7 @@ const PageNavLink: React.FC<NavLinkProps> = ({ isMainPage }) => {
         </div>
       )
       : (
-        null
+        <StoreLink />
       )
   );
 };
@@ -163,7 +188,6 @@ const NavbarBody: React.FC<NavLinkProps> = ({ isMainPage }) => {
       'navbar-body-hide': !isOpenMenu,
     })}>
       <PageNavLink isMainPage={isMainPage} />
-      {!isMainPage ? <HomePageButton /> : null}
       <div className="navbar-footer">
         <div className="navbar-contacts">
           {Object.entries(socialLinks).map(([contact, Icon]) => (
@@ -222,6 +246,7 @@ export const Navbar: React.FC = () => {
         : <div className="d-flex align-items-center justify-content-between w-100">
           <NavbarLogo isMainPage={isMainPage} />
           <div className="d-flex align-items-center">
+            {!isMainPage ? <HomePageButton /> : null}
             <CartLink />
             <MenuToggleButton />
           </div>

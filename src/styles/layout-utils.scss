@@ -218,7 +218,7 @@ $flex-align-self-values: map.merge($auto-value, $flex-align-items-values);
 
 .no-decoration {
   text-decoration: none !important;
-  color: inherit !important;
+  color: currentColor;
 }
 
 .bold {
