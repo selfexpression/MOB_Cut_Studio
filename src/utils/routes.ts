@@ -4,6 +4,7 @@ export const pageRoutes = {
   storePage: () => '/store',
   cartPage: () => '/cart',
   productPage: () => '/product/:productId',
+  anyProductPage: () => '/product',
   currentProduct: (id: number) => `/product/${id}`,
 };
 

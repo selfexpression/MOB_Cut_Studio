@@ -1,7 +1,7 @@
 import React from 'react';
 import { useMediaQuery } from '@reactuses/core';
 import { useDispatch, useSelector } from 'react-redux';
-import { Telegram, Whatsapp } from 'react-bootstrap-icons';
+import { Record, Telegram, Whatsapp } from 'react-bootstrap-icons';
 import cn from 'classnames';
 import { Link as ScrollLink, animateScroll } from 'react-scroll';
 import { useLocation, Link as RouterLink, useNavigate } from 'react-router-dom';
@@ -15,39 +15,19 @@ import { getNavbarState, getCartState } from '../utils/selectors';
 import { Logo } from './Icons/Logo';
 import { HomeIcon } from './Icons/HomeIcon';
 import { CartIcon } from './Icons/CartIcon';
+import { BackButton } from './Icons/BackButton';
 
-interface NavLinkProps {
-  isMainPage: boolean;
-}
+// interface NavLinkProps {
+//   isMainPage?: boolean;
+//   isProductPage?: boolean;
+//   isWide?: boolean
+// }
+
+type NavLinkProps = Record<string, boolean>;
 
 interface SocialLinksProps {
   t?: TFunction;
 }
-
-const StoreLink: React.FC = () => {
-  const { t } = useTranslation();
-  const dispatch = useDispatch();
-  const isStorePage = location.pathname === pageRoutes.storePage();
-
-  const handleToggleMenu = () => {
-    dispatch(actions.toggleMenu(false));
-  };
-
-  return (
-    !isStorePage
-      ? (
-        <RouterLink
-          className='text-content no-decoration color-light d-block p-3'
-          to={pageRoutes.storePage()}
-          onClick={handleToggleMenu}
-        >
-          {t('navbar.store')}
-        </RouterLink>
-      ) : (
-        null
-      )
-  );
-};
 
 const PageNavLink: React.FC<NavLinkProps> = ({ isMainPage }) => {
   const { t } = useTranslation();
@@ -84,7 +64,7 @@ const PageNavLink: React.FC<NavLinkProps> = ({ isMainPage }) => {
         </div>
       )
       : (
-        <StoreLink />
+        null
       )
   );
 };
@@ -167,15 +147,52 @@ const CartLink: React.FC = () => {
   );
 };
 
-const NavbarLinks: React.FC<NavLinkProps> = ({ isMainPage }) => (
+const MenuToggleButton: React.FC = () => {
+  const dispatch = useDispatch();
+  const { isOpenMenu } = useSelector(getNavbarState);
+
+  const handleToggleMenu = () => {
+    dispatch(actions.toggleMenu(!isOpenMenu));
+  };
+
+  return (
+    <button
+      className={cn('navbar-toggle-menu', {
+        opened: isOpenMenu,
+      })}
+      type="button"
+      aria-label='open-navbar'
+      aria-expanded={isOpenMenu}
+      onClick={handleToggleMenu}
+    >
+      <div className="line" />
+      <div className="line" />
+      <div className="line" />
+      <div className="line" />
+      <div className="line" />
+      <div className="line" />
+    </button>
+  );
+};
+
+const NavbarIcons: React.FC<NavLinkProps> = ({ isMainPage, isProductPage, isWide }) => (
+  <div className="d-flex align-items-center">
+    {isProductPage ? <BackButton /> : null}
+    {!isMainPage ? <HomePageButton /> : null}
+    <CartLink />
+    {isWide ? <LanguageToggleButton /> : <MenuToggleButton />}
+  </div>
+);
+
+const NavbarLinks: React.FC<NavLinkProps> = ({ isMainPage, isProductPage, isWide }) => (
   <div className="navbar-links">
     <NavbarLogo isMainPage={isMainPage} />
     <PageNavLink isMainPage={isMainPage} />
-    <div className="d-flex align-items-center">
-      {!isMainPage ? <HomePageButton /> : null}
-      <CartLink />
-      <LanguageToggleButton />
-    </div>
+    <NavbarIcons
+      isMainPage={isMainPage}
+      isProductPage={isProductPage}
+      isWide={isWide}
+    />
   </div>
 );
 
@@ -220,50 +237,27 @@ const NavbarBody: React.FC<NavLinkProps> = ({ isMainPage }) => {
   );
 };
 
-const MenuToggleButton: React.FC = () => {
-  const dispatch = useDispatch();
-  const { isOpenMenu } = useSelector(getNavbarState);
-
-  const handleToggleMenu = () => {
-    dispatch(actions.toggleMenu(!isOpenMenu));
-  };
-
-  return (
-    <button
-      className={cn('navbar-toggle-menu', {
-        opened: isOpenMenu,
-      })}
-      type="button"
-      aria-label='open-navbar'
-      aria-expanded={isOpenMenu}
-      onClick={handleToggleMenu}
-    >
-      <div className="line" />
-      <div className="line" />
-      <div className="line" />
-      <div className="line" />
-      <div className="line" />
-      <div className="line" />
-    </button>
-  );
-};
-
 export const Navbar: React.FC = () => {
   const isWide = useMediaQuery('(min-width: 1024px)');
   const location = useLocation();
   const isMainPage = location.pathname === pageRoutes.mainPage();
+  const isProductPage = location.pathname.replace(/\/\d+$/, '') === pageRoutes.anyProductPage();
 
   return (
     <nav className="navbar">
       {isWide
-        ? <NavbarLinks isMainPage={isMainPage} />
+        ? <NavbarLinks
+          isMainPage={isMainPage}
+          isProductPage={isProductPage}
+          isWide={isWide}
+        />
         : <div className="d-flex align-items-center justify-content-between w-100">
           <NavbarLogo isMainPage={isMainPage} />
-          <div className="d-flex align-items-center">
-            {!isMainPage ? <HomePageButton /> : null}
-            <CartLink />
-            <MenuToggleButton />
-          </div>
+          <NavbarIcons
+            isMainPage={isMainPage}
+            isProductPage={isProductPage}
+            isWide={isWide}
+          />
         </div>
       }
       <NavbarBody isMainPage={isMainPage} />

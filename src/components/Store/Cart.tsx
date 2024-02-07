@@ -130,7 +130,7 @@ const CartFooter: React.FC = () => {
     <div className="cart-footer">
       <Link
         className="p-2 align-self-start no-decoration"
-        to={pageRoutes.mainPage()}
+        to={pageRoutes.storePage()}
       >
         {t('cart.continueShopping')}
       </Link>

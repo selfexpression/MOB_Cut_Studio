@@ -4,7 +4,6 @@ export const HomeIcon = () => (
     viewBox="0 0 64 64"
     width="1.5em"
     height="1.5em"
-    className="home-icon"
   >
     <path d="M 32 3 L 1 28 L 1.4921875 28.654297
     C 2.8591875 30.477297 5.4694688 30.791703
