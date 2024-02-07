@@ -17,12 +17,6 @@ import { HomeIcon } from './Icons/HomeIcon';
 import { CartIcon } from './Icons/CartIcon';
 import { BackButton } from './Icons/BackButton';
 
-// interface NavLinkProps {
-//   isMainPage?: boolean;
-//   isProductPage?: boolean;
-//   isWide?: boolean
-// }
-
 type NavLinkProps = Record<string, boolean>;
 
 interface SocialLinksProps {

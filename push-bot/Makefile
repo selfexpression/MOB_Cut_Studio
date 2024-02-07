@@ -2,10 +2,10 @@ install:
 	npm install
 
 start:
-	npm run start-all
+	npm start
 
 clean:
-	rm -rf build
+	rm -rf dist
 
 build: clean
 	npm run build

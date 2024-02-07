@@ -47,7 +47,7 @@ const ServiceCards: React.FC<Props> = ({ isScrolled }) => {
             loading="lazy"
             className={isScrolled ? 'scale-up' : ''}
           />
-          <div className="text-start text-content p-2">
+          <div className="text-center text-content p-2">
             {t(`services.names.${id}`)}
           </div>
         </div>
