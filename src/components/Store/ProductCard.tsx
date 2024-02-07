@@ -142,11 +142,12 @@ export const ProductCard: React.FC = () => {
   const db = useFirestore();
   const { productId } = useParams();
   const dispatch = useDispatch<AppDispatch>();
-  const databaseState = useSelector(getDatabaseState);
-  const currentProduct = databaseState.products.find(({ id }) => `${id}` === productId);
+  const { products, isLoaded } = useSelector(getDatabaseState);
+  const currentProduct = products.find(({ id }) => `${id}` === productId);
 
   useEffect(() => {
-    dispatch(loadData({ db }));
+    if (!isLoaded) dispatch(loadData({ db }));
+
     if (!currentProduct) return;
 
     dispatch(actions.setCurrentProduct(currentProduct));

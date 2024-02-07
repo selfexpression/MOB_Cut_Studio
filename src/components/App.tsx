@@ -22,6 +22,7 @@ import { BookingWidget } from './Main/BookingWidget';
 import { Store } from './Store/Main';
 import { ProductCard } from './Store/ProductCard';
 import { Cart } from './Store/Cart';
+import { CartLoader } from './Store/CartLoader';
 
 interface AuthContextProviderProps {
   children: ReactNode;
@@ -64,6 +65,7 @@ export const App: React.FC = () => (
     <Router>
       <div className="d-flex flex-column">
         <Navbar />
+        <CartLoader />
         <Routes>
           <Route path={pageRoutes.mainPage()} element={<Main />} />
           <Route path={pageRoutes.storePage()} element={<Store />} />

@@ -101,7 +101,7 @@ const CartItems: React.FC = () => {
               brand={brand}
               name={name}
               id={id}
-              price={price!}
+              price={price as number}
             />
           </td>
           <td className="item-name text-start aqua-color">
@@ -309,7 +309,7 @@ const EmptyCart: React.FC = () => {
 export const Cart: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { items } = useSelector(getCartState);
-  const totalAmount = items.reduce((acc, item) => acc + (item.price!) * item.quantity, 0);
+  const totalAmount = items.reduce((acc, item) => acc + (item.price as number) * item.quantity, 0);
 
   useEffect(() => {
     dispatch(actions.setTotalAmount(totalAmount));

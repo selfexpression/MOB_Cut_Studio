@@ -68,7 +68,7 @@ export const Store: React.FC = () => {
   };
 
   useEffect(() => {
-    dispatch(loadData({ db }));
+    if (!isLoaded) dispatch(loadData({ db }));
   }, []);
 
   return (
