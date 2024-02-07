@@ -1,4 +1,4 @@
-### Go to App-> [MOB Cut Studio App](https://mob-cut-studio-app.vercel.app/)
+### Go to App-> [MOB Cut Studio App](https://mob-cut-studio.vercel.app/)
 
 ### Installation Guide:
 

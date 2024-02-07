@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 /* eslint-disable no-unused-vars */
 import React, { useMemo, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
@@ -19,7 +18,6 @@ import cartImage from '../../assets/cart-image.png';
 import { formatMessage, createOrderMessage } from '../../utils/helpers';
 import { actions } from '../../slices/cartSlice';
 import { pageRoutes, serverApiRoutes } from '../../utils/routes';
-import { loadData } from '../../thunks/databaseThunks';
 
 import { QuantityControl } from './QuantityControl';
 
