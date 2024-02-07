@@ -14,12 +14,32 @@
       @include flex-center;
       flex-direction: column;
 
+      .contact-links {
+        display: flex;
+        align-items: center;
+
+        margin: 0.5em;
+        color: $light;
+        text-decoration: none;
+
+        span {
+          margin-left: 0.2em;
+        }
+      }
+
       @include booking-btn(14rem, $light, $light) {
         border-radius: 0.5rem;
 
         &:hover {
           color: $dark;
         }
+      }
+
+      .call-btn {
+        display: flex;
+        align-items: center;
+        margin-top: 0.5em;
+        margin-right: 1.4em;
       }
 
       .social-links {

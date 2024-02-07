@@ -1,7 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import {
-  Telegram, Whatsapp, Telephone,
-} from 'react-bootstrap-icons';
+import { Telephone } from 'react-bootstrap-icons';
 import { useTranslation } from 'react-i18next';
 import { useYMaps } from '@pbe/react-yandex-maps';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,6 +8,7 @@ import cn from 'classnames';
 import { actions } from '../../slices/bookingWidgetSlice';
 import { linkRoutes } from '../../utils/routes';
 import { getBookingWidgetState } from '../../utils/selectors';
+import { SocialLinks } from '../Navbar';
 
 const Ymap: React.FC = () => {
   const ymaps = useYMaps(['Map', 'Placemark']);
@@ -38,15 +37,9 @@ const Ymap: React.FC = () => {
   );
 };
 
-const InteractiveElements: React.FC = () => {
+const CallButton: React.FC = () => {
   const { t } = useTranslation();
   const [isVibrating, setVibrating] = useState(false);
-  const dispatch = useDispatch();
-  const { isOpenWidget } = useSelector(getBookingWidgetState);
-
-  const handleToggleWidget = () => {
-    dispatch(actions.toggleWidget(!isOpenWidget));
-  };
 
   useEffect(() => {
     const toggleInterval = setInterval(() => {
@@ -55,6 +48,33 @@ const InteractiveElements: React.FC = () => {
 
     return () => clearInterval(toggleInterval);
   }, [isVibrating]);
+
+  return (
+    <div className="call-btn">
+      <Telephone className={cn('mr-2', {
+        'vibrating-phone': isVibrating,
+      })} />
+      <a href={linkRoutes.phoneNumber()}>
+        <button
+          type="button"
+          aria-label={t('ariaLabels.callBtn')}
+          className="booking-btn"
+        >
+          <span>{t('footer.phoneNumber')}</span>
+        </button>
+      </a>
+    </div>
+  );
+};
+
+const InteractiveElements: React.FC = () => {
+  const { t } = useTranslation();
+  const dispatch = useDispatch();
+  const { isOpenWidget } = useSelector(getBookingWidgetState);
+
+  const handleToggleWidget = () => {
+    dispatch(actions.toggleWidget(!isOpenWidget));
+  };
 
   return (
     <>
@@ -67,29 +87,9 @@ const InteractiveElements: React.FC = () => {
         <span>{t('header.onlineBooking')}</span>
       </button>
       <div className="social-links">
-        <a href={linkRoutes.whatsapp()} className="link">
-          <Whatsapp className="mr-1" />
-          {t('navbar.whatsapp')}
-        </a>
-        <a href={linkRoutes.telegram()} className="link">
-          <Telegram className="mr-1" />
-          {t('navbar.telegram')}
-        </a>
+        <SocialLinks t={t} />
       </div>
-      <div className="d-flex align-items-center mt-3">
-        <Telephone className={cn('mr-2', {
-          'vibrating-phone': isVibrating,
-        })} />
-        <a href={linkRoutes.phoneNumber()}>
-          <button
-            type="button"
-            aria-label={t('ariaLabels.callBtn')}
-            className="booking-btn"
-          >
-            <span>{t('footer.phoneNumber')}</span>
-          </button>
-        </a>
-      </div>
+      <CallButton />
     </>
   );
 };

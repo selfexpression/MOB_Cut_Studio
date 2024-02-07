@@ -16,6 +16,7 @@
     font-size: $btn-font-size;
     text-transform: uppercase;
     font-family: TenorSans-Regular, "Times New Roman", sans-serif;
+    cursor: pointer;
 
     @content;
 

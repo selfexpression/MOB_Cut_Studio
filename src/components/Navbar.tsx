@@ -6,6 +6,7 @@ import cn from 'classnames';
 import { Link as ScrollLink, animateScroll } from 'react-scroll';
 import { useLocation, Link as RouterLink, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import type { TFunction } from 'i18next';
 
 import { actions } from '../slices/navbarSlice';
 import { pageRoutes, linkRoutes } from '../utils/routes';
@@ -17,6 +18,10 @@ import { CartIcon } from './Icons/CartIcon';
 
 interface NavLinkProps {
   isMainPage: boolean;
+}
+
+interface SocialLinksProps {
+  t?: TFunction;
 }
 
 const StoreLink: React.FC = () => {
@@ -174,13 +179,30 @@ const NavbarLinks: React.FC<NavLinkProps> = ({ isMainPage }) => (
   </div>
 );
 
-const NavbarBody: React.FC<NavLinkProps> = ({ isMainPage }) => {
-  const { isOpenMenu } = useSelector(getNavbarState);
-
+export const SocialLinks: React.FC<SocialLinksProps> = ({ t = null }) => {
   const socialLinks = {
     telegram: Telegram,
     whatsapp: Whatsapp,
   };
+
+  return (
+    <>
+      {Object.entries(socialLinks).map(([contact, Icon]) => (
+        <a
+          key={contact}
+          href={linkRoutes[contact as keyof typeof socialLinks]()}
+          className="contact-links"
+        >
+          <Icon />
+          {t ? <span>{t(`navbar.${contact}`)}</span> : ''}
+        </a>
+      ))}
+    </>
+  );
+};
+
+const NavbarBody: React.FC<NavLinkProps> = ({ isMainPage }) => {
+  const { isOpenMenu } = useSelector(getNavbarState);
 
   return (
     <div className={cn('navbar-body', {
@@ -190,15 +212,7 @@ const NavbarBody: React.FC<NavLinkProps> = ({ isMainPage }) => {
       <PageNavLink isMainPage={isMainPage} />
       <div className="navbar-footer">
         <div className="navbar-contacts">
-          {Object.entries(socialLinks).map(([contact, Icon]) => (
-            <a
-              key={contact}
-              href={linkRoutes[contact as keyof typeof socialLinks]()}
-              className="contact-links"
-            >
-              <Icon />
-            </a>
-          ))}
+          <SocialLinks />
         </div>
         <LanguageToggleButton />
       </div>
