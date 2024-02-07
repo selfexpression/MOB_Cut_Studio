@@ -45,7 +45,7 @@ export default {
       },
     },
     team: {
-      header: 'Team',
+      header: 'Our team',
       description: {
         paragraph1: '«MOB Cut Studio» is not just a salon, it is a guide to the world of elegance and style.',
         paragraph2: 'Entrust your appearance to professionals, and your hair will become not just a haircut',

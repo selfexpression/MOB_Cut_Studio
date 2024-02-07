@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next';
 
 import { actions } from '../slices/navbarSlice';
 import { pageRoutes, linkRoutes } from '../utils/routes';
-import { getNavbarState } from '../utils/selectors';
+import { getNavbarState, getCartState } from '../utils/selectors';
 
 import { Logo } from './Icons/Logo';
 import { HomeIcon } from './Icons/HomeIcon';
@@ -118,14 +118,24 @@ const NavbarLogo: React.FC<NavLinkProps> = () => {
   );
 };
 
-const CartLink: React.FC = () => (
-  <RouterLink
-    className="no-decoration cart-link"
-    to={pageRoutes.cartPage()}
-  >
-    <CartIcon />
-  </RouterLink>
-);
+const CartLink: React.FC = () => {
+  const { items } = useSelector(getCartState);
+  const itemsCount = items.reduce((acc, item) => acc + item.quantity, 0);
+
+  return (
+    <div className="cart-link-wrapper">
+      <RouterLink
+        className="no-decoration cart-link"
+        to={pageRoutes.cartPage()}
+      >
+        <CartIcon />
+      </RouterLink>
+      {items.length
+        ? <div className="items-in-cart">{itemsCount}</div>
+        : ''}
+    </div>
+  );
+};
 
 const NavbarLinks: React.FC<NavLinkProps> = ({ isMainPage }) => (
   <div className="navbar-links">
