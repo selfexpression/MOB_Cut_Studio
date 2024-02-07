@@ -97,10 +97,7 @@
   cursor: pointer;
   transition: transform .5s ease-in-out;
 
-  &:hover {
-    color: $grey;
-    transform: scale(1.2);
-  }
+  @content;
 }
 
 .navbar {
@@ -114,7 +111,7 @@
   padding: 0.5rem;
 
   background-color: black;
-  z-index: 1;
+  z-index: 100;
   font-family: TenorSans-Regular, "Times New Roman", sans-serif;
 
   .navbar-links {
@@ -122,6 +119,17 @@
     align-items: center;
     justify-content: space-between;
     width: 100%; 
+
+    .page-link-wrapper {
+      .page-link {
+        @include page-link {
+          &:hover {
+            color: $grey;
+            transform: scale(1.2);
+          }
+        }
+      }
+    }
   }
 
   .navbar-logo {
@@ -173,12 +181,20 @@
 
   .navbar-body {
     position: absolute;
-    top: 3em;
+    top: 4em;
     left: 0;
     width: 100%;
     background-color: black;
 
-    @include page-link;
+    .page-link-wrapper {
+      display: flex;
+      flex-direction: column;
+      padding: 0.5em;
+
+      .page-link {
+        @include page-link;
+      }
+    }
 
     .navbar-footer {
       display: flex;
@@ -198,36 +214,14 @@
   }
 
   .navbar-body-show {
-    display: block;
+    visibility: visible;
 
     .home-page-btn {
-      margin-left: 1em;
-      margin-bottom: 1em;
+      margin: 1.5em;
     }
   }
   
   .navbar-body-hide {
-    display: none;
-  }
-}
-
-.page-link-wrapper {
-  .page-link {
-    @include page-link;
-  }
-}
-
-@media screen and (max-width: 1023px) {
-  .navbar {
-    // .cart-link {
-    //   margin: 0;
-    //   position: fixed;
-    //   right: 4em;
-    // }
-
-    .page-link-wrapper {
-      display: flex;
-      flex-direction: column;
-    }
+    visibility: hidden;
   }
 }
