@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable no-unused-vars */
 import React, { useMemo, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
@@ -18,6 +19,7 @@ import cartImage from '../../assets/cart-image.png';
 import { formatMessage, createOrderMessage } from '../../utils/helpers';
 import { actions } from '../../slices/cartSlice';
 import { pageRoutes, serverApiRoutes } from '../../utils/routes';
+import { loadData } from '../../thunks/databaseThunks';
 
 import { QuantityControl } from './QuantityControl';
 
@@ -238,12 +240,13 @@ const OrderForm: React.FC = () => {
       const orderMessage = createOrderMessage(values, items, totalAmount);
 
       try {
+        dispatch(actions.toggleOrderStatus(true)); // временно здесь для того, чтобы менялся статус заказатак как на vercel
+        // нет возможности использовать локальный сервер для обработки запроса на отправку сообщения.
         await axios.post(
-          `${process.env.REACT_APP_API_URL_DEVELOPMENT}${serverApiRoutes.sendMessage()}`,
+          `${process.env.REACT_APP_API_URL_DEVELOPMENT}${serverApiRoutes.sendMessage()}`, // после деплоя в продакшн поменять местами с диспатчем статуса заказа
           { message: formatMessage(orderMessage) },
         );
 
-        dispatch(actions.toggleOrderStatus(true));
         dispatch(updateCart({
           userUID,
           db,
@@ -307,11 +310,15 @@ const EmptyCart: React.FC = () => {
 };
 
 export const Cart: React.FC = () => {
+  const db = useFirestore();
   const dispatch = useDispatch<AppDispatch>();
+  const { isLoaded } = useSelector(getCartState);
   const { items } = useSelector(getCartState);
   const totalAmount = items.reduce((acc, item) => acc + (item.price as number) * item.quantity, 0);
 
   useEffect(() => {
+    if (!isLoaded) dispatch(loadData({ db })); // временный фикс до выясняения причины не загруженных данных после перехода в корзину
+
     dispatch(actions.setTotalAmount(totalAmount));
   }, [totalAmount]);
 
