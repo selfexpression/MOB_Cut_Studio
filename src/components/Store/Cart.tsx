@@ -4,7 +4,7 @@ import React, { useMemo, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+// import axios from 'axios';
 import { useFormik, type FormikValues } from 'formik';
 import * as Yup from 'yup';
 import classNames from 'classnames';
@@ -16,9 +16,9 @@ import { useFirestore, useAuth } from '../../hooks/index';
 import { updateCart } from '../../thunks/cartThunks';
 import type { AppDispatch } from '../../types/aliases';
 import cartImage from '../../assets/cart-image.png';
-import { formatMessage, createOrderMessage } from '../../utils/helpers';
+// import { formatMessage, createOrderMessage } from '../../utils/helpers';
 import { actions } from '../../slices/cartSlice';
-import { pageRoutes, serverApiRoutes } from '../../utils/routes';
+import { pageRoutes } from '../../utils/routes';
 
 import { QuantityControl } from './QuantityControl';
 
@@ -221,17 +221,17 @@ const Fields: React.FC<FormikValues> = ({ formik }) => {
 };
 
 const OrderForm: React.FC = () => {
-  const userUID = useAuth();
-  const db = useFirestore();
+  // const userUID = useAuth();
+  // const db = useFirestore();
   const { t } = useTranslation();
   const dispatch = useDispatch<AppDispatch>();
-  const { items, totalAmount } = useSelector(getCartState);
+  // const { items, totalAmount } = useSelector(getCartState);
   // const apiURL = process.env.NODE_ENV === 'production'
   //   ? process.env.REACT_APP_API_URL_PRODUCTION
   //   : process.env.REACT_APP_API_URL_DEVELOPMENT;
 
   const tempHandleToggleOrderStatus = () => {
-    dispatch(actions.toggleOrderStatus(true)); // обработчик для среды разработки, так как на vercel
+    dispatch(actions.toggleOrderStatus(true)); // временный обработчик для среды разработки, так как на vercel
     setTimeout(() => dispatch(actions.toggleOrderStatus(false)), 5000); // нет возможности использовать локальный сервер
   };
 
@@ -242,26 +242,26 @@ const OrderForm: React.FC = () => {
     },
     validationSchema: schema(t),
     onSubmit: async (values, { setSubmitting }) => {
-      const orderMessage = createOrderMessage(values, items, totalAmount);
+      // const orderMessage = createOrderMessage(values, items, totalAmount);
 
-      try {
-        await axios.post(
-          `${process.env.REACT_APP_API_URL_DEVELOPMENT}${serverApiRoutes.sendMessage()}`,
-          { message: formatMessage(orderMessage) },
-        );
+      // try {
+      //   await axios.post(
+      //     `${process.env.REACT_APP_API_URL_DEVELOPMENT}${serverApiRoutes.sendMessage()}`,
+      //     { message: formatMessage(orderMessage) },
+      //   );
 
-        dispatch(actions.toggleOrderStatus(true));
+      //   dispatch(actions.toggleOrderStatus(true));
 
-        dispatch(updateCart({
-          userUID,
-          db,
-          cartActionType: 'trash',
-        }));
-        setTimeout(() => dispatch(actions.toggleOrderStatus(false)), 5000);
-      } catch (error) {
-        console.error('Form submit request error:', error);
-        throw error;
-      }
+      //   dispatch(updateCart({
+      //     userUID,
+      //     db,
+      //     cartActionType: 'trash',
+      //   }));
+      //   setTimeout(() => dispatch(actions.toggleOrderStatus(false)), 5000);
+      // } catch (error) {
+      //   console.error('Form submit request error:', error);
+      //   throw error;
+      // }
 
       setSubmitting(false);
     },
