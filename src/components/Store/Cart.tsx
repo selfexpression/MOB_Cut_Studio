@@ -270,13 +270,12 @@ const OrderForm: React.FC = () => {
   return (
     <div className="text-center">
       <h2 className="p-4">{t('cart.orderForm.title')}</h2>
-      <form onSubmit={formik.handleSubmit}>
+      <form onSubmit={formik.handleSubmit} onClick={tempHandleToggleOrderStatus}>
         <Fields formik={formik} />
         <button
           type="submit"
           aria-label="submit-btn"
           className="submit-btn mt-3"
-          onClick={tempHandleToggleOrderStatus}
           disabled={formik.isSubmitting}
         >
           {t('cart.submitButton')}
