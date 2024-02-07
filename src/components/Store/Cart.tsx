@@ -240,12 +240,12 @@ const OrderForm: React.FC = () => {
       const orderMessage = createOrderMessage(values, items, totalAmount);
 
       try {
-        dispatch(actions.toggleOrderStatus(true)); // временно здесь для того, чтобы менялся статус заказатак как на vercel
-        // нет возможности использовать локальный сервер для обработки запроса на отправку сообщения.
         await axios.post(
-          `${process.env.REACT_APP_API_URL_DEVELOPMENT}${serverApiRoutes.sendMessage()}`, // после деплоя в продакшн поменять местами с диспатчем статуса заказа
+          `${process.env.REACT_APP_API_URL_DEVELOPMENT}${serverApiRoutes.sendMessage()}`,
           { message: formatMessage(orderMessage) },
         );
+
+        dispatch(actions.toggleOrderStatus(true));
 
         dispatch(updateCart({
           userUID,
@@ -291,14 +291,15 @@ const EmptyCart: React.FC = () => {
           {isOrderPlaced ? (
             <>
               <span className="p-1">{`${t('cart.thanksForBuying')} `}</span>
-              <span className="p-1">{`${t('cart.shoppingCompleted')} `}</span></>
+              <span className="p-1">{`${t('cart.shoppingCompleted')} `}</span>
+            </>
           ) : (
             <>
               <img src={cartImage} alt="cart" className="empty-cart-image" />
               <span>{`${t('cart.emptyCart')} `}</span>
             </>
           )}
-          <Link to={pageRoutes.mainPage()}>
+          <Link to={pageRoutes.storePage()}>
             {t('cart.continueShopping')}
           </Link>
         </div>
@@ -310,15 +311,11 @@ const EmptyCart: React.FC = () => {
 };
 
 export const Cart: React.FC = () => {
-  const db = useFirestore();
   const dispatch = useDispatch<AppDispatch>();
-  const { isLoaded } = useSelector(getCartState);
   const { items } = useSelector(getCartState);
   const totalAmount = items.reduce((acc, item) => acc + (item.price as number) * item.quantity, 0);
 
   useEffect(() => {
-    if (!isLoaded) dispatch(loadData({ db })); // временный фикс до выясняения причины не загруженных данных после перехода в корзину
-
     dispatch(actions.setTotalAmount(totalAmount));
   }, [totalAmount]);
 

@@ -1,7 +1,7 @@
 import {
   doc,
   getDoc,
-  updateDoc,
+  setDoc,
   Firestore,
 } from 'firebase/firestore';
 
@@ -15,7 +15,11 @@ export const updateCartItems = async (
 ) => {
   const cartRef = doc(db, firebaseApiRoutes.carts(), userUID);
 
-  await updateDoc(cartRef, { items });
+  await setDoc(
+    cartRef,
+    { items },
+    { merge: true },
+  );
 };
 
 export const getCurrentUserCart = async (userUID: string, db: Firestore) => {
