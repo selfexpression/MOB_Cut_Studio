@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable no-unused-vars */
 import React, { useMemo, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
@@ -228,6 +229,12 @@ const OrderForm: React.FC = () => {
   // const apiURL = process.env.NODE_ENV === 'production'
   //   ? process.env.REACT_APP_API_URL_PRODUCTION
   //   : process.env.REACT_APP_API_URL_DEVELOPMENT;
+
+  const tempHandleToggleOrderStatus = () => {
+    dispatch(actions.toggleOrderStatus(true)); // обработчик для среды разработки, так как на vercel
+    setTimeout(() => dispatch(actions.toggleOrderStatus(false)), 5000); // нет возможности использовать локальный сервер
+  };
+
   const formik = useFormik({
     initialValues: {
       firstname: '',
@@ -269,6 +276,7 @@ const OrderForm: React.FC = () => {
           type="submit"
           aria-label="submit-btn"
           className="submit-btn mt-3"
+          onClick={tempHandleToggleOrderStatus}
           disabled={formik.isSubmitting}
         >
           {t('cart.submitButton')}
