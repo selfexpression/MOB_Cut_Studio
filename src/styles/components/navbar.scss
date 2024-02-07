@@ -1,7 +1,7 @@
 @mixin toggle-menu-btn {
   .navbar-toggle-menu {
-    position: absolute;
-    right: 1em;
+    position: relative;
+    // right: 1em;
     width: 4em;
     height: 1.5em;
     background-color: transparent;
@@ -199,11 +199,11 @@
 
 @media screen and (max-width: 1023px) {
   .navbar {
-    .cart-link {
-      margin: 0;
-      position: fixed;
-      right: 4em;
-    }
+    // .cart-link {
+    //   margin: 0;
+    //   position: fixed;
+    //   right: 4em;
+    // }
 
     .page-link-wrapper {
       display: flex;

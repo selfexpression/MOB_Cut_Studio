@@ -15,15 +15,15 @@
   }
 
   .close-btn-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
     width: 100%;
     height: 1.5em;
 
     .close-btn {
       @include flex-center;
-      position: absolute;
-      right: 1.3em;
-      top: 0.2em;
-  
+
       background: none;
       border: none;
       cursor: pointer;

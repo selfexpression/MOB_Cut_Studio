@@ -209,10 +209,12 @@ export const Navbar: React.FC = () => {
     <nav className="navbar">
       {isWide
         ? <NavbarLinks isMainPage={isMainPage} />
-        : <div className="d-flex align-items-center">
+        : <div className="d-flex align-items-center justify-content-between w-100">
           <NavbarLogo isMainPage={isMainPage} />
-          <CartLink />
-          <MenuToggleButton />
+          <div className="d-flex align-items-center">
+            <CartLink />
+            <MenuToggleButton />
+          </div>
         </div>
       }
       <NavbarBody isMainPage={isMainPage} />
