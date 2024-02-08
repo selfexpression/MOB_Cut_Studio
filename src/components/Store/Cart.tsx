@@ -221,8 +221,8 @@ const Fields: React.FC<FormikValues> = ({ formik }) => {
 };
 
 const OrderForm: React.FC = () => {
-  // const userUID = useAuth();
-  // const db = useFirestore();
+  const userUID = useAuth();
+  const db = useFirestore();
   const { t } = useTranslation();
   const dispatch = useDispatch<AppDispatch>();
   // const { items, totalAmount } = useSelector(getCartState);
@@ -232,7 +232,14 @@ const OrderForm: React.FC = () => {
 
   const tempHandleToggleOrderStatus = () => {
     dispatch(actions.toggleOrderStatus(true)); // временный обработчик для среды разработки, так как на vercel
-    setTimeout(() => dispatch(actions.toggleOrderStatus(false)), 5000); // нет возможности использовать локальный сервер
+
+    dispatch(updateCart({ // нет возможности использовать локальный сервер
+      userUID,
+      db,
+      cartActionType: 'trash',
+    }));
+
+    setTimeout(() => dispatch(actions.toggleOrderStatus(false)), 5000);
   };
 
   const formik = useFormik({
@@ -262,22 +269,28 @@ const OrderForm: React.FC = () => {
       //   console.error('Form submit request error:', error);
       //   throw error;
       // }
+      setSubmitting(true);
 
-      setSubmitting(false);
+      setTimeout(() => {
+        tempHandleToggleOrderStatus(); // временное решение для демонстрации смены состояния
+
+        setSubmitting(false);
+      }, 1000);
+
+      // setSubmitting(false);
     },
   });
 
   return (
     <div className="text-center">
       <h2 className="p-4">{t('cart.orderForm.title')}</h2>
-      <form onSubmit={formik.handleSubmit} onClick={tempHandleToggleOrderStatus}>
+      <form onSubmit={formik.handleSubmit}>
         <Fields formik={formik} />
         <button
           type="submit"
           aria-label="submit-btn"
           className="submit-btn mt-3"
           disabled={formik.isSubmitting}
-          onClick={tempHandleToggleOrderStatus}
         >
           {t('cart.submitButton')}
         </button>
@@ -318,13 +331,13 @@ const EmptyCart: React.FC = () => {
 
 export const Cart: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { items } = useSelector(getCartState);
+  const { items, isOrderPlaced } = useSelector(getCartState);
 
   const totalAmount = items.reduce((acc, item) => acc + (item.price as number) * item.quantity, 0);
 
   useEffect(() => {
     dispatch(actions.setTotalAmount(totalAmount));
-  }, [totalAmount]);
+  }, [totalAmount, isOrderPlaced]);
 
   return (
     !items.length
