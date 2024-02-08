@@ -1,7 +1,7 @@
 import React from 'react';
 import { useMediaQuery } from '@reactuses/core';
 import { useDispatch, useSelector } from 'react-redux';
-import { Record, Telegram, Whatsapp } from 'react-bootstrap-icons';
+import { Telegram, Whatsapp } from 'react-bootstrap-icons';
 import cn from 'classnames';
 import { Link as ScrollLink, animateScroll } from 'react-scroll';
 import { useLocation, Link as RouterLink, useNavigate } from 'react-router-dom';

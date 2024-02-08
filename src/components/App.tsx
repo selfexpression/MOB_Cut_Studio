@@ -4,9 +4,13 @@ import React, {
   useEffect,
 } from 'react';
 import {
-  BrowserRouter as Router, Routes, Route,
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
 } from 'react-router-dom';
 import { getAuth, signInAnonymously } from 'firebase/auth';
+import { animateScroll } from 'react-scroll';
 
 import { pageRoutes } from '../utils/routes';
 import { AuthContext } from '../contexts';
@@ -49,6 +53,17 @@ const AuthContextProvider: React.FC<AuthContextProviderProps> = ({ children }) =
   );
 };
 
+const ScrollToTop: React.FC = () => {
+  const { pathname } = useLocation();
+  const { scrollToTop } = animateScroll;
+
+  useEffect(() => {
+    scrollToTop();
+  }, [pathname]);
+
+  return null;
+};
+
 const Main = () => (
   <>
     <Header />
@@ -66,6 +81,7 @@ export const App: React.FC = () => (
       <div className="d-flex flex-column">
         <Navbar />
         <CartLoader />
+        <ScrollToTop />
         <Routes>
           <Route path={pageRoutes.mainPage()} element={<Main />} />
           <Route path={pageRoutes.storePage()} element={<Store />} />
