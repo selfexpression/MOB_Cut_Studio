@@ -40,7 +40,7 @@ const AuthContextProvider: React.FC<AuthContextProviderProps> = ({ children }) =
     };
 
     authUser();
-  }, [currentUserUID]);
+  }, []);
 
   return (
     <AuthContext.Provider value={currentUserUID}>

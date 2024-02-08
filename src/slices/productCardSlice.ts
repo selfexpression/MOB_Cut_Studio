@@ -23,10 +23,10 @@ const slice = createSlice({
     setCurrentProduct: (state, { payload }: { payload: Product }) => {
       state.currentProduct = payload;
     },
-    setProductAdded: (state, { payload }) => {
+    setProductAdded: (state, { payload }: { payload: boolean }) => {
       state.productIsAdded = payload;
     },
-    updateCounter: (state, { payload }) => {
+    updateCounter: (state, { payload }: { payload: string }) => {
       switch (payload) {
         case 'increment':
           state.productsCount += 1;

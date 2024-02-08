@@ -24,8 +24,9 @@ const slice = createSlice({
 
       state.currentCategoryID = id;
     },
-    setCurrentBrandNames: (state, { payload }:
-      { payload: { name: string, isCheckedInput: boolean } }) => {
+    setCurrentBrandNames: (state, { payload }: {
+      payload: { name: string, isCheckedInput: boolean }
+    }) => {
       const { name, isCheckedInput } = payload;
 
       if (!isCheckedInput) {

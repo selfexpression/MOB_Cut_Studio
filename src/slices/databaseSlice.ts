@@ -26,8 +26,9 @@ const slice = createSlice({
       state.products = sortedByStock(products);
       state.initialProducts = sortedByStock(products);
     },
-    filterProducts: (state, { payload }:
-      { payload: { currentBrandNames: string[], currentCategoryID: number | null } }) => {
+    filterProducts: (state, { payload }: {
+      payload: { currentBrandNames: string[], currentCategoryID: number | null }
+    }) => {
       const { initialProducts } = state;
       const { currentBrandNames, currentCategoryID } = payload;
 

@@ -22,13 +22,19 @@ export const updateCart = createAsyncThunk(
   async ({
     db, userUID, cartItem, cartActionType, updateQuantityType, id,
   }: CartAsyncThunkPayload, { dispatch, getState }) => {
-    const map = {
-      add: () => dispatch(actions.addToCart(cartItem)),
-      quantity: () => dispatch(actions.updateQuantity({ updateQuantityType, id })),
+    const updateCartFunctions = {
+      add: () => {
+        if (!cartItem) return;
+        dispatch(actions.addToCart(cartItem));
+      },
+      quantity: () => {
+        if (!updateQuantityType || !id) return;
+        dispatch(actions.updateQuantity({ updateQuantityType, id }));
+      },
       trash: () => dispatch(actions.setEmptyCart()),
     };
 
-    map[cartActionType]();
+    updateCartFunctions[cartActionType]();
 
     const state = getState() as RootState;
     const updatedCartItems = state.cart.items;
@@ -48,9 +54,13 @@ export const syncCartWithDatabase = createAsyncThunk(
     if (!userUID) return;
 
     try {
-      const cartItems: CartItem[] = await getCurrentUserCart(userUID, db);
+      const cartItems: CartItem[] | null = await getCurrentUserCart(userUID, db);
+      const emptyCart: [] = [];
 
-      if (!cartItems) return;
+      if (!cartItems) {
+        dispatch(actions.setCartItems(emptyCart));
+        return;
+      }
 
       dispatch(actions.setCartItems(cartItems));
     } catch (error) {

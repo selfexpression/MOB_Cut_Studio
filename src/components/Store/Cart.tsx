@@ -277,6 +277,7 @@ const OrderForm: React.FC = () => {
           aria-label="submit-btn"
           className="submit-btn mt-3"
           disabled={formik.isSubmitting}
+          onClick={tempHandleToggleOrderStatus}
         >
           {t('cart.submitButton')}
         </button>
@@ -318,6 +319,7 @@ const EmptyCart: React.FC = () => {
 export const Cart: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { items } = useSelector(getCartState);
+
   const totalAmount = items.reduce((acc, item) => acc + (item.price as number) * item.quantity, 0);
 
   useEffect(() => {
