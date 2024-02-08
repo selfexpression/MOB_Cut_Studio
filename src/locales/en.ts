@@ -22,7 +22,7 @@ export default {
       onlineBooking: 'Book Now',
     },
     navbar: {
-      carousel: 'Gallery',
+      slider: 'Gallery',
       services: 'Services',
       store: 'Products',
       team: 'Team',

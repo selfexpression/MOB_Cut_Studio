@@ -97,8 +97,8 @@ const ProductAddToCard: React.FC = () => {
   const { t } = useTranslation();
 
   useEffect(() => {
-    setDisabled(!currentProduct?.inStock);
-  }, [currentProduct]);
+    setDisabled(!currentProduct?.inStock || productIsAdded);
+  }, [currentProduct, productIsAdded]);
 
   const handleAddToCart = () => {
     if (!currentProduct) return;
@@ -120,7 +120,7 @@ const ProductAddToCard: React.FC = () => {
     }));
     dispatch(actions.setProductAdded(true));
     dispatch(actions.resetCount());
-    setTimeout(() => dispatch(actions.setProductAdded(false)), 3000);
+    setTimeout(() => dispatch(actions.setProductAdded(false)), 1500);
   };
 
   return (
@@ -132,7 +132,10 @@ const ProductAddToCard: React.FC = () => {
         disabled={disabled}
         onClick={handleAddToCart}
       >
-        {productIsAdded ? t('productCard.addedToCart') : t('productCard.addToCart')}
+        {productIsAdded
+          ? t('productCard.addedToCart')
+          : t('productCard.addToCart')
+        }
       </button>
     </div>
   );
@@ -162,7 +165,7 @@ export const ProductCard: React.FC = () => {
           <img
             src={currentProduct.imageURL}
             alt={`collection item ${productId}`}
-            className="product-card-image scale-up p-4"
+            className="product-card-image p-4"
           />
           <MainInfo />
           <ProductAddToCard />
