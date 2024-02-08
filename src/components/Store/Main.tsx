@@ -23,7 +23,7 @@ const ProductsList: React.FC = () => {
       {products.map(({
         name, id, price, brand, inStock, imageURL,
       }) => (
-        <div key={id} className="collection-item scale-up">
+        <div key={id} className="collection-item">
           <Link className="no-decoration" to={pageRoutes.currentProduct(id)}>
             <img
               src={imageURL}

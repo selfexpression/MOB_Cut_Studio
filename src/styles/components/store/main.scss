@@ -13,6 +13,7 @@
         scroll-snap-align: start;
       
         border: $white-grey-border;
+        animation: scale-up 1s ease-in-out 0s forwards;
 
         .item-image {
           height: 20em;
