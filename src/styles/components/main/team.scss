@@ -1,8 +1,9 @@
 .team-container {
   display: flex;
   flex-direction: column;
-
+  justify-content: center;
   margin-top: 3rem;
+  font-family: TenorSans-Regular, "Times New Roman", sans-serif;
 
   .team-text {
     padding: 2rem;
@@ -14,8 +15,8 @@
   .team-card-container {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-around;
     gap: 1rem;
-    margin-left: 1rem;
     margin-bottom: 1rem;
   
     opacity: 0;
@@ -29,6 +30,25 @@
       background-color: $white;
       border: 0.5px solid black;
       border-radius: 0.5rem;
+
+      .team-image {
+        width: 100%;
+        border-top-right-radius: 0.5rem;
+        border-top-left-radius: 0.5rem;
+      }
+
+      .team-card-text {
+        padding: 1.5rem;
+
+        .teammate-name {
+          border-bottom: $white-grey-border;
+          padding-bottom: 0.5rem;
+        }
+
+        .teammate-description {
+          margin-top: 0.5rem;
+        }
+      }
     }
   }  
 }

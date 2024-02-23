@@ -16,13 +16,13 @@ const TeamCards: React.FC = () => {
           <img
             src={photo}
             alt={t('alts.teammate')}
-            className="rounded-2 w-100"
+            className="team-image"
           />
-          <div className="p-4">
-            <div className="text-center text-content">
+          <div className="team-card-text">
+            <div className="teammate-name text-center text-content">
               {t(`team.teammates.${id}`)}
             </div>
-            <div className="team-card-text">
+            <div className="teammate-description">
               {t(`team.teammatesDescription.${id}`)}
             </div>
           </div>
