@@ -19,12 +19,12 @@ const TeamCards: React.FC = () => {
             className="team-image"
           />
           <div className="team-card-text">
-            <div className="teammate-name text-center">
+            <h3 className="teammate-name text-center">
               {t(`team.teammates.${id}`)}
-            </div>
-            <div className="teammate-description">
+            </h3>
+            <p className="teammate-description">
               {t(`team.teammatesDescription.${id}`)}
-            </div>
+            </p>
           </div>
         </div>
       ))}
