@@ -1,14 +1,18 @@
 #services {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
   .services-flow {
     position: relative;
     display: flex;
     align-items: center;
   
-    margin-right: 0.5em;
     height: 25em;
     width: 100%;
     overflow-x: auto;
     opacity: 0;
+    flex-basis: 100%;
   
     .services-card {
       position: relative;
@@ -41,8 +45,9 @@
   .services-text {
     opacity: 0;
     text-align: center;
+    width: 50%;
   
-    padding: 1.5em;
+    padding: 1em;
   }
   
   @include booking-btn(18em, $aqua, $aqua) {
@@ -53,4 +58,14 @@
       color: $light;
     }
   }  
+}
+
+@media screen and (max-width: 768px) {
+  #services {
+    display: block;
+    
+    .services-text {
+      width: 100%;
+    }
+  }
 }
