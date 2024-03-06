@@ -34,20 +34,17 @@ const TeamCards: React.FC = () => {
 
 export const Team: React.FC = () => {
   const { t } = useTranslation();
-  const teamDescriptions = t('team.description', { returnObjects: true });
 
   return (
     <section id="team" className="bg-light text-center">
       <div className="team-container">
         <div className="team-text">
-          <h1 className="text-center text-header aqua-color mb-4">
+          <h1 className="text-center aqua-color mb-4">
             {t('team.header')}
           </h1>
-          {Object.entries(teamDescriptions).map(([key, value]) => (
-            <p key={key} className="m-1">
-              {value}
-            </p>
-          ))}
+          <p className="m-1">
+            {t('team.description')}
+          </p>
         </div>
         <TeamCards />
       </div>

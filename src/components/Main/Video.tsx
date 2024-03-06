@@ -26,7 +26,7 @@ export const Video: React.FC = () => {
           'fade-up': isScrolled,
         })}>
           <p className="aqua-color m-1">
-            {t('team.description')}
+            {t('video.text')}
           </p>
         </div>
         <div className="video-wrapper">
