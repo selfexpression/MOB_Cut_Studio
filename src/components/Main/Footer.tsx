@@ -100,7 +100,7 @@ export const Footer: React.FC = () => {
   return (
     <footer id="footer">
       <div className="footer-container">
-        <div className="footer-contacts text-content">
+        <div className="footer-contacts">
           <h2 className="m-2 uppercase">{t('footer.contacts')}</h2>
           <div className="footer-interactive">
             <InteractiveElements />
@@ -108,7 +108,7 @@ export const Footer: React.FC = () => {
           </div>
         </div>
         <div className="map-container ">
-          <h2 className="text-content">
+          <h2>
             {t('footer.findUsOnMap')}
           </h2>
           <Ymap />

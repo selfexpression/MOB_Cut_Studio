@@ -4,7 +4,7 @@
     display: flex;
     align-items: center;
   
-    margin-right: 0.5rem;
+    margin-right: 0.5em;
     height: 25em;
     width: 100%;
     overflow-x: auto;
@@ -18,14 +18,14 @@
     
       min-height: 20%;
       height: 22em;
-      margin-left: 1rem;
+      margin-left: 1em;
     
-      flex: 1 0 18rem;
+      flex: 1 0 18em;
       overflow-y: hidden;
     
       background-color: $white;
       border: 0.5px solid $grey;
-      border-radius: 0.5rem;
+      border-radius: 0.5em;
       transition: transform .6s ease-in-out;
   
       &:hover {
@@ -42,12 +42,12 @@
     opacity: 0;
     text-align: center;
   
-    padding: 1.5rem;
+    padding: 1.5em;
   }
   
-  @include booking-btn(18rem, $aqua, $aqua) {
+  @include booking-btn(18em, $aqua, $aqua) {
     opacity: 0;
-    border-radius: 0.5rem;
+    border-radius: 0.5em;
   
     &:hover {
       color: $light;

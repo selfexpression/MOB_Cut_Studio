@@ -32,7 +32,7 @@ export default {
     },
     services: {
       header: 'Services',
-      description: 'Our chairs are the throne of style, and the atmosphere is the whirlwind of creativity. We not only follow trends but set them.',
+      description: 'Our chairs are the throne of style, and the atmosphere is the whirlwind of creativity. We not only follow trends but set them',
       chooseService: 'Choose Service',
       names: {
         1: 'Haircut',
@@ -46,11 +46,7 @@ export default {
     },
     team: {
       header: 'Our team',
-      description: {
-        paragraph1: '«MOB Cut Studio» is not just a salon, it is a guide to the world of elegance and style.',
-        paragraph2: 'Entrust your appearance to professionals, and your hair will become not just a haircut',
-        paragraph3: 'but an art that speaks of your unique individuality.',
-      },
+      description: 'Entrust your appearance to professionals, and your hair will become not just a haircut, but an art that speaks of your unique individuality',
       teammates: {
         1: 'Employee 1',
         2: 'Employee 2',

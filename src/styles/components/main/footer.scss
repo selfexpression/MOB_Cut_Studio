@@ -8,7 +8,7 @@
   .footer-contacts {
     text-align: center;
     color: $light;
-    padding: 2rem;
+    padding: 2em;
 
     .footer-interactive {
       @include flex-center;
@@ -27,8 +27,8 @@
         }
       }
 
-      @include booking-btn(14rem, $light, $light) {
-        border-radius: 0.5rem;
+      @include booking-btn(14em, $light, $light) {
+        border-radius: 0.5em;
 
         &:hover {
           color: $dark;
@@ -49,7 +49,7 @@
           @include flex-center;
           text-decoration: none;
           color: $light;
-          margin: 0.5rem;
+          margin: 0.5em;
         }
       }
     }
@@ -60,17 +60,16 @@
     overflow: hidden;
   
     h2 {
-      margin: 1rem;
-      padding: 1rem;
-  
-      font-size: 1.5rem;
+      margin: 1em;
+      padding: 1em;
       text-align: center;
+      white-space: nowrap;
       text-transform: uppercase;
       color: $light;
     }
 
     .map {
-      height: 30rem;
+      height: 30em;
     }
   }
 }

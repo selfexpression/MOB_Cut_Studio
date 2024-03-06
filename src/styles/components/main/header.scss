@@ -8,14 +8,12 @@
 @mixin booking-btn($width, $color, $hover-color) {
   .booking-btn {
     width: $width;
-    height: 2rem;
+    height: 2em;
 
     color: $color;
     background: none;
     border: 1px solid $color;
-    font-size: $btn-font-size;
     text-transform: uppercase;
-    font-family: TenorSans-Regular, "Times New Roman", sans-serif;
     cursor: pointer;
 
     @content;
@@ -61,12 +59,12 @@
 
     position: relative;
     height: max-content;
-    margin-right: 10rem;
+    margin-right: 10em;
     opacity: 0;
   
     animation: scale-up 1s ease-in-out 0s forwards;
 
-    @include booking-btn(16rem, $light, black) {
+    @include booking-btn(16em, $light, black) {
       border-radius: 0;
     }
   }
@@ -79,7 +77,7 @@
 
     .main-content {
       margin-right: 0;
-      margin-bottom: 3rem;
+      margin-bottom: 3em;
     }
   }
 }

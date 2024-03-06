@@ -53,7 +53,7 @@ export const Slider = () => {
   return (
     <section id="slider" className="bg-light">
       <div className="slider-text">
-        <p className="text-content">
+        <p>
           {t('carousel.description')}
         </p>
       </div>

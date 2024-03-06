@@ -19,7 +19,7 @@ const TeamCards: React.FC = () => {
             className="team-image"
           />
           <div className="team-card-text">
-            <div className="teammate-name text-center text-content">
+            <div className="teammate-name text-center">
               {t(`team.teammates.${id}`)}
             </div>
             <div className="teammate-description">
@@ -44,7 +44,7 @@ export const Team: React.FC = () => {
             {t('team.header')}
           </h1>
           {Object.entries(teamDescriptions).map(([key, value]) => (
-            <p key={key} className="text-content m-1">
+            <p key={key} className="m-1">
               {value}
             </p>
           ))}

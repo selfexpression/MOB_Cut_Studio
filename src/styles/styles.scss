@@ -13,6 +13,13 @@
 body {
   margin: 0;
   background-color: $white;
+  font-size: $font-size;
+  font-family: TenorSans-Regular, "Times New Roman", sans-serif;
+}
+
+button {
+  font-size: $btn-font-size;
+  font-family: TenorSans-Regular, "Times New Roman", sans-serif;
 }
 
 * {
@@ -38,3 +45,10 @@ body {
 .vibrating-phone {
   animation: vibrating .2s linear infinite;
 }
+
+@media screen and (max-width: 768px) {
+  body {
+    font-size: $font-size-mobile;
+  }
+}
+

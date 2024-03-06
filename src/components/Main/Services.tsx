@@ -19,10 +19,10 @@ const ServiceText: React.FC<Props> = ({ isScrolled }) => {
     <div className={cn('services-text', {
       'fade-down': isScrolled,
     })}>
-      <h1 className="text-header">
+      <h1 className="aqua-color">
         {t('services.header')}
       </h1>
-      <p className="p-3 text-content">
+      <p className="p-3">
         {t('services.description')}
       </p>
     </div>
@@ -47,7 +47,7 @@ const ServiceCards: React.FC<Props> = ({ isScrolled }) => {
             loading="lazy"
             className={isScrolled ? 'scale-up' : ''}
           />
-          <div className="text-center text-content p-2">
+          <div className="text-center p-2">
             {t(`services.names.${id}`)}
           </div>
         </div>
