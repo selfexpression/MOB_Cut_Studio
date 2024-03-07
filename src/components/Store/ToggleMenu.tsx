@@ -43,11 +43,11 @@ const BrandList: React.FC = () => {
     .map((brand) => brand.replace(/^\w/, (c) => c.toUpperCase()));
 
   return (
-    <div className={cn('filter-list brand-list m-0 p-0 no-wrap', {
+    <div className={cn('filter-list brand-list m-0 no-wrap', {
       opened: isOpenMenu,
     })}>
       {brands.map((brand) => (
-        <div className="item p-2 d-flex align-items-center" key={brand}>
+        <div className="item d-flex align-items-center" key={brand}>
           <input
             type="checkbox"
             id={brand}
@@ -80,7 +80,7 @@ const CategoryList: React.FC<ToggleMenuHandler> = ({ handleToggleMenu }) => {
       opened: isOpenMenu,
     })}>
       <li
-        className="item p-2"
+        className="item"
         onClick={() => handleCurrentCategory(null)}
       >
         {t('toggleMenu.filterList.reset')}
@@ -88,7 +88,7 @@ const CategoryList: React.FC<ToggleMenuHandler> = ({ handleToggleMenu }) => {
       {categories.map(({ id }) => (
         <li
           key={id}
-          className="p-2 item"
+          className="item"
           onClick={() => handleCurrentCategory(id)}
         >
           {t(`toggleMenu.filterList.categories.${id}`)}

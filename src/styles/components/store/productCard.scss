@@ -6,8 +6,6 @@
   padding: 0.5em;
   height: 100%;
 
-  font-family: TenorSans-Regular, "Times New Roman", serif;
-
   .product-card-image {
     grid-column: 1 / 6;
     grid-row: 1 / 7;
@@ -29,7 +27,7 @@
 
     .product-brand,
     .product-name {
-      font-size: 2.5em;
+      font-size: 2em;
     }
 
     .product-price {
@@ -38,7 +36,7 @@
 
     .product-stock,
     .product-out-stock {
-      @include font-style-size(bold, 2em);
+      @include font-style-size(bold, 1.7em);
       color: $aqua;
     }
   }
@@ -69,7 +67,6 @@
       background-color: $white;
       border: 1px solid $dark;
       color: $dark;
-      font-size: 1em;
       cursor: pointer;
 
       &:hover {
@@ -89,11 +86,7 @@
     }
 
     .category-type {
-      @include font-style-size(bold, 1.3em);
-    }
-
-    .category-value {
-      font-size: 1.2em;
+      @include font-style-size(bold, $font-size);
     }
   }
 }
