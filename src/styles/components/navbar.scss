@@ -116,6 +116,8 @@
     width: 100%; 
 
     .page-link-wrapper {
+      padding: 0.5em;
+      
       .page-link {
         @include page-link {
           &:hover {

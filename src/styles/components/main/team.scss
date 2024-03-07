@@ -5,10 +5,16 @@
   margin-top: 3em;
 
   .team-text {
+    @include flex-center;
+    flex-direction: column;
     padding: 2em;
 
     opacity: 0;
     animation: fade-down 1s ease-in-out 0s forwards;
+
+    p {
+      width: 50%;
+    }
   }
 
   .team-card-container {
@@ -52,7 +58,7 @@
   }  
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1023px) {
   .team-container {
     .team-card-container {
       .team-card {
@@ -62,8 +68,13 @@
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   .team-container {
+    .team-text {
+      p {
+        width: 100%;
+      }
+    }
     .team-card-container {
       .team-card {
         flex-basis: calc(100% - 1rem);
