@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -10,23 +10,39 @@ import cn from 'classnames';
 import { actions } from '../../slices/sliderSlice';
 import { getSliderState } from '../../utils/selectors';
 
+type IntervalId = ReturnType<typeof setInterval>;
+
 const Arrows: React.FC = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
+  const intervalIdRef = useRef<IntervalId | null>(null);
 
-  const nextSlide = useCallback(() => {
+  const clearExistingInterval = () => {
+    if (intervalIdRef.current) clearInterval(intervalIdRef.current);
+  };
+
+  const setNewInterval = () => {
+    intervalIdRef.current = setInterval(() => {
+      dispatch(actions.nextSlide());
+    }, 5000);
+  };
+
+  const nextSlide = () => {
     dispatch(actions.nextSlide());
-  }, [dispatch]);
+    clearExistingInterval();
+    setNewInterval();
+  };
 
   const prevSlide = () => {
     dispatch(actions.prevSlide());
+    clearExistingInterval();
+    setNewInterval();
   };
 
   useEffect(() => {
-    const intervalId = setInterval(() => nextSlide(), 5000);
-
-    return () => clearInterval(intervalId);
-  }, [dispatch, nextSlide]);
+    setNewInterval();
+    return () => clearExistingInterval();
+  }, [dispatch]);
 
   return (
     <>

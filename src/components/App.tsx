@@ -81,7 +81,7 @@ export const App: React.FC = () => (
       <div className="d-flex flex-column">
         <Navbar />
         <CartLoader />
-        <ScrollToTop />
+        {/* <ScrollToTop /> */}
         <Routes>
           <Route path={pageRoutes.mainPage()} element={<Main />} />
           <Route path={pageRoutes.storePage()} element={<Store />} />

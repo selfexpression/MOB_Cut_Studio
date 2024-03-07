@@ -33,6 +33,11 @@ export default {
       header: 'Services',
       description: 'Our chairs are the throne of style, and the atmosphere is the whirlwind of creativity. We not only follow trends but set them',
       chooseService: 'Choose Service',
+      discounts: {
+        firstCut: '20% - first haircut',
+        bringFriend: '20% - Bring a friend (and both you and your friend get the discount)',
+        fatherAndSon: 'Father and son - ',
+      },
       names: {
         1: 'Haircut',
         2: 'Clipper Haircut',

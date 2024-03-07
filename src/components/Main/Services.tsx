@@ -47,9 +47,9 @@ const ServiceCards: React.FC<Props> = ({ isScrolled }) => {
             loading="lazy"
             className={isScrolled ? 'scale-up' : ''}
           />
-          <div className="text-center p-2">
+          <p className="text-center p-2">
             {t(`services.names.${id}`)}
-          </div>
+          </p>
         </div>
       ))}
     </div>
@@ -66,7 +66,7 @@ const BookingButton: React.FC<Props> = ({ isScrolled }) => {
   };
 
   return (
-    <div className="p-5">
+    <div className="p-2">
       <button
         type="button"
         aria-label={t('ariaLabels.bookingBtn')}
@@ -81,12 +81,52 @@ const BookingButton: React.FC<Props> = ({ isScrolled }) => {
   );
 };
 
+const Discounts: React.FC<Props> = ({ isScrolled }) => {
+  const { t } = useTranslation();
+  const discounts = t('services.discounts', { returnObjects: true });
+  const discountsQuantity = Object.keys(discounts).length;
+  const [currentDisount, setCurrentDiscount] = useState(0);
+
+  const nextDiscount = () => {
+    setCurrentDiscount((currentDisount + 1) % discountsQuantity);
+  };
+
+  useEffect(() => {
+    const intervalId = setInterval(nextDiscount, 3000);
+
+    return () => clearInterval(intervalId);
+  }, [currentDisount]);
+
+  const price = (
+    <>
+      <span className="old-price">{'2900'}</span>
+      <span className="new-price">{' 2600'}</span>
+    </>
+  );
+
+  return (
+    <div className={cn('services-discounts', {
+      'scale-up': isScrolled,
+    })}>
+      {Object.entries(discounts).map(([key, value], index) => (
+        <p key={key} className={cn('discount', {
+          active: index === currentDisount,
+          inactive: index !== currentDisount,
+        })}>
+          {value}
+          {key === 'fatherAndSon' ? price : null}
+        </p>
+      ))}
+    </div>
+  );
+};
+
 export const Services: React.FC = () => {
   const { scrollY } = useScrollY();
   const [isScrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    if (scrollY > 1400) {
+    if (scrollY > 1200) {
       setScrolled(true);
     }
   }, [scrollY]);
@@ -95,6 +135,7 @@ export const Services: React.FC = () => {
     <section id="services" className="bg-light text-center">
       <ServiceText isScrolled={isScrolled} />
       <ServiceCards isScrolled={isScrolled} />
+      <Discounts isScrolled={isScrolled} />
       <BookingButton isScrolled={isScrolled} />
     </section>
   );

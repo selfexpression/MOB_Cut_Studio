@@ -32,13 +32,34 @@
       border-radius: 0.5em;
       transition: transform .6s ease-in-out;
   
-      &:hover {
-        transform: scale(1.1);
-      }
-  
       img {
         opacity: 0;
       }
+    }
+  }
+
+  .services-discounts {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    padding: 2em;
+
+    .discount {
+      grid-column: 1 / -1;
+      grid-row: 1 / -1;
+      
+      opacity: 0;
+      transition: opacity .5s ease-in-out 1s;
+
+      &:last-child {
+        .old-price {
+          text-decoration: line-through;
+        }
+      }
+    }
+
+    .active {
+      opacity: 1;
     }
   }
   
@@ -63,7 +84,6 @@
 @media screen and (max-width: 768px) {
   #services {
     display: block;
-    
     .services-text {
       width: 100%;
     }
