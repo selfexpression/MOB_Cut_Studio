@@ -43,6 +43,7 @@
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
     padding: 2em;
+    opacity: 0;
 
     .discount {
       grid-column: 1 / -1;
