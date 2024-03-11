@@ -42,16 +42,37 @@
         border-top-left-radius: 0.5em;
       }
 
-      .team-card-text {
+      .team-card-info {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
         padding: 1.5em;
 
+        .reviews-button-wrapper {
+          display: flex;
+          align-items: center;
+          gap: 0.5em;
+          cursor: pointer;
+  
+          .reviews-button {
+            width: 1.5em;
+            height: 1.5em;
+            background-image: url("../../../assets/reviews-icon.png");
+            background-position: center;
+            background-size: cover;
+            background-color: $white;
+            border: none;
+          }
+        }
+  
+
         .teammate-name {
-          border-bottom: $white-grey-border;
-          padding-bottom: 0.5em;
+          margin: 0;
         }
 
         .teammate-description {
-          margin-top: 0.5em;
+          padding-top: 0.8em;
+          border-top: $white-grey-border;
         }
       }
     }

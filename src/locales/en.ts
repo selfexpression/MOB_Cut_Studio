@@ -50,6 +50,7 @@ export default {
     },
     team: {
       header: 'Our team',
+      reviews: 'Reviews',
       description: 'Entrust your appearance to professionals, and your hair will become not just a haircut, but an art that speaks of your unique individuality',
       teammates: {
         1: 'Employee 1',

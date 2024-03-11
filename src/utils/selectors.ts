@@ -17,3 +17,5 @@ export const getProductCardState = (state: RootState) => state.product;
 export const getCartState = (state: RootState) => state.cart;
 
 export const getCurrentBrandNames = (state: RootState) => state.filter.currentBrandNames;
+
+export const getReviewsWidgetState = (state: RootState) => state.reviews;

@@ -8,6 +8,7 @@ import { actions as sortMenuActions, reducer as sortMenuSlice } from './sortMenu
 import { reducer as filterMenuSlice, actions as filterMenuActions } from './filterMenuSlice';
 import { reducer as productCardSlice, actions as productCardActions } from './productCardSlice';
 import { reducer as cartSlice, actions as cartActions } from './cartSlice';
+import { reducer as reviewsSlice, actions as reviewsActions } from './reviewsSlice';
 
 export const actions = {
   ...bookingWidgetActions,
@@ -18,6 +19,7 @@ export const actions = {
   ...filterMenuActions,
   ...productCardActions,
   ...cartActions,
+  ...reviewsActions,
 };
 
 export const store = configureStore({
@@ -30,5 +32,6 @@ export const store = configureStore({
     filter: filterMenuSlice,
     product: productCardSlice,
     cart: cartSlice,
+    reviews: reviewsSlice,
   },
 });
