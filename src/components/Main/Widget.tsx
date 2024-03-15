@@ -19,11 +19,17 @@ export const Widget = (
   const { t } = useTranslation();
 
   return (
-    <aside className={cn('booking-widget', {
+    <aside className={cn('booking-widget-container', {
       'show-booking': isOpenWidget,
       'hide-booking': !isOpenWidget,
     })}>
-      <div className="close-btn-wrapper">
+      <div className="booking-widget-wrapper">
+        <iframe
+          title={t('others.yclients')}
+          src={formLink}
+          className="booking-frame"
+        >
+        </iframe>
         <button
           type="button"
           aria-label={t('ariaLabels.closeBtn')}
@@ -33,12 +39,6 @@ export const Widget = (
           <CloseIcon />
         </button>
       </div>
-      <iframe
-        title={t('others.yclients')}
-        src={formLink}
-        className="booking-frame"
-      >
-      </iframe>
     </aside>
   );
 };

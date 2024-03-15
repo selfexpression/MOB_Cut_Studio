@@ -1,4 +1,4 @@
-.booking-widget {
+.booking-widget-container {
   position: fixed;
   top: 0;
   right: 0;
@@ -9,21 +9,20 @@
   transition: transform 0.3s ease-in-out;
   background-color: $white;
 
+.booking-widget-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+
   .booking-frame {
     width: 100%;
     height: 100%;
     border: 1px solid $white;
   }
-
-  .close-btn-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    width: 100%;
-    padding: 0.5em;
-
     .close-btn {
-      @include flex-center;
+      position: absolute;
+      top: 2.5em;
+      right: 5em;
 
       background: none;
       border: none;
@@ -49,13 +48,13 @@
 }
 
 @media screen and (max-width: 1024px) {
-  .booking-widget {
+  .booking-widget-container {
     width: 50%;
   }
 }
 
 @media screen and (max-width: 560px) {
-  .booking-widget {
+  .booking-widget-container {
     width: 100%;
   }
 }
