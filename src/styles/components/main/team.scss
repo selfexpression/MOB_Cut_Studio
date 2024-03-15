@@ -21,7 +21,6 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    gap: 1em;
     margin-bottom: 1em;
   
     opacity: 0;
@@ -31,6 +30,7 @@
       flex-basis: calc(33.3333% - 1em);
       width: 100%;
       height: auto;
+      margin-top: 1em;
     
       background-color: $white;
       border: 0.5px solid black;
@@ -79,7 +79,7 @@
   }  
 }
 
-@media screen and (max-width: 1023px) {
+@media screen and (max-width: 1024px) {
   .team-container {
     .team-card-container {
       .team-card {
@@ -89,7 +89,7 @@
   }
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 560px) {
   .team-container {
     .team-text {
       p {
@@ -98,7 +98,7 @@
     }
     .team-card-container {
       .team-card {
-        flex-basis: calc(100% - 1rem);
+        flex-basis: calc(100% - 1em);
       }
     }
   }
