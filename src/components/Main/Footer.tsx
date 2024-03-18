@@ -3,6 +3,7 @@ import { Telephone } from 'react-bootstrap-icons';
 import { useTranslation } from 'react-i18next';
 import { useYMaps } from '@pbe/react-yandex-maps';
 import { useDispatch, useSelector } from 'react-redux';
+import cn from 'classnames';
 
 import { actions } from '../../slices/bookingWidgetSlice';
 import { linkRoutes } from '../../utils/routes';
@@ -50,7 +51,9 @@ const CallButton: React.FC = (): JSX.Element => {
 
   return (
     <div className="call-button-wrapper">
-      <Telephone className={isVibrating ? 'vibrating' : ''} />
+      <Telephone className={cn('mr-2', {
+        vibrating: isVibrating,
+      })} />
       <a href={linkRoutes.phoneNumber()}>
         <button
           type="button"

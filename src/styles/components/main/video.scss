@@ -10,9 +10,14 @@
   width: 100vw;
 
   .video-text {
+    @include flex-center;
     text-align: center;
     padding: 5em;
     opacity: 0;
+
+    p {
+      width: 50%;
+    }
   }
 
   .video-wrapper {
@@ -42,6 +47,10 @@
   .video-container {
     .video-text {
       padding: 3em;
+
+      p {
+        width: 100%;
+      }
     }
   }
 }

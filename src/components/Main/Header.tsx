@@ -73,7 +73,7 @@ export const Header: React.FC = (): JSX.Element => {
               <button
                 type="button"
                 aria-label={t('ariaLabels.bookingBtn')}
-                className="booking-btn"
+                className="booking-button"
                 onClick={handleToggleWidget}
               >
                 {t('header.onlineBooking')}
