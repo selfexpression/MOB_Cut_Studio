@@ -1,3 +1,5 @@
+@use "../../mixins.scss" as mixins;
+
 #services {
   display: flex;
   flex-direction: column;
@@ -72,7 +74,7 @@
     padding: 1em;
   }
   
-  @include booking-btn(18em, $aqua, $aqua) {
+  @include mixins.booking-btn(18em, $aqua, $aqua) {
     opacity: 0;
     border-radius: 0.5em;
   

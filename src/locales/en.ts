@@ -13,8 +13,8 @@ export default {
       phoneNumber: '+7-(999)-465-2506',
 
     },
-    carousel: {
-      description: 'Our works, our space, our atmosphere.',
+    slider: {
+      text: 'Our works, our space, our atmosphere.',
     },
     header: {
       text: 'A place where style meets convenience',

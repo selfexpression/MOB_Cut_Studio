@@ -10,13 +10,13 @@ import { getBookingWidgetState } from '../../utils/selectors';
 import { pageRoutes } from '../../utils/routes';
 import { backgroundImages } from '../../assets/background';
 
-const Background: React.FC = () => {
+const Background: React.FC = (): JSX.Element => {
   const { t } = useTranslation();
   const { scrollY } = useScrollY();
   const parallaxController = useParallaxController();
   const isWide = useMediaQuery('(min-width: 768px)');
 
-  const handleImageLoad = () => parallaxController?.update();
+  const handleImageLoad = (): void => parallaxController?.update();
 
   useEffect(() => {
     handleImageLoad();
@@ -49,12 +49,12 @@ const Background: React.FC = () => {
   );
 };
 
-export const Header: React.FC = () => {
+export const Header: React.FC = (): JSX.Element => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const { isOpenWidget } = useSelector(getBookingWidgetState);
 
-  const handleToggleWidget = () => {
+  const handleToggleWidget = (): void => {
     dispatch(actions.toggleWidget(!isOpenWidget));
   };
 
@@ -76,7 +76,7 @@ export const Header: React.FC = () => {
                 className="booking-btn"
                 onClick={handleToggleWidget}
               >
-                <span>{t('header.onlineBooking')}</span>
+                {t('header.onlineBooking')}
               </button>
             </main>
           </>

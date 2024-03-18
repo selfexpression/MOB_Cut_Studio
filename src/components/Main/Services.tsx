@@ -12,7 +12,7 @@ interface Props {
   isScrolled: boolean;
 }
 
-const ServiceText: React.FC<Props> = ({ isScrolled }) => {
+const ServiceText: React.FC<Props> = ({ isScrolled }): JSX.Element => {
   const { t } = useTranslation();
 
   return (
@@ -29,7 +29,7 @@ const ServiceText: React.FC<Props> = ({ isScrolled }) => {
   );
 };
 
-const ServiceCards: React.FC<Props> = ({ isScrolled }) => {
+const ServiceCards: React.FC<Props> = ({ isScrolled }): JSX.Element => {
   const { t } = useTranslation();
 
   return (
@@ -56,12 +56,12 @@ const ServiceCards: React.FC<Props> = ({ isScrolled }) => {
   );
 };
 
-const BookingButton: React.FC<Props> = ({ isScrolled }) => {
+const BookingButton: React.FC<Props> = ({ isScrolled }): JSX.Element => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const { isOpenWidget } = useSelector(getBookingWidgetState);
 
-  const handleToggleWidget = () => {
+  const handleToggleWidget = (): void => {
     dispatch(actions.toggleWidget(!isOpenWidget));
   };
 
@@ -81,13 +81,13 @@ const BookingButton: React.FC<Props> = ({ isScrolled }) => {
   );
 };
 
-const Discounts: React.FC<Props> = ({ isScrolled }) => {
+const Discounts: React.FC<Props> = ({ isScrolled }): JSX.Element => {
   const { t } = useTranslation();
   const discounts = t('services.discounts', { returnObjects: true });
   const discountsQuantity = Object.keys(discounts).length;
   const [currentDisount, setCurrentDiscount] = useState(0);
 
-  const nextDiscount = () => {
+  const nextDiscount = (): void => {
     setCurrentDiscount((currentDisount + 1) % discountsQuantity);
   };
 
@@ -121,7 +121,7 @@ const Discounts: React.FC<Props> = ({ isScrolled }) => {
   );
 };
 
-export const Services: React.FC = () => {
+export const Services: React.FC = (): JSX.Element => {
   const { scrollY } = useScrollY();
   const [isScrolled, setScrolled] = useState(false);
 

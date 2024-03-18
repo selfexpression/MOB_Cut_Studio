@@ -1,29 +1,10 @@
+@use "../../mixins.scss" as mixins;
+
 @mixin parallax-wrapper {
   height: 100%;
   width: 100%;
 
   will-change: transform;
-}
-
-@mixin booking-btn($width, $color, $hover-color) {
-  .booking-btn {
-    width: $width;
-    height: 2em;
-
-    color: $color;
-    background: none;
-    border: 1px solid $color;
-    text-transform: uppercase;
-    cursor: pointer;
-
-    @content;
-
-    &:hover {
-      @content;
-      border: $hover-color;
-      background-color: $hover-color;
-    }
-  }
 }
 
 .main-header {
@@ -64,7 +45,7 @@
   
     animation: scale-up 1s ease-in-out 0s forwards;
 
-    @include booking-btn(16em, $light, black) {
+    @include mixins.booking-btn(16em, $light, black) {
       border-radius: 0;
     }
   }

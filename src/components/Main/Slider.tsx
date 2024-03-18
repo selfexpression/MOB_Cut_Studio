@@ -12,7 +12,7 @@ import { getSliderState } from '../../utils/selectors';
 
 type IntervalId = ReturnType<typeof setInterval>;
 
-const Arrows: React.FC = () => {
+const Arrows: React.FC = (): JSX.Element => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const intervalIdRef = useRef<IntervalId | null>(null);
@@ -23,18 +23,12 @@ const Arrows: React.FC = () => {
 
   const setNewInterval = () => {
     intervalIdRef.current = setInterval(() => {
-      dispatch(actions.nextSlide());
+      dispatch(actions.toggleSlide('next'));
     }, 5000);
   };
 
-  const nextSlide = () => {
-    dispatch(actions.nextSlide());
-    clearExistingInterval();
-    setNewInterval();
-  };
-
-  const prevSlide = () => {
-    dispatch(actions.prevSlide());
+  const toggleSlide = (selector: string): void => {
+    dispatch(actions.toggleSlide(selector));
     clearExistingInterval();
     setNewInterval();
   };
@@ -50,19 +44,19 @@ const Arrows: React.FC = () => {
         className="next"
         type="button"
         aria-label={t('ariaLabels.next')}
-        onClick={nextSlide}
+        onClick={() => toggleSlide('next')}
       />
       <ArrowLeft
         className="prev"
         type="button"
         aria-label={t('ariaLabels.prev')}
-        onClick={prevSlide}
+        onClick={() => toggleSlide('prev')}
       />
     </>
   );
 };
 
-export const Slider = () => {
+export const Slider = (): JSX.Element => {
   const { t } = useTranslation();
   const { currentSlide, images } = useSelector(getSliderState);
 

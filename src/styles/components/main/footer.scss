@@ -1,3 +1,5 @@
+@use "../../mixins.scss" as mixins;
+
 .footer-container {
   display: flex;
   flex-direction: column;
@@ -27,7 +29,7 @@
         }
       }
 
-      @include booking-btn(14em, $light, $light) {
+      @include mixins.booking-btn(14em, $light, $light) {
         border-radius: 0.5em;
 
         &:hover {
@@ -35,11 +37,11 @@
         }
       }
 
-      .call-btn {
+      .call-button-wrapper {
         display: flex;
         align-items: center;
         margin-top: 0.5em;
-        margin-right: 1.4em;
+        margin-right: 1em;
       }
 
       .social-links {

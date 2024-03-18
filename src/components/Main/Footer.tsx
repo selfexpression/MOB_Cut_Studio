@@ -3,14 +3,13 @@ import { Telephone } from 'react-bootstrap-icons';
 import { useTranslation } from 'react-i18next';
 import { useYMaps } from '@pbe/react-yandex-maps';
 import { useDispatch, useSelector } from 'react-redux';
-import cn from 'classnames';
 
 import { actions } from '../../slices/bookingWidgetSlice';
 import { linkRoutes } from '../../utils/routes';
 import { getBookingWidgetState } from '../../utils/selectors';
 import { SocialLinks } from '../Navbar';
 
-const Ymap: React.FC = () => {
+const Ymap: React.FC = (): JSX.Element => {
   const ymaps = useYMaps(['Map', 'Placemark']);
   const mapRef = useRef(null);
 
@@ -37,7 +36,7 @@ const Ymap: React.FC = () => {
   );
 };
 
-const CallButton: React.FC = () => {
+const CallButton: React.FC = (): JSX.Element => {
   const { t } = useTranslation();
   const [isVibrating, setVibrating] = useState(false);
 
@@ -50,24 +49,22 @@ const CallButton: React.FC = () => {
   }, [isVibrating]);
 
   return (
-    <div className="call-btn">
-      <Telephone className={cn('mr-2', {
-        'vibrating-phone': isVibrating,
-      })} />
+    <div className="call-button-wrapper">
+      <Telephone className={isVibrating ? 'vibrating' : ''} />
       <a href={linkRoutes.phoneNumber()}>
         <button
           type="button"
           aria-label={t('ariaLabels.callBtn')}
-          className="booking-btn"
+          className="booking-button"
         >
-          <span>{t('footer.phoneNumber')}</span>
+          {t('footer.phoneNumber')}
         </button>
       </a>
     </div>
   );
 };
 
-const InteractiveElements: React.FC = () => {
+const InteractiveElements: React.FC = (): JSX.Element => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const { isOpenWidget } = useSelector(getBookingWidgetState);
@@ -81,10 +78,10 @@ const InteractiveElements: React.FC = () => {
       <button
         type="button"
         aria-label={t('ariaLabels.bookingBtn')}
-        className="booking-btn"
+        className="booking-button"
         onClick={handleToggleWidget}
       >
-        <span>{t('header.onlineBooking')}</span>
+        {t('header.onlineBooking')}
       </button>
       <div className="social-links">
         <SocialLinks t={t} />
@@ -94,7 +91,7 @@ const InteractiveElements: React.FC = () => {
   );
 };
 
-export const Footer: React.FC = () => {
+export const Footer: React.FC = (): JSX.Element => {
   const { t } = useTranslation();
 
   return (

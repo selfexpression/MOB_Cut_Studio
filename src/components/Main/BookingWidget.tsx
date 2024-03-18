@@ -6,7 +6,7 @@ import { getBookingWidgetState } from '../../utils/selectors';
 
 import { Widget } from './Widget';
 
-export const BookingWidget: React.FC = () => {
+export const BookingWidget: React.FC = (): JSX.Element => {
   const dispatch = useDispatch();
   const { isOpenWidget } = useSelector(getBookingWidgetState);
   const formLink = process.env.REACT_APP_YCLIENTS_FORM as string;

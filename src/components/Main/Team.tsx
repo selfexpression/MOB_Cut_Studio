@@ -13,11 +13,11 @@ interface TeamCardProps {
   handleToggleWidget: () => void;
 }
 
-const TeamCards: React.FC<TeamCardProps> = ({ handleToggleWidget }) => {
+const TeamCards: React.FC<TeamCardProps> = ({ handleToggleWidget }): JSX.Element => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
-  const handleCurrentEmployee = (id: number) => {
+  const handleCurrentEmployee = (id: number): void => {
     dispatch(actions.setCurrentEmployeeId(id));
     handleToggleWidget();
   };
@@ -61,12 +61,12 @@ const reviewsLinksMapping = {
   3: linkRoutes.reviews.anikin,
 };
 
-export const Team: React.FC = () => {
+export const Team: React.FC = (): JSX.Element => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const { isOpenWidget, currentEmployeeId } = useSelector(getReviewsWidgetState);
 
-  const handleToggleWidget = () => {
+  const handleToggleWidget = (): void => {
     dispatch(actions.toggleWidget(!isOpenWidget));
   };
 

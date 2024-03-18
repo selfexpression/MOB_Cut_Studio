@@ -1,0 +1,20 @@
+@mixin booking-btn($width, $color, $hover-color) {
+  .booking-button {
+    width: $width;
+    height: 2em;
+
+    color: $color;
+    background: none;
+    border: 1px solid $color;
+    text-transform: uppercase;
+    cursor: pointer;
+
+    @content;
+
+    &:hover {
+      @content;
+      border: $hover-color;
+      background-color: $hover-color;
+    }
+  }
+}

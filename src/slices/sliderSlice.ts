@@ -11,13 +11,19 @@ const slice = createSlice({
   name: 'slider',
   initialState,
   reducers: {
-    nextSlide: (state) => {
+    toggleSlide: (state, { payload }: { payload: string }) => {
       const { currentSlide, images } = state;
-      state.currentSlide = (currentSlide + 1) % images.length;
-    },
-    prevSlide: (state) => {
-      const { currentSlide, images } = state;
-      state.currentSlide = (currentSlide + (images.length - 1)) % images.length;
+
+      switch (payload) {
+        case 'next':
+          state.currentSlide = (currentSlide + 1) % images.length;
+          break;
+        case 'prev':
+          state.currentSlide = (currentSlide + (images.length - 1)) % images.length;
+          break;
+        default:
+          break;
+      }
     },
   },
 });
