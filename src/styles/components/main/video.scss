@@ -3,41 +3,47 @@
   min-width: 0; 
 }
 
-.video-container {
-  display: flex;
-  flex-direction: column;
+#video {
+  background-color: $light;
 
-  width: 100vw;
-
-  .video-text {
-    @include flex-center;
-    text-align: center;
-    padding: 5em;
-    opacity: 0;
-
-    p {
-      width: 50%;
-    }
-  }
-
-  .video-wrapper {
+  .video-container {
     display: flex;
-
-    .videoframe {
-      @include flex-width;
+    flex-direction: column;
+  
+    width: 100vw;
+  
+    .video-text {
+      @include flex-center;
+      text-align: center;
+      padding: 5em;
+      opacity: 0;
+  
+      p {
+        width: 50%;
+        color: $aqua;
+        margin: 0.25em;
+      }
     }
-    
-    .video-image {
-      @include flex-width;
-    
-      background-image: url("../../../assets/video/girl-model2.jpg");
-      background-position: center;
-      background-size: cover;
-    
-      transition: background-image .3s;
-    
-      &:hover {
-        background-image: url("../../../assets/video/girl-model.jpg");
+  
+    .video-wrapper {
+      display: flex;
+  
+      .videoframe {
+        @include flex-width;
+      }
+      
+      .video-image {
+        @include flex-width;
+      
+        background-image: url("../../../assets/video/girl-model2.jpg");
+        background-position: center;
+        background-size: cover;
+      
+        transition: background-image .3s;
+      
+        &:hover {
+          background-image: url("../../../assets/video/girl-model.jpg");
+        }
       }
     }
   }

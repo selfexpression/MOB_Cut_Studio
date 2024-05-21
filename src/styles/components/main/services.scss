@@ -5,6 +5,9 @@
   flex-direction: column;
   align-items: center;
 
+  background-color: $light;
+  text-align: center;
+  
   .services-flow {
     position: relative;
     display: flex;
@@ -37,6 +40,11 @@
       img {
         opacity: 0;
       }
+      
+      p {
+        text-align: center;
+        padding: 0.5em;
+      }
     }
   }
 
@@ -63,6 +71,14 @@
 
     .active {
       opacity: 1;
+    }
+  }
+
+  .booking-button-wrapper {
+    padding: 0.5em;
+
+    .booking-button {
+      margin-bottom: 3em;
     }
   }
   

@@ -47,7 +47,7 @@ const ServiceCards: React.FC<Props> = ({ isScrolled }): JSX.Element => {
             loading="lazy"
             className={isScrolled ? 'scale-up' : ''}
           />
-          <p className="text-center p-2">
+          <p>
             {t(`services.names.${id}`)}
           </p>
         </div>
@@ -66,11 +66,11 @@ const BookingButton: React.FC<Props> = ({ isScrolled }): JSX.Element => {
   };
 
   return (
-    <div className="p-2">
+    <div className="booking-button-wrapper">
       <button
         type="button"
         aria-label={t('ariaLabels.bookingBtn')}
-        className={cn('booking-button mb-5', {
+        className={cn('booking-button', {
           'scale-up': isScrolled,
         })}
         onClick={handleToggleWidget}
@@ -132,7 +132,7 @@ export const Services: React.FC = (): JSX.Element => {
   }, [scrollY]);
 
   return (
-    <section id="services" className="bg-light text-center">
+    <section id="services">
       <ServiceText isScrolled={isScrolled} />
       <ServiceCards isScrolled={isScrolled} />
       <Discounts isScrolled={isScrolled} />

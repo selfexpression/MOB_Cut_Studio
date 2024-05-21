@@ -51,7 +51,7 @@ const CallButton: React.FC = (): JSX.Element => {
 
   return (
     <div className="call-button-wrapper">
-      <Telephone className={cn('mr-2', {
+      <Telephone className={cn({
         vibrating: isVibrating,
       })} />
       <a href={linkRoutes.phoneNumber()}>
@@ -87,7 +87,7 @@ const InteractiveElements: React.FC = (): JSX.Element => {
         {t('header.onlineBooking')}
       </button>
       <div className="social-links">
-        <SocialLinks t={t} />
+        <SocialLinks />
       </div>
       <CallButton />
     </>
@@ -101,10 +101,10 @@ export const Footer: React.FC = (): JSX.Element => {
     <footer id="footer">
       <div className="footer-container">
         <div className="footer-contacts">
-          <h3 className="m-2 uppercase">{t('footer.contacts')}</h3>
+          <h3>{t('footer.contacts')}</h3>
           <div className="footer-interactive">
             <InteractiveElements />
-            <p className="no-wrap">{t('footer.location')}</p>
+            <p>{t('footer.location')}</p>
           </div>
         </div>
         <div className="map-container ">

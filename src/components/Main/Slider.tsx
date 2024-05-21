@@ -61,7 +61,7 @@ export const Slider = (): JSX.Element => {
   const { currentSlide, images } = useSelector(getSliderState);
 
   return (
-    <section id="slider" className="bg-light">
+    <section id="slider">
       <div className="slider-text">
         <p>
           {t('slider.text')}
@@ -81,7 +81,6 @@ export const Slider = (): JSX.Element => {
                 src={image}
                 loading="lazy"
                 alt={`${t('alts.slider')} ${id}`}
-                className="w-100 h-100"
               />
             </div>
           ))}

@@ -20,12 +20,12 @@ export const Video: React.FC = () => {
   }, [scrollY]);
 
   return (
-    <section id="video" className="bg-light">
+    <section id="video">
       <div className="video-container">
         <div className={cn('video-text', {
           'fade-up': isScrolled,
         })}>
-          <p className="aqua-color m-1">
+          <p>
             {t('video.text')}
           </p>
         </div>
@@ -41,7 +41,7 @@ export const Video: React.FC = () => {
           >
             <source src={backgroundVideo} type="video/mp4" />
           </video>
-          {isWide ? (<div className="video-image" />) : null}
+          {isWide && (<div className="video-image" />)}
         </div>
       </div>
     </section>

@@ -67,7 +67,7 @@ export const Header: React.FC = (): JSX.Element => {
             <main
               className="main-content"
             >
-              <p className="color-light text-center m-0 p-4">
+              <p>
                 {t('header.text')}
               </p>
               <button

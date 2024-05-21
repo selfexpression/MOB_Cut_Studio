@@ -9,27 +9,26 @@ interface Props {
   formLink: string;
 }
 
-export const Widget = (
-  {
-    isOpenWidget,
-    handleToggleWidget,
-    formLink,
-  }: Props,
-): JSX.Element => {
+export const Widget = ({
+  isOpenWidget,
+  handleToggleWidget,
+  formLink,
+}: Props): JSX.Element => {
   const { t } = useTranslation();
 
   return (
-    <aside className={cn('booking-widget-container', {
-      'show-booking': isOpenWidget,
-      'hide-booking': !isOpenWidget,
-    })}>
+    <aside
+      className={cn('booking-widget-container', {
+        'show-booking': isOpenWidget,
+        'hide-booking': !isOpenWidget,
+      })}
+    >
       <div className="booking-widget-wrapper">
         <iframe
           title={t('others.yclients')}
           src={formLink}
           className="booking-frame"
-        >
-        </iframe>
+        />
         <button
           type="button"
           aria-label={t('ariaLabels.closeBtn')}

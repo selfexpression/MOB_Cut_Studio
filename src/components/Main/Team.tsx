@@ -13,7 +13,9 @@ interface TeamCardProps {
   handleToggleWidget: () => void;
 }
 
-const TeamCards: React.FC<TeamCardProps> = ({ handleToggleWidget }): JSX.Element => {
+const TeamCards: React.FC<TeamCardProps> = ({
+  handleToggleWidget,
+}): JSX.Element => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
@@ -25,17 +27,10 @@ const TeamCards: React.FC<TeamCardProps> = ({ handleToggleWidget }): JSX.Element
   return (
     <div className="team-card-container">
       {teamImages.map(({ photo, id }) => (
-        <div
-          key={id}
-          className="team-card"
-        >
-          <img
-            src={photo}
-            alt={t('alts.teammate')}
-            className="team-image"
-          />
+        <div key={id} className="team-card">
+          <img src={photo} alt={t('alts.teammate')} className="team-image" />
           <div className="team-card-info">
-            <h3 className="teammate-name text-center">
+            <h3 className="teammate-name">
               {t(`team.teammates.${id}`)}
             </h3>
             <div
@@ -55,7 +50,7 @@ const TeamCards: React.FC<TeamCardProps> = ({ handleToggleWidget }): JSX.Element
   );
 };
 
-const reviewsLinksMapping = {
+const reviewsLinksMapping: { [key: number]: string } = {
   1: linkRoutes.reviews.maslov,
   2: linkRoutes.reviews.golub,
   3: linkRoutes.reviews.anikin,
@@ -64,7 +59,9 @@ const reviewsLinksMapping = {
 export const Team: React.FC = (): JSX.Element => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const { isOpenWidget, currentEmployeeId } = useSelector(getReviewsWidgetState);
+  const { isOpenWidget, currentEmployeeId } = useSelector(
+    getReviewsWidgetState,
+  );
 
   const handleToggleWidget = (): void => {
     dispatch(actions.toggleWidget(!isOpenWidget));
@@ -74,18 +71,14 @@ export const Team: React.FC = (): JSX.Element => {
     <section id="team" className="bg-light text-center">
       <div className="team-container">
         <div className="team-text">
-          <h1 className="text-center aqua-color mb-4">
-            {t('team.header')}
-          </h1>
-          <p className="m-1">
-            {t('team.description')}
-          </p>
+          <h1>{t('team.header')}</h1>
+          <p>{t('team.description')}</p>
         </div>
         <TeamCards handleToggleWidget={handleToggleWidget} />
         <Widget
           isOpenWidget={isOpenWidget}
           handleToggleWidget={handleToggleWidget}
-          formLink={reviewsLinksMapping[currentEmployeeId as keyof typeof reviewsLinksMapping]}
+          formLink={reviewsLinksMapping[currentEmployeeId]}
         />
       </div>
     </section>

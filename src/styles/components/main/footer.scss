@@ -12,9 +12,18 @@
     color: $light;
     padding: 2em;
 
+    h3 {
+      margin: 0.5em;
+      text-transform: uppercase
+    }
+
     .footer-interactive {
       @include flex-center;
       flex-direction: column;
+
+      p {
+        text-wrap: nowrap;
+      }
 
       .contact-links {
         display: flex;
@@ -42,6 +51,10 @@
         align-items: center;
         margin-top: 0.5em;
         margin-right: 1.4em;
+
+        svg {
+          margin-right: 0.5em;
+        }
       }
 
       .social-links {

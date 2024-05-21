@@ -17,13 +17,17 @@ export const firebaseApiRoutes = {
 
 export const linkRoutes = {
   reviews: {
-    maslov: 'https://n984073.yclients.com/company/913844/create-record/master-info/913844/2771548?o=m2771548s13525666',
-    golub: 'https://n984073.yclients.com/company/913844/create-record/master-info/913844/2780988?o=m2780988s13525666',
-    anikin: 'https://n984073.yclients.com/company/913844/create-record/master-info/913844/2787920?o=m2787920s13525666',
+    maslov:
+      'https://n984073.yclients.com/company/913844/create-record/master-info/913844/2771548?o=m2771548s13525666',
+    golub:
+      'https://n984073.yclients.com/company/913844/create-record/master-info/913844/2780988?o=m2780988s13525666',
+    anikin:
+      'https://n984073.yclients.com/company/913844/create-record/master-info/913844/2787920?o=m2787920s13525666',
   },
   whatsapp: () => 'https://wa.me/+79994652506',
   telegram: () => 'https://t.me/+79994652506',
   phoneNumber: () => 'tel:+79994652506',
+  yclientsForm: () => 'https://n984073.yclients.com/',
 };
 
 export const serverApiRoutes = {

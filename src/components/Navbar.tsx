@@ -190,7 +190,9 @@ const NavbarLinks: React.FC<NavLinkProps> = ({ isMainPage, isProductPage, isWide
   </div>
 );
 
-export const SocialLinks: React.FC<SocialLinksProps> = ({ t = null }) => {
+export const SocialLinks: React.FC = () => {
+  const { t } = useTranslation();
+
   const socialLinks = {
     telegram: Telegram,
     whatsapp: Whatsapp,
@@ -205,7 +207,7 @@ export const SocialLinks: React.FC<SocialLinksProps> = ({ t = null }) => {
           className="contact-links"
         >
           <Icon />
-          {t ? <span>{t(`navbar.${contact}`)}</span> : ''}
+          <span>{t(`navbar.${contact}`)}</span>
         </a>
       ))}
     </>
