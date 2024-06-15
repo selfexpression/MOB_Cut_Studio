@@ -6,7 +6,6 @@ import cn from 'classnames';
 import { Link as ScrollLink, animateScroll } from 'react-scroll';
 import { useLocation, Link as RouterLink, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import type { TFunction } from 'i18next';
 
 import { actions } from '../slices/navbarSlice';
 import { pageRoutes, linkRoutes } from '../utils/routes';
@@ -18,10 +17,6 @@ import { CartIcon } from './Icons/CartIcon';
 import { BackButton } from './Icons/BackButton';
 
 type NavLinkProps = Record<string, boolean>;
-
-interface SocialLinksProps {
-  t?: TFunction;
-}
 
 const PageNavLink: React.FC<NavLinkProps> = ({ isMainPage }) => {
   const { t } = useTranslation();
@@ -39,28 +34,22 @@ const PageNavLink: React.FC<NavLinkProps> = ({ isMainPage }) => {
     footer: ScrollLink,
   };
 
-  return (
-    isMainPage
-      ? (
-        <div className="page-link-wrapper">
-          {Object.entries(pagesMap).map(([pageName, Link]) => (
-            <Link
-              className='page-link'
-              key={pageName}
-              to={pageName}
-              duration={500}
-              smooth="true"
-              onClick={handleToggleMenu}
-            >
-              {t(`navbar.${pageName}`)}
-            </Link>
-          ))}
-        </div>
-      )
-      : (
-        null
-      )
-  );
+  return isMainPage ? (
+    <div className="page-link-wrapper">
+      {Object.entries(pagesMap).map(([pageName, Link]) => (
+        <Link
+          className="page-link"
+          key={pageName}
+          to={pageName}
+          duration={500}
+          smooth="true"
+          onClick={handleToggleMenu}
+        >
+          {t(`navbar.${pageName}`)}
+        </Link>
+      ))}
+    </div>
+  ) : null;
 };
 
 const HomePageButton: React.FC = () => {
@@ -72,10 +61,7 @@ const HomePageButton: React.FC = () => {
 
   return (
     <div className="home-page-btn">
-      <RouterLink
-        to={pageRoutes.mainPage()}
-        onClick={handleToggleMenu}
-      >
+      <RouterLink to={pageRoutes.mainPage()} onClick={handleToggleMenu}>
         <HomeIcon />
       </RouterLink>
     </div>
@@ -87,7 +73,7 @@ const LanguageToggleButton: React.FC = () => {
 
   const handleLangSwitch = () => {
     const { language } = i18n;
-    const lang = (language === 'en' ? 'ru' : 'en');
+    const lang = language === 'en' ? 'ru' : 'en';
     i18n.changeLanguage(lang);
   };
 
@@ -112,10 +98,7 @@ const NavbarLogo: React.FC<NavLinkProps> = () => {
   return (
     <div
       className="navbar-logo"
-      onClick={isMainPage
-        ? scrollToTop
-        : () => navigate(pageRoutes.mainPage())
-      }
+      onClick={isMainPage ? scrollToTop : () => navigate(pageRoutes.mainPage())}
     >
       <Logo />
     </div>
@@ -134,9 +117,7 @@ const CartLink: React.FC = () => {
       >
         <CartIcon />
       </RouterLink>
-      {items.length
-        ? <div className="items-in-cart">{itemsCount}</div>
-        : ''}
+      {items.length ? <div className="items-in-cart">{itemsCount}</div> : ''}
     </div>
   );
 };
@@ -155,7 +136,7 @@ const MenuToggleButton: React.FC = () => {
         opened: isOpenMenu,
       })}
       type="button"
-      aria-label='open-navbar'
+      aria-label="open-navbar"
       aria-expanded={isOpenMenu}
       onClick={handleToggleMenu}
     >
@@ -169,7 +150,11 @@ const MenuToggleButton: React.FC = () => {
   );
 };
 
-const NavbarIcons: React.FC<NavLinkProps> = ({ isMainPage, isProductPage, isWide }) => (
+const NavbarIcons: React.FC<NavLinkProps> = ({
+  isMainPage,
+  isProductPage,
+  isWide,
+}) => (
   <div className="d-flex align-items-center">
     {isProductPage ? <BackButton /> : null}
     {!isMainPage ? <HomePageButton /> : null}
@@ -178,7 +163,11 @@ const NavbarIcons: React.FC<NavLinkProps> = ({ isMainPage, isProductPage, isWide
   </div>
 );
 
-const NavbarLinks: React.FC<NavLinkProps> = ({ isMainPage, isProductPage, isWide }) => (
+const NavbarLinks: React.FC<NavLinkProps> = ({
+  isMainPage,
+  isProductPage,
+  isWide,
+}) => (
   <div className="navbar-links">
     <NavbarLogo isMainPage={isMainPage} />
     <PageNavLink isMainPage={isMainPage} />
@@ -218,10 +207,12 @@ const NavbarBody: React.FC<NavLinkProps> = ({ isMainPage }) => {
   const { isOpenMenu } = useSelector(getNavbarState);
 
   return (
-    <div className={cn('navbar-body', {
-      'navbar-body-show': isOpenMenu,
-      'navbar-body-hide': !isOpenMenu,
-    })}>
+    <div
+      className={cn('navbar-body', {
+        'navbar-body-show': isOpenMenu,
+        'navbar-body-hide': !isOpenMenu,
+      })}
+    >
       <PageNavLink isMainPage={isMainPage} />
       <div className="navbar-footer">
         <div className="navbar-contacts">
@@ -237,17 +228,19 @@ export const Navbar: React.FC = () => {
   const isWide = useMediaQuery('(min-width: 1024px)');
   const location = useLocation();
   const isMainPage = location.pathname === pageRoutes.mainPage();
-  const isProductPage = location.pathname.replace(/\/\d+$/, '') === pageRoutes.anyProductPage();
+  const isProductPage =
+    location.pathname.replace(/\/\d+$/, '') === pageRoutes.anyProductPage();
 
   return (
     <nav className="navbar">
-      {isWide
-        ? <NavbarLinks
+      {isWide ? (
+        <NavbarLinks
           isMainPage={isMainPage}
           isProductPage={isProductPage}
           isWide={isWide}
         />
-        : <div className="d-flex align-items-center justify-content-between w-100">
+      ) : (
+        <div className="d-flex align-items-center justify-content-between w-100">
           <NavbarLogo isMainPage={isMainPage} />
           <NavbarIcons
             isMainPage={isMainPage}
@@ -255,7 +248,7 @@ export const Navbar: React.FC = () => {
             isWide={isWide}
           />
         </div>
-      }
+      )}
       <NavbarBody isMainPage={isMainPage} />
     </nav>
   );

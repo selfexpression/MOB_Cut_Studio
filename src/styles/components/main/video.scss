@@ -1,6 +1,6 @@
 @mixin flex-width {
   flex: 1 1 50%;
-  min-width: 0; 
+  min-width: 0;
 }
 
 #video {
@@ -9,40 +9,40 @@
   .video-container {
     display: flex;
     flex-direction: column;
-  
+
     width: 100vw;
-  
+
     .video-text {
       @include flex-center;
       text-align: center;
       padding: 5em;
       opacity: 0;
-  
+
       p {
         width: 50%;
         color: $aqua;
         margin: 0.25em;
       }
     }
-  
+
     .video-wrapper {
       display: flex;
-  
+
       .videoframe {
         @include flex-width;
       }
-      
+
       .video-image {
         @include flex-width;
-      
-        background-image: url("../../../assets/video/girl-model2.jpg");
+
+        background-image: url('../../../assets/video/girl-model2.jpg');
         background-position: center;
         background-size: cover;
-      
-        transition: background-image .3s;
-      
+
+        transition: background-image 0.3s;
+
         &:hover {
-          background-image: url("../../../assets/video/girl-model.jpg");
+          background-image: url('../../../assets/video/girl-model.jpg');
         }
       }
     }

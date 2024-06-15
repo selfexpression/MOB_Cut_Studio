@@ -2,6 +2,6 @@
 
 ### Installation Guide:
 
-* ```$ git clone: https://github.com/selfexpression/MOB_Cut_Studio-App```
-* ```$ make install```
-* ```$ make start```
+- `$ git clone: https://github.com/selfexpression/MOB_Cut_Studio-App`
+- `$ make install`
+- `$ make start`

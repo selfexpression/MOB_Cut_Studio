@@ -1,4 +1,4 @@
-@use "../../mixins.scss" as mixins;
+@use '../../mixins.scss' as mixins;
 
 @mixin parallax-wrapper {
   height: 100%;
@@ -14,14 +14,14 @@
   justify-content: center;
   height: 100vh;
   width: 100vw;
-  
+
   background-color: $light;
 
   .parallax-banner {
     position: fixed;
     top: 0;
     left: 0;
-  
+
     overflow: hidden;
     @include parallax-wrapper;
 
@@ -42,7 +42,7 @@
     height: max-content;
     margin-right: 10em;
     opacity: 0;
-  
+
     animation: scale-up 1s ease-in-out 0s forwards;
 
     p {
@@ -71,7 +71,7 @@
 }
 
 @media screen and (max-width: 767px) {
-   .main-header {
+  .main-header {
     .parallax-banner {
       position: absolute;
       height: 100vh;
@@ -81,5 +81,5 @@
     .main-content {
       z-index: 0;
     }
-   }
+  }
 }

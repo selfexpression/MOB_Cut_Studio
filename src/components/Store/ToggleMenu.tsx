@@ -6,14 +6,18 @@ import _ from 'lodash';
 
 import { actions as filterActions } from '../../slices/filterMenuSlice';
 import { actions as sortActions } from '../../slices/sortMenuSlice';
-import { getFilterState, getSortState, getDatabaseState } from '../../utils/selectors';
+import {
+  getFilterState,
+  getSortState,
+  getDatabaseState,
+} from '../../utils/selectors';
 import { filterProducts } from '../../thunks/databaseThunks';
 import type { AppDispatch } from '../../types/aliases';
 import { SortIcon } from '../Icons/SortIcon';
 
 type ToggleMenuHandler = {
   handleToggleMenu: () => void;
-}
+};
 
 interface MenuProps {
   isOpenMenu: boolean;
@@ -38,23 +42,25 @@ const BrandList: React.FC = () => {
     dispatch(filterProducts());
   };
 
-  const brands = _.uniqWith(initialProducts
-    .map((product) => product.brand.toLowerCase()))
-    .map((brand) => brand.replace(/^\w/, (c) => c.toUpperCase()));
+  const brands = _.uniqWith(
+    initialProducts.map((product) => product.brand.toLowerCase()),
+  ).map((brand) => brand.replace(/^\w/, (c) => c.toUpperCase()));
 
   return (
-    <div className={cn('filter-list brand-list m-0 no-wrap', {
-      opened: isOpenMenu,
-    })}>
+    <div
+      className={cn('filter-list brand-list', {
+        opened: isOpenMenu,
+      })}
+    >
       {brands.map((brand) => (
-        <div className="item d-flex align-items-center" key={brand}>
+        <div className="item" key={brand}>
           <input
             type="checkbox"
             id={brand}
             name={brand}
             onChange={handleToggleCheckbox}
           />
-          <label className="w-100" htmlFor={brand}>{brand}</label>
+          <label htmlFor={brand}>{brand}</label>
         </div>
       ))}
     </div>
@@ -76,21 +82,16 @@ const CategoryList: React.FC<ToggleMenuHandler> = ({ handleToggleMenu }) => {
   };
 
   return (
-    <ul className={cn('filter-list m-0 p-0 no-wrap', {
-      opened: isOpenMenu,
-    })}>
-      <li
-        className="item"
-        onClick={() => handleCurrentCategory(null)}
-      >
+    <ul
+      className={cn('filter-list', {
+        opened: isOpenMenu,
+      })}
+    >
+      <li className="item" onClick={() => handleCurrentCategory(null)}>
         {t('toggleMenu.filterList.reset')}
       </li>
       {categories.map(({ id }) => (
-        <li
-          key={id}
-          className="item"
-          onClick={() => handleCurrentCategory(id)}
-        >
+        <li key={id} className="item" onClick={() => handleCurrentCategory(id)}>
           {t(`toggleMenu.filterList.categories.${id}`)}
         </li>
       ))}
@@ -110,15 +111,13 @@ const SortList: React.FC<ToggleMenuHandler> = ({ handleToggleMenu }) => {
   };
 
   return (
-    <ul className={cn('sort-list m-0 p-0 no-wrap', {
-      opened: isOpenMenu,
-    })}>
+    <ul
+      className={cn('sort-list', {
+        opened: isOpenMenu,
+      })}
+    >
       {Object.entries(sortValues).map(([key, value]) => (
-        <li
-          key={key}
-          className="p-2 item"
-          onClick={() => handleCurrentValue(key)}
-        >
+        <li key={key} className="item" onClick={() => handleCurrentValue(key)}>
           {value}
         </li>
       ))}
@@ -165,9 +164,13 @@ const FilterMenu: React.FC = () => {
     dispatch(filterActions.toggleMenu(!isOpenMenu));
   };
 
-  const TogglerIcon = () => <span className={cn('toggle-line', {
-    opened: isOpenMenu,
-  })}/>;
+  const TogglerIcon = () => (
+    <span
+      className={cn('toggle-line', {
+        opened: isOpenMenu,
+      })}
+    />
+  );
 
   return (
     <Menu
@@ -208,11 +211,11 @@ export const ToggleMenu: React.FC = () => {
 
   return (
     <div className="toggle-menu-container">
-      <div className="current-filter ml-4">
+      <div className="current-filter">
         <span>{currentFilterValue}</span>
       </div>
-      <div className="toggle-menu-wrapper w-100">
-        <div className="toggle-menu d-flex">
+      <div className="toggle-menu-wrapper">
+        <div className="toggle-menu">
           <FilterMenu />
           <SortMenu />
         </div>

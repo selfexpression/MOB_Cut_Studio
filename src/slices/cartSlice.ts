@@ -45,9 +45,14 @@ const slice = createSlice({
     toggleOrderStatus: (state, { payload }: { payload: boolean }) => {
       state.isOrderPlaced = payload;
     },
-    updateQuantity: (state, { payload }: {
-      payload: { id: number, updateQuantityType: string }
-    }) => {
+    updateQuantity: (
+      state,
+      {
+        payload,
+      }: {
+        payload: { id: number; updateQuantityType: string };
+      },
+    ) => {
       const { items } = state;
       const { id, updateQuantityType } = payload;
       const currentItem = items.find((item) => item.id === id);

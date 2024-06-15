@@ -30,9 +30,7 @@ const TeamCards: React.FC<TeamCardProps> = ({
         <div key={id} className="team-card">
           <img src={photo} alt={t('alts.teammate')} className="team-image" />
           <div className="team-card-info">
-            <h3 className="teammate-name">
-              {t(`team.teammates.${id}`)}
-            </h3>
+            <h3 className="teammate-name">{t(`team.teammates.${id}`)}</h3>
             <div
               className="reviews-button-wrapper"
               onClick={() => handleCurrentEmployee(id)}

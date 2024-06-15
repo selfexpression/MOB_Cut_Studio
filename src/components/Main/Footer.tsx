@@ -32,9 +32,7 @@ const Ymap: React.FC = (): JSX.Element => {
     map.geoObjects.add(placemark);
   }, [ymaps]);
 
-  return (
-    <div ref={mapRef} className="map" />
-  );
+  return <div ref={mapRef} className="map" />;
 };
 
 const CallButton: React.FC = (): JSX.Element => {
@@ -51,9 +49,11 @@ const CallButton: React.FC = (): JSX.Element => {
 
   return (
     <div className="call-button-wrapper">
-      <Telephone className={cn({
-        vibrating: isVibrating,
-      })} />
+      <Telephone
+        className={cn({
+          vibrating: isVibrating,
+        })}
+      />
       <a href={linkRoutes.phoneNumber()}>
         <button
           type="button"
@@ -108,9 +108,7 @@ export const Footer: React.FC = (): JSX.Element => {
           </div>
         </div>
         <div className="map-container ">
-          <h3>
-            {t('footer.findUsOnMap')}
-          </h3>
+          <h3>{t('footer.findUsOnMap')}</h3>
           <Ymap />
         </div>
       </div>

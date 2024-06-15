@@ -1,4 +1,4 @@
-@import "./components/index.scss";
+@import './components/index.scss';
 
 @font-face {
   font-family: 'Quicksand-Regular';
@@ -14,12 +14,12 @@ body {
   margin: 0;
   background-color: $white;
   font-size: $font-size;
-  font-family: TenorSans-Regular, "Times New Roman", sans-serif;
+  font-family: TenorSans-Regular, 'Times New Roman', sans-serif;
 }
 
 button {
   font-size: $btn-font-size;
-  font-family: TenorSans-Regular, "Times New Roman", sans-serif;
+  font-family: TenorSans-Regular, 'Times New Roman', sans-serif;
 }
 
 * {
@@ -27,7 +27,7 @@ button {
 }
 
 .scale-up {
-  animation: scale-up .6s ease-in-out .3s forwards;
+  animation: scale-up 0.6s ease-in-out 0.3s forwards;
 }
 
 .fade-up {
@@ -35,15 +35,15 @@ button {
 }
 
 .fade-down {
-  animation: fade-down .6s ease-in-out .8s forwards;
+  animation: fade-down 0.6s ease-in-out 0.8s forwards;
 }
 
 .scale-down {
-  animation: scale-down .8s ease-in-out .2s forwards;
+  animation: scale-down 0.8s ease-in-out 0.2s forwards;
 }
 
 .vibrating {
-  animation: vibrating .2s linear infinite;
+  animation: vibrating 0.2s linear infinite;
 }
 
 @media screen and (max-width: 768px) {
@@ -57,4 +57,3 @@ button {
     font-size: 0.8em;
   }
 }
-

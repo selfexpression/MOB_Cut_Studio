@@ -7,12 +7,12 @@
     flex-direction: column;
     justify-content: center;
     margin-top: 3em;
-  
+
     .team-text {
       @include flex-center;
       flex-direction: column;
       padding: 2em;
-  
+
       opacity: 0;
       animation: fade-down 1s ease-in-out 0s forwards;
 
@@ -21,75 +21,74 @@
         color: $aqua;
         margin-bottom: 1.5em;
       }
-  
+
       p {
         width: 50%;
         margin: 0.25em;
       }
     }
-  
+
     .team-card-container {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-around;
       margin-bottom: 1em;
-    
+
       opacity: 0;
       animation: move-up 1s ease-in-out 0s forwards;
-  
+
       .team-card {
         flex-basis: calc(33.3333% - 1em);
         width: 100%;
         height: auto;
         margin-top: 1em;
-      
+
         background-color: $white;
         border: 0.5px solid black;
         border-radius: 0.5em;
-  
+
         .team-image {
           width: 100%;
           border-top-right-radius: 0.5em;
           border-top-left-radius: 0.5em;
         }
-  
+
         .team-card-info {
           display: flex;
           align-items: center;
           flex-direction: column;
           padding: 1.5em;
-  
+
           .reviews-button-wrapper {
             display: flex;
             align-items: center;
             gap: 0.5em;
             cursor: pointer;
-    
+
             .reviews-button {
               width: 1.5em;
               height: 1.5em;
-              background-image: url("../../../assets/reviews-icon.png");
+              background-image: url('../../../assets/reviews-icon.png');
               background-position: center;
               background-size: cover;
               background-color: $white;
               border: none;
             }
           }
-    
-  
+
           .teammate-name {
             margin: 0;
             text-align: center;
           }
-  
+
           .teammate-description {
             padding-top: 0.8em;
             border-top: $white-grey-border;
           }
         }
       }
-    }  
-  }  
+    }
+  }
 }
 @media screen and (max-width: 1024px) {
   .team-container {

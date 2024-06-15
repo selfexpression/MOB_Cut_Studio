@@ -19,9 +19,17 @@ interface CartAsyncThunkPayload {
 
 export const updateCart = createAsyncThunk(
   'cart/updateCart',
-  async ({
-    db, userUID, cartItem, cartActionType, updateQuantityType, id,
-  }: CartAsyncThunkPayload, { dispatch, getState }) => {
+  async (
+    {
+      db,
+      userUID,
+      cartItem,
+      cartActionType,
+      updateQuantityType,
+      id,
+    }: CartAsyncThunkPayload,
+    { dispatch, getState },
+  ) => {
     const updateCartFunctions = {
       add: () => {
         if (!cartItem) return;
@@ -50,11 +58,14 @@ export const updateCart = createAsyncThunk(
 
 export const syncCartWithDatabase = createAsyncThunk(
   'cart/syncWithDatabase',
-  async ({ userUID, db }: { userUID: string, db: Firestore }, { dispatch }) => {
+  async ({ userUID, db }: { userUID: string; db: Firestore }, { dispatch }) => {
     if (!userUID) return;
 
     try {
-      const cartItems: CartItem[] | null = await getCurrentUserCart(userUID, db);
+      const cartItems: CartItem[] | null = await getCurrentUserCart(
+        userUID,
+        db,
+      );
       const emptyCart: [] = [];
 
       if (!cartItems) {

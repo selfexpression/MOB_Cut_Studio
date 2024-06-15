@@ -17,15 +17,13 @@ import { FirestoreContext } from './contexts/index';
 export const runApp = async () => {
   const i18n = i18next.createInstance();
 
-  await i18n
-    .use(initReactI18next)
-    .init({
-      resources,
-      fallbackLng: 'ru',
-      interpolation: {
-        escapeValue: false,
-      },
-    });
+  await i18n.use(initReactI18next).init({
+    resources,
+    fallbackLng: 'ru',
+    interpolation: {
+      escapeValue: false,
+    },
+  });
 
   const firebaseConfig = {
     apiKey: process.env.REACT_APP_API_KEY,
@@ -47,10 +45,11 @@ export const runApp = async () => {
     <React.StrictMode>
       <Provider store={store}>
         <FirestoreContext.Provider value={db}>
-          <YMaps query={{
-            ns: 'use-load-option',
-            load: 'package.full',
-          }}
+          <YMaps
+            query={{
+              ns: 'use-load-option',
+              load: 'package.full',
+            }}
           >
             <ParallaxProvider>
               <App />

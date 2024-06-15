@@ -9,16 +9,16 @@
   transition: transform 0.3s ease-in-out;
   background-color: $white;
 
-.booking-widget-wrapper {
-  position: relative;
-  width: 100%;
-  height: 100%;
-
-  .booking-frame {
+  .booking-widget-wrapper {
+    position: relative;
     width: 100%;
     height: 100%;
-    border: 1px solid $white;
-  }
+
+    .booking-frame {
+      width: 100%;
+      height: 100%;
+      border: 1px solid $white;
+    }
     .close-btn {
       position: absolute;
       padding: 0.5em;

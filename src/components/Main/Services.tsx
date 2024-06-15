@@ -16,15 +16,13 @@ const ServiceText: React.FC<Props> = ({ isScrolled }): JSX.Element => {
   const { t } = useTranslation();
 
   return (
-    <div className={cn('services-text', {
-      'fade-down': isScrolled,
-    })}>
-      <h1 className="aqua-color">
-        {t('services.header')}
-      </h1>
-      <p className="p-3">
-        {t('services.description')}
-      </p>
+    <div
+      className={cn('services-text', {
+        'fade-down': isScrolled,
+      })}
+    >
+      <h1 className="aqua-color">{t('services.header')}</h1>
+      <p className="p-3">{t('services.description')}</p>
     </div>
   );
 };
@@ -33,23 +31,20 @@ const ServiceCards: React.FC<Props> = ({ isScrolled }): JSX.Element => {
   const { t } = useTranslation();
 
   return (
-    <div className={cn('services-flow', {
-      'scale-down': isScrolled,
-    })}>
+    <div
+      className={cn('services-flow', {
+        'scale-down': isScrolled,
+      })}
+    >
       {serviceImages.map(({ image, id }) => (
-        <div
-          key={id}
-          className="services-card"
-        >
+        <div key={id} className="services-card">
           <img
             src={image}
             alt="card"
             loading="lazy"
             className={isScrolled ? 'scale-up' : ''}
           />
-          <p>
-            {t(`services.names.${id}`)}
-          </p>
+          <p>{t(`services.names.${id}`)}</p>
         </div>
       ))}
     </div>
@@ -105,14 +100,19 @@ const Discounts: React.FC<Props> = ({ isScrolled }): JSX.Element => {
   );
 
   return (
-    <div className={cn('services-discounts', {
-      'scale-up': isScrolled,
-    })}>
+    <div
+      className={cn('services-discounts', {
+        'scale-up': isScrolled,
+      })}
+    >
       {Object.entries(discounts).map(([key, value], index) => (
-        <p key={key} className={cn('discount', {
-          active: index === currentDisount,
-          inactive: index !== currentDisount,
-        })}>
+        <p
+          key={key}
+          className={cn('discount', {
+            active: index === currentDisount,
+            inactive: index !== currentDisount,
+          })}
+        >
           {value}
           {key === 'fatherAndSon' ? price : null}
         </p>

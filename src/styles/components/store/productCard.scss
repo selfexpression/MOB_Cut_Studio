@@ -9,6 +9,7 @@
   .product-card-image {
     grid-column: 1 / 6;
     grid-row: 1 / 7;
+    padding: 1.5em;
     max-width: 100%;
     height: auto;
     object-position: center;
@@ -20,6 +21,7 @@
   .product-card-main-info {
     grid-column: 6 / -1;
     grid-row: 1 / 4;
+    margin: 1em;
     height: max-content;
 
     text-transform: uppercase;
@@ -27,11 +29,18 @@
 
     .product-brand,
     .product-name {
+      margin: 0;
       font-size: 2em;
     }
 
     .product-price {
+      display: block;
       @include font-style-size(bold, 1.7em);
+      margin-top: 1em;
+    }
+
+    .in-stock {
+      display: block;
     }
 
     .product-stock,
@@ -50,20 +59,27 @@
     .counter-items {
       display: inline-flex;
       height: 3em;
+      margin: 0.25em;
       align-items: center;
       border: $white-grey-border;
 
-      button[aria-label="decrement"],
-      button[aria-label="increment"] {
+      button[aria-label='decrement'],
+      button[aria-label='increment'] {
         background-color: $white;
         border: none;
         cursor: pointer;
       }
+
+      .quantity {
+        padding: 1.5em;
+      }
     }
 
-    button[aria-label="add to cart"] {
+    button[aria-label='add_to_cart'] {
       width: 18em;
       height: 3em;
+      margin-right: 1em;
+      text-transform: uppercase;
       background-color: $white;
       border: 1px solid $dark;
       color: $dark;
@@ -80,7 +96,8 @@
     grid-column: 6 / -1;
     grid-row: 7 / -1;
 
-    div {
+    .category-wrapper {
+      padding: 1em;
       border-top: $white-grey-border;
       border-bottom: $white-grey-border;
     }
@@ -99,7 +116,7 @@
     .product-card-main-info {
       grid-column: 7 / -1;
       grid-row: 1 / 4;
-  
+
       text-transform: uppercase;
       border-bottom: $white-grey-border;
     }

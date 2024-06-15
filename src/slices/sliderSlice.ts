@@ -19,7 +19,8 @@ const slice = createSlice({
           state.currentSlide = (currentSlide + 1) % images.length;
           break;
         case 'prev':
-          state.currentSlide = (currentSlide + (images.length - 1)) % images.length;
+          state.currentSlide =
+            (currentSlide + (images.length - 1)) % images.length;
           break;
         default:
           break;

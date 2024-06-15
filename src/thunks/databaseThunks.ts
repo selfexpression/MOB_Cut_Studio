@@ -30,8 +30,9 @@ export const loadData = createAsyncThunk(
   },
 );
 
-export const filterProducts = () => (dispatch: AppDispatch, getState: () => RootState) => {
-  const { currentBrandNames, currentCategoryID } = getState().filter;
-  const payload = { currentBrandNames, currentCategoryID };
-  dispatch(actions.filterProducts(payload));
-};
+export const filterProducts =
+  () => (dispatch: AppDispatch, getState: () => RootState) => {
+    const { currentBrandNames, currentCategoryID } = getState().filter;
+    const payload = { currentBrandNames, currentCategoryID };
+    dispatch(actions.filterProducts(payload));
+  };

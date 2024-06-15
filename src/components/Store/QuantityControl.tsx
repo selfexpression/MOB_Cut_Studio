@@ -10,10 +10,12 @@ interface QuantityControlProps {
   disabled?: boolean;
 }
 
-export const QuantityControl: React.FC<QuantityControlProps> = (
-  { handler, quantity, disabled = false },
-) => (
-  <div className="counter-items m-2">
+export const QuantityControl: React.FC<QuantityControlProps> = ({
+  handler,
+  quantity,
+  disabled = false,
+}) => (
+  <div className="counter-items">
     <button
       type="button"
       aria-label="decrement"
@@ -22,7 +24,7 @@ export const QuantityControl: React.FC<QuantityControlProps> = (
     >
       <MinusIcon />
     </button>
-    <span className="p-4">{quantity}</span>
+    <span className="quantity">{quantity}</span>
     <button
       type="button"
       aria-label="increment"

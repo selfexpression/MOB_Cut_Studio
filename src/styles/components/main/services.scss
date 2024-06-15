@@ -1,4 +1,4 @@
-@use "../../mixins.scss" as mixins;
+@use '../../mixins.scss' as mixins;
 
 #services {
   display: flex;
@@ -7,40 +7,40 @@
 
   background-color: $light;
   text-align: center;
-  
+
   .services-flow {
     position: relative;
     display: flex;
     align-items: center;
-  
+
     height: 25em;
     width: 100%;
     overflow-x: auto;
     opacity: 0;
     flex-basis: 100%;
-  
+
     .services-card {
       position: relative;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-    
+
       min-height: 20%;
       height: 22em;
       margin-left: 1em;
-    
+
       flex: 1 0 18em;
       overflow-y: hidden;
-    
+
       background-color: $white;
       border: 0.5px solid $grey;
       border-radius: 0.5em;
-      transition: transform .6s ease-in-out;
-  
+      transition: transform 0.6s ease-in-out;
+
       img {
         opacity: 0;
       }
-      
+
       p {
         text-align: center;
         padding: 0.5em;
@@ -58,9 +58,9 @@
     .discount {
       grid-column: 1 / -1;
       grid-row: 1 / -1;
-      
+
       opacity: 0;
-      transition: opacity .5s ease-in-out 1s;
+      transition: opacity 0.5s ease-in-out 1s;
 
       &:last-child {
         .old-price {
@@ -81,23 +81,23 @@
       margin-bottom: 3em;
     }
   }
-  
+
   .services-text {
     opacity: 0;
     text-align: center;
     width: 50%;
-  
+
     padding: 1em;
   }
-  
+
   @include mixins.booking-btn(18em, $aqua, $aqua) {
     opacity: 0;
     border-radius: 0.5em;
-  
+
     &:hover {
       color: $light;
     }
-  }  
+  }
 }
 
 @media screen and (max-width: 768px) {

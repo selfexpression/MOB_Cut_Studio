@@ -1,5 +1,3 @@
-/* eslint-disable max-len */
-/* eslint-disable no-unused-vars */
 import React, { useMemo, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
@@ -22,15 +20,13 @@ import { pageRoutes } from '../../utils/routes';
 
 import { QuantityControl } from './QuantityControl';
 
-const schema = (t: TFunction) => Yup.object().shape({
-  firstname: Yup
-    .string()
-    .required(t('cart.inputErrors.required')),
-  phoneNumber: Yup
-    .string()
-    .required(t('cart.inputErrors.required'))
-    .matches(/(.*\d.*){11}/, t('cart.inputErrors.matches')),
-});
+const schema = (t: TFunction) =>
+  Yup.object().shape({
+    firstname: Yup.string().required(t('cart.inputErrors.required')),
+    phoneNumber: Yup.string()
+      .required(t('cart.inputErrors.required'))
+      .matches(/(.*\d.*){11}/, t('cart.inputErrors.matches')),
+  });
 
 type FormFieldMap = Record<string, (fieldName: string) => React.ReactNode>;
 
@@ -39,7 +35,9 @@ interface FieldProps {
   formik: FormikValues;
 }
 
-const ItemQuantityControl: React.FC<{ currentId: number }> = ({ currentId }) => {
+const ItemQuantityControl: React.FC<{ currentId: number }> = ({
+  currentId,
+}) => {
   const userUID = useAuth();
   const db = useFirestore();
   const dispatch = useDispatch<AppDispatch>();
@@ -51,76 +49,66 @@ const ItemQuantityControl: React.FC<{ currentId: number }> = ({ currentId }) => 
   const { id, quantity } = currentItem;
 
   const handleUpdate = (updateQuantityType: string) => {
-    dispatch(updateCart({
-      userUID,
-      db,
-      id,
-      updateQuantityType,
-      cartActionType: 'quantity',
-    }));
+    dispatch(
+      updateCart({
+        userUID,
+        db,
+        id,
+        updateQuantityType,
+        cartActionType: 'quantity',
+      }),
+    );
   };
 
-  return (
-    <QuantityControl
-      handler={handleUpdate}
-      quantity={quantity}
-    />
-  );
+  return <QuantityControl handler={handleUpdate} quantity={quantity} />;
 };
 
 const SmallScreenItem: React.FC<{
-  brand: string,
-   name: string,
-   id: number,
-   price: number
-  }> = ({
-    brand, name, id, price,
-  }) => (
-    <div className="small-screen-item p-2 aqua-color">
-      <Link
-        className="no-decoration d-block"
-        to={pageRoutes.currentProduct(id)}
-      >
-        {`${brand} ${name}`}
-      </Link>
-      <span>{`${price}₽`}</span>
-    </div>
-  );
+  brand: string;
+  name: string;
+  id: number;
+  price: number;
+}> = ({ brand, name, id, price }) => (
+  <div className="small-screen-item">
+    <Link className="no-decoration" to={pageRoutes.currentProduct(id)}>
+      {`${brand} ${name}`}
+    </Link>
+    <span>{`${price}₽`}</span>
+  </div>
+);
 
 const CartItems: React.FC = () => {
   const { items } = useSelector(getCartState);
 
-  return useMemo(() => (
-    <>
-      {items.map(({
-        brand, name, price, id, imageURL,
-      }) => (
-        <tr key={id} className="cart-item">
-          <td className="cart-product-img p-4">
-            <img src={imageURL} alt={name} className="mr-5"/>
-            <SmallScreenItem
-              brand={brand}
-              name={name}
-              id={id}
-              price={price as number}
-            />
-          </td>
-          <td className="item-name text-start aqua-color">
-            <Link
-              className="no-decoration"
-              to={pageRoutes.currentProduct(id)}
-            >
-              {`${brand} ${name}`}
-            </Link>
-          </td>
-          <td className="item-price text-center mr-5">{`${price}₽`}</td>
-          <td className="item-counter text-center">
-            <ItemQuantityControl currentId={id} />
-          </td>
-        </tr>
-      ))}
-    </>
-  ), [items]);
+  return useMemo(
+    () => (
+      <>
+        {items.map(({ brand, name, price, id, imageURL }) => (
+          <tr key={id} className="cart-item">
+            <td className="cart-product-img">
+              <img src={imageURL} alt={name} />
+              <SmallScreenItem
+                brand={brand}
+                name={name}
+                id={id}
+                price={price as number}
+              />
+            </td>
+            <td className="item-name">
+              <Link to={pageRoutes.currentProduct(id)}>
+                {`${brand} ${name}`}
+              </Link>
+            </td>
+            <td className="item-price">{`${price}₽`}</td>
+            <td className="item-counter">
+              <ItemQuantityControl currentId={id} />
+            </td>
+          </tr>
+        ))}
+      </>
+    ),
+    [items],
+  );
 };
 
 const CartFooter: React.FC = () => {
@@ -129,15 +117,8 @@ const CartFooter: React.FC = () => {
 
   return (
     <div className="cart-footer">
-      <Link
-        className="p-2 align-self-start no-decoration"
-        to={pageRoutes.storePage()}
-      >
-        {t('cart.continueShopping')}
-      </Link>
-      <div className="p-2 align-self-end">
-        {`${t('cart.cartOuter.total')} ${totalAmount}₽`}
-      </div>
+      <Link to={pageRoutes.storePage()}>{t('cart.continueShopping')}</Link>
+      <p>{`${t('cart.cartOuter.total')} ${totalAmount}₽`}</p>
     </div>
   );
 };
@@ -147,14 +128,14 @@ const CartOuter: React.FC = () => {
 
   return (
     <div className="cart-outer">
-      <h2 className="p-4 ml-1">{t('cart.cartOuter.title')}</h2>
-      <table className="mt-4">
+      <h2>{t('cart.cartOuter.title')}</h2>
+      <table>
         <thead>
           <tr>
             <th />
-            <th className="item-name text-start p-3">{t('cart.cartOuter.productCol')}</th>
-            <th className="item-price p-3 mr-5">{t('cart.cartOuter.priceCol')}</th>
-            <th className="item-quantity p-3">{t('cart.cartOuter.quantityCol')}</th>
+            <th className="item-name">{t('cart.cartOuter.productCol')}</th>
+            <th className="item-price">{t('cart.cartOuter.priceCol')}</th>
+            <th className="item-quantity">{t('cart.cartOuter.quantityCol')}</th>
           </tr>
         </thead>
         <tbody>
@@ -177,7 +158,7 @@ const FirstnameField: React.FC<FieldProps> = ({ fieldName, formik }) => {
       placeholder={t(`cart.formFields.${fieldName}`)}
       onChange={formik.handleChange}
       value={formik.values[fieldName]}
-      className={classNames('form-field p-2 rounded-2', {
+      className={classNames('form-field', {
         'is-valid': !formik.errors[fieldName],
         'is-invalid': formik.errors[fieldName],
       })}
@@ -194,7 +175,7 @@ const PhoneNumberField: React.FC<FieldProps> = ({ fieldName, formik }) => (
     name={fieldName}
     value={formik.values[fieldName]}
     onChange={formik.handleChange}
-    className={classNames('form-field p-2 rounded-2', {
+    className={classNames('form-field', {
       'is-valid': !formik.errors[fieldName],
       'is-invalid': formik.errors[fieldName],
     })}
@@ -203,16 +184,20 @@ const PhoneNumberField: React.FC<FieldProps> = ({ fieldName, formik }) => (
 
 const Fields: React.FC<FormikValues> = ({ formik }) => {
   const mapping: FormFieldMap = {
-    phoneNumber: (fieldName) => <PhoneNumberField fieldName={fieldName} formik={formik} />,
-    firstname: (fieldName) => <FirstnameField fieldName={fieldName} formik={formik} />,
+    phoneNumber: (fieldName) => (
+      <PhoneNumberField fieldName={fieldName} formik={formik} />
+    ),
+    firstname: (fieldName) => (
+      <FirstnameField fieldName={fieldName} formik={formik} />
+    ),
   };
 
   return (
     <>
       {Object.entries(formik.values).map(([fieldName]) => (
-        <div key={fieldName} className="mt-3">
+        <div key={fieldName} className="field-wrapper">
           {mapping[fieldName](fieldName)}
-          <div className="invalid-tooltip m-2">{formik.errors[fieldName]}</div>
+          <div className="invalid-tooltip">{formik.errors[fieldName]}</div>
           <label htmlFor={fieldName}></label>
         </div>
       ))}
@@ -231,13 +216,17 @@ const OrderForm: React.FC = () => {
   //   : process.env.REACT_APP_API_URL_DEVELOPMENT;
 
   const tempHandleToggleOrderStatus = () => {
+    // eslint-disable-next-line max-len
     dispatch(actions.toggleOrderStatus(true)); // временный обработчик для среды разработки, так как на vercel
 
-    dispatch(updateCart({ // нет возможности использовать локальный сервер
-      userUID,
-      db,
-      cartActionType: 'trash',
-    }));
+    dispatch(
+      updateCart({
+        // нет возможности использовать локальный сервер
+        userUID,
+        db,
+        cartActionType: 'trash',
+      }),
+    );
 
     setTimeout(() => dispatch(actions.toggleOrderStatus(false)), 5000);
   };
@@ -282,14 +271,14 @@ const OrderForm: React.FC = () => {
   });
 
   return (
-    <div className="text-center">
-      <h2 className="p-4">{t('cart.orderForm.title')}</h2>
+    <div className="order-form-wrapper">
+      <h2>{t('cart.orderForm.title')}</h2>
       <form onSubmit={formik.handleSubmit}>
         <Fields formik={formik} />
         <button
           type="submit"
           aria-label="submit-btn"
-          className="submit-btn mt-3"
+          className="submit-btn"
           disabled={formik.isSubmitting}
         >
           {t('cart.submitButton')}
@@ -303,29 +292,25 @@ const EmptyCart: React.FC = () => {
   const { isOrderPlaced, isLoaded } = useSelector(getCartState);
   const { t } = useTranslation();
 
-  return (
-    isLoaded ? (
-      <div className="cart-container vh-100">
-        <div className="empty-cart-items">
-          {isOrderPlaced ? (
-            <>
-              <span className="p-1">{`${t('cart.thanksForBuying')} `}</span>
-              <span className="p-1">{`${t('cart.shoppingCompleted')} `}</span>
-            </>
-          ) : (
-            <>
-              <img src={cartImage} alt="cart" className="empty-cart-image" />
-              <span>{`${t('cart.emptyCart')} `}</span>
-            </>
-          )}
-          <Link to={pageRoutes.storePage()}>
-            {t('cart.continueShopping')}
-          </Link>
-        </div>
+  return isLoaded ? (
+    <div className="cart-container">
+      <div className="empty-cart-items">
+        {isOrderPlaced ? (
+          <>
+            <span>{`${t('cart.thanksForBuying')} `}</span>
+            <span>{`${t('cart.shoppingCompleted')} `}</span>
+          </>
+        ) : (
+          <>
+            <img src={cartImage} alt="cart" className="empty-cart-image" />
+            <span>{`${t('cart.emptyCart')} `}</span>
+          </>
+        )}
+        <Link to={pageRoutes.storePage()}>{t('cart.continueShopping')}</Link>
       </div>
-    ) : (
-      <div className="spinner-loader" />
-    )
+    </div>
+  ) : (
+    <div className="spinner-loader" />
   );
 };
 
@@ -333,23 +318,23 @@ export const Cart: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { items, isOrderPlaced } = useSelector(getCartState);
 
-  const totalAmount = items.reduce((acc, item) => acc + (item.price as number) * item.quantity, 0);
+  const totalAmount = items.reduce(
+    (acc, item) => acc + (item.price as number) * item.quantity,
+    0,
+  );
 
   useEffect(() => {
     dispatch(actions.setTotalAmount(totalAmount));
   }, [totalAmount, isOrderPlaced]);
 
-  return (
-    !items.length
-      ? (
-        <EmptyCart />
-      ) : (
-        <div className="cart-container">
-          <div className="cart-wrapper">
-            <CartOuter />
-            <OrderForm />
-          </div>
-        </div>
-      )
+  return !items.length ? (
+    <EmptyCart />
+  ) : (
+    <div className="cart-container">
+      <div className="cart-wrapper">
+        <CartOuter />
+        <OrderForm />
+      </div>
+    </div>
   );
 };

@@ -1,8 +1,4 @@
-import type {
-  Request,
-  Response,
-  Express,
-} from 'express';
+import type { Request, Response, Express } from 'express';
 import type TelegramBot from 'node-telegram-bot-api';
 
 import type { ConfigBot } from '../init';
@@ -22,7 +18,9 @@ export const sendTeleGramMessage = (
     } catch (error) {
       throw error instanceof Error
         ? res.status(500).json({ success: false, error: error.message })
-        : res.status(500).json({ success: false, error: errors.unknownError() });
+        : res
+            .status(500)
+            .json({ success: false, error: errors.unknownError() });
     }
   });
 };

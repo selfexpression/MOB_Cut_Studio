@@ -19,18 +19,28 @@ const slice = createSlice({
     toggleMenu: (state, { payload }: { payload: boolean }) => {
       state.isOpenMenu = payload;
     },
-    setCurrentCategoryID: (state, { payload }: { payload: { id: number | null } }) => {
+    setCurrentCategoryID: (
+      state,
+      { payload }: { payload: { id: number | null } },
+    ) => {
       const { id } = payload;
 
       state.currentCategoryID = id;
     },
-    setCurrentBrandNames: (state, { payload }: {
-      payload: { name: string, isCheckedInput: boolean }
-    }) => {
+    setCurrentBrandNames: (
+      state,
+      {
+        payload,
+      }: {
+        payload: { name: string; isCheckedInput: boolean };
+      },
+    ) => {
       const { name, isCheckedInput } = payload;
 
       if (!isCheckedInput) {
-        const emptyFilters = state.currentBrandNames.filter((item) => item !== name);
+        const emptyFilters = state.currentBrandNames.filter(
+          (item) => item !== name,
+        );
         state.currentBrandNames = emptyFilters;
         return;
       }

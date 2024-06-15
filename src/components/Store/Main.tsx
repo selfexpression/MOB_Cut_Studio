@@ -20,22 +20,18 @@ const ProductsList: React.FC = () => {
 
   return (
     <>
-      {products.map(({
-        name, id, price, brand, inStock, imageURL,
-      }) => (
+      {products.map(({ name, id, price, brand, inStock, imageURL }) => (
         <div key={id} className="collection-item">
-          <Link className="no-decoration" to={pageRoutes.currentProduct(id)}>
+          <Link to={pageRoutes.currentProduct(id)}>
             <img
               src={imageURL}
               alt={name}
               loading="lazy"
               className={classNames('item-image', { 'out-of-stock': !inStock })}
             />
-            <div className="uppercase text-center p-3">
-              <h3 className="p-0 mb-2">{`${brand} ${name}`}</h3>
-              <span className="bold m-0">
-                {price ? `${price}₽` : t('store.outOfStock')}
-              </span>
+            <div className="item-info">
+              <h3>{`${brand} ${name}`}</h3>
+              <span>{price ? `${price}₽` : t('store.outOfStock')}</span>
             </div>
           </Link>
         </div>
@@ -48,10 +44,10 @@ const NotFoundMessage: React.FC = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="not-found-items">
-      <div className="d-flex flex-column mb-5">
-        <span className="m-1">{t('store.notFound')}</span>
-        <span className="m-1">{t('store.changeCriteria')}</span>
+    <div className="not-found-items-wrapper">
+      <div className="items">
+        <span>{t('store.notFound')}</span>
+        <span>{t('store.changeCriteria')}</span>
       </div>
     </div>
   );
@@ -76,14 +72,13 @@ export const Store: React.FC = () => {
       <ToggleMenu />
       <main className="collection-products">
         <div className="collection-wrapper" onClick={handleToggleOpenMenu}>
-          {!products.length && isLoaded
-            ? (
-              <NotFoundMessage />
-            ) : (
-              <ProductsList />
-            )}
+          {!products.length && isLoaded ? (
+            <NotFoundMessage />
+          ) : (
+            <ProductsList />
+          )}
         </div>
-        {!isLoaded ? <div className="spinner-loader" /> : '' }
+        {!isLoaded ? <div className="spinner-loader" /> : ''}
       </main>
     </header>
   );

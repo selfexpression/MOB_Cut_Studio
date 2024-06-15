@@ -26,37 +26,49 @@ const slice = createSlice({
       state.products = sortedByStock(products);
       state.initialProducts = sortedByStock(products);
     },
-    filterProducts: (state, { payload }: {
-      payload: { currentBrandNames: string[], currentCategoryID: number | null }
-    }) => {
+    filterProducts: (
+      state,
+      {
+        payload,
+      }: {
+        payload: {
+          currentBrandNames: string[];
+          currentCategoryID: number | null;
+        };
+      },
+    ) => {
       const { initialProducts } = state;
       const { currentBrandNames, currentCategoryID } = payload;
 
       state.filteredProducts = initialProducts;
 
       state.filteredProducts = currentBrandNames.length
-        ? state.filteredProducts
-          .filter((product) => currentBrandNames.includes(product.brand.toLowerCase()))
+        ? state.filteredProducts.filter((product) =>
+            currentBrandNames.includes(product.brand.toLowerCase()),
+          )
         : state.filteredProducts;
 
       state.filteredProducts = currentCategoryID
-        ? state.filteredProducts
-          .filter((product) => product.categoryID === currentCategoryID)
+        ? state.filteredProducts.filter(
+            (product) => product.categoryID === currentCategoryID,
+          )
         : state.filteredProducts;
 
       state.products = state.filteredProducts;
     },
   },
   extraReducers: (builder) => {
-    builder
-      .addCase(sortActions.setCurrentValue, (state, { payload: currentValue }) => {
+    builder.addCase(
+      sortActions.setCurrentValue,
+      (state, { payload: currentValue }) => {
         const sortingFunction = sortedMap[currentValue as keyof SortedMap];
         const sortedProducts = sortingFunction(state.products);
         const sortedFilteredProducts = sortingFunction(state.filteredProducts);
 
         state.products = sortedProducts;
         state.filteredProducts = sortedFilteredProducts;
-      });
+      },
+    );
   },
 });
 

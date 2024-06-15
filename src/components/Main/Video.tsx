@@ -22,12 +22,12 @@ export const Video: React.FC = () => {
   return (
     <section id="video">
       <div className="video-container">
-        <div className={cn('video-text', {
-          'fade-up': isScrolled,
-        })}>
-          <p>
-            {t('video.text')}
-          </p>
+        <div
+          className={cn('video-text', {
+            'fade-up': isScrolled,
+          })}
+        >
+          <p>{t('video.text')}</p>
         </div>
         <div className="video-wrapper">
           <video
@@ -41,7 +41,7 @@ export const Video: React.FC = () => {
           >
             <source src={backgroundVideo} type="video/mp4" />
           </video>
-          {isWide && (<div className="video-image" />)}
+          {isWide && <div className="video-image" />}
         </div>
       </div>
     </section>

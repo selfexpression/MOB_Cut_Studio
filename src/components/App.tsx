@@ -1,8 +1,4 @@
-import React, {
-  type ReactNode,
-  useState,
-  useEffect,
-} from 'react';
+import React, { type ReactNode, useState, useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Routes,
@@ -32,7 +28,9 @@ interface AuthContextProviderProps {
   children: ReactNode;
 }
 
-const AuthContextProvider: React.FC<AuthContextProviderProps> = ({ children }) => {
+const AuthContextProvider: React.FC<AuthContextProviderProps> = ({
+  children,
+}) => {
   const [currentUserUID, setCurrentUserUID] = useState('');
 
   useEffect(() => {
@@ -78,18 +76,16 @@ const Main = () => (
 export const App: React.FC = () => (
   <AuthContextProvider>
     <Router>
-      <div className="d-flex flex-column">
-        <Navbar />
-        <CartLoader />
-        <ScrollToTop />
-        <Routes>
-          <Route path={pageRoutes.mainPage()} element={<Main />} />
-          <Route path={pageRoutes.storePage()} element={<Store />} />
-          <Route path={pageRoutes.productPage()} element={<ProductCard />} />
-          <Route path={pageRoutes.teamPage()} element={<Team />} />
-          <Route path={pageRoutes.cartPage()} element={<Cart />} />
-        </Routes>
-      </div>
+      <Navbar />
+      <CartLoader />
+      <ScrollToTop />
+      <Routes>
+        <Route path={pageRoutes.mainPage()} element={<Main />} />
+        <Route path={pageRoutes.storePage()} element={<Store />} />
+        <Route path={pageRoutes.productPage()} element={<ProductCard />} />
+        <Route path={pageRoutes.teamPage()} element={<Team />} />
+        <Route path={pageRoutes.cartPage()} element={<Cart />} />
+      </Routes>
     </Router>
   </AuthContextProvider>
 );

@@ -63,9 +63,7 @@ export const Slider = (): JSX.Element => {
   return (
     <section id="slider">
       <div className="slider-text">
-        <p>
-          {t('slider.text')}
-        </p>
+        <p>{t('slider.text')}</p>
       </div>
       <div className="slider-wrapper">
         <div className="slider">

@@ -20,22 +20,18 @@ const MainInfo: React.FC = () => {
   if (!currentProduct) return null;
 
   return (
-    <div className="product-card-main-info m-3">
-      <h1 className="product-brand m-0">
-        {currentProduct.brand}
-      </h1>
-      <h1 className="product-name m-0">
-        {currentProduct.name}
-      </h1>
+    <div className="product-card-main-info">
+      <h1 className="product-brand">{currentProduct.brand}</h1>
+      <h1 className="product-name">{currentProduct.name}</h1>
       <span
-        className={classNames('d-block', {
+        className={classNames('in-stock', {
           'product-stock': currentProduct.inStock,
           'product-out-stock': !currentProduct.inStock,
         })}
       >
         {currentProduct.inStock ? t('store.inStock') : t('store.outOfStock')}
       </span>
-      <span className="product-price mt-3 d-block">
+      <span className="product-price">
         {currentProduct.inStock ? `${currentProduct.price}₽` : ''}
       </span>
     </div>
@@ -45,16 +41,16 @@ const MainInfo: React.FC = () => {
 const AddInfo: React.FC = () => {
   const { t } = useTranslation();
   const { productId } = useParams();
-  const categoriesInfo = t('productCard.categoriesInfo', { returnObjects: true });
+  const categoriesInfo = t('productCard.categoriesInfo', {
+    returnObjects: true,
+  });
 
   return (
     <div className="add-info">
       {Object.keys(categoriesInfo).map((category) => (
-        <div key={category} className="p-3">
-          <span
-            className="category-type"
-          >{
-              `${t(`productCard.categoriesInfo.${category}`)}: `}
+        <div key={category} className="category-wrapper">
+          <span className="category-type">
+            {`${t(`productCard.categoriesInfo.${category}`)}: `}
           </span>
           <span className="category-value">
             {t(`products.${productId}.${category}`)}
@@ -92,7 +88,8 @@ const ProductAddToCard: React.FC = () => {
   const [disabled, setDisabled] = useState(false);
   const userUID = useAuth();
   const db = useFirestore();
-  const { productsCount, currentProduct, productIsAdded } = useSelector(getProductCardState);
+  const { productsCount, currentProduct, productIsAdded } =
+    useSelector(getProductCardState);
   const dispatch = useDispatch<AppDispatch>();
   const { t } = useTranslation();
 
@@ -112,12 +109,14 @@ const ProductAddToCard: React.FC = () => {
       imageURL: currentProduct.imageURL,
     };
 
-    dispatch(updateCart({
-      db,
-      userUID,
-      cartItem,
-      cartActionType: 'add',
-    }));
+    dispatch(
+      updateCart({
+        db,
+        userUID,
+        cartItem,
+        cartActionType: 'add',
+      }),
+    );
     dispatch(actions.setProductAdded(true));
     dispatch(actions.resetCount());
     setTimeout(() => dispatch(actions.setProductAdded(false)), 1500);
@@ -126,16 +125,15 @@ const ProductAddToCard: React.FC = () => {
   return (
     <div className="product-counter">
       <CounterAdjust />
-      <button type="button"
-        aria-label="add to cart"
-        className="mr-3 uppercase"
+      <button
+        type="button"
+        aria-label="add_to_cart"
         disabled={disabled}
         onClick={handleAddToCart}
       >
         {productIsAdded
           ? t('productCard.addedToCart')
-          : t('productCard.addToCart')
-        }
+          : t('productCard.addToCart')}
       </button>
     </div>
   );
@@ -157,7 +155,7 @@ export const ProductCard: React.FC = () => {
   }, [currentProduct]);
 
   return (
-    <div className="max-content">
+    <>
       {!currentProduct ? (
         <div className="spinner-loader" />
       ) : (
@@ -165,13 +163,13 @@ export const ProductCard: React.FC = () => {
           <img
             src={currentProduct.imageURL}
             alt={`collection item ${productId}`}
-            className="product-card-image p-4"
+            className="product-card-image"
           />
           <MainInfo />
           <ProductAddToCard />
           <AddInfo />
         </div>
       )}
-    </div>
+    </>
   );
 };

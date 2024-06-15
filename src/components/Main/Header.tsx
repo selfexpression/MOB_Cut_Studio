@@ -60,29 +60,24 @@ export const Header: React.FC = (): JSX.Element => {
 
   return (
     <header id={pageRoutes.mainPage()} className="main-header">
-      {backgroundImages.length
-        ? (
-          <>
-            <Background />
-            <main
-              className="main-content"
+      {backgroundImages.length ? (
+        <>
+          <Background />
+          <main className="main-content">
+            <p>{t('header.text')}</p>
+            <button
+              type="button"
+              aria-label={t('ariaLabels.bookingBtn')}
+              className="booking-button"
+              onClick={handleToggleWidget}
             >
-              <p>
-                {t('header.text')}
-              </p>
-              <button
-                type="button"
-                aria-label={t('ariaLabels.bookingBtn')}
-                className="booking-button"
-                onClick={handleToggleWidget}
-              >
-                {t('header.onlineBooking')}
-              </button>
-            </main>
-          </>
-        ) : (
-          <div className="spinner-loader" />
-        )}
+              {t('header.onlineBooking')}
+            </button>
+          </main>
+        </>
+      ) : (
+        <div className="spinner-loader" />
+      )}
     </header>
   );
 };
