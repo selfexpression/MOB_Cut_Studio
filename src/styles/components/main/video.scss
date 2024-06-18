@@ -1,3 +1,5 @@
+@use '../../mixins.scss' as mixins;
+
 @mixin flex-width {
   flex: 1 1 50%;
   min-width: 0;
@@ -13,7 +15,7 @@
     width: 100vw;
 
     .video-text {
-      @include flex-center;
+      @include mixins.flex-center;
       text-align: center;
       padding: 5em;
       opacity: 0;

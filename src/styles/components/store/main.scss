@@ -1,3 +1,5 @@
+@use '../../mixins.scss' as mixins;
+
 .collection-products {
   scroll-snap-type: y mandatory;
   z-index: -1;
@@ -52,7 +54,7 @@
     }
 
     .not-found-items-wrapper {
-      @include flex-center;
+      @include mixins.flex-center;
       height: 100vh;
       width: 100%;
 

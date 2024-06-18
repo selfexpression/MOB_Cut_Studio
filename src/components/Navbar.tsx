@@ -155,7 +155,7 @@ const NavbarIcons: React.FC<NavLinkProps> = ({
   isProductPage,
   isWide,
 }) => (
-  <div className="d-flex align-items-center">
+  <div className="navbar-icons">
     {isProductPage ? <BackButton /> : null}
     {!isMainPage ? <HomePageButton /> : null}
     <CartLink />
@@ -240,7 +240,7 @@ export const Navbar: React.FC = () => {
           isWide={isWide}
         />
       ) : (
-        <div className="d-flex align-items-center justify-content-between w-100">
+        <div className="navbar-links">
           <NavbarLogo isMainPage={isMainPage} />
           <NavbarIcons
             isMainPage={isMainPage}

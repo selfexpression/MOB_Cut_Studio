@@ -1,3 +1,5 @@
+@use '../mixins.scss' as mixins;
+
 @mixin toggle-menu-btn {
   .navbar-toggle-menu {
     position: relative;
@@ -67,7 +69,7 @@
 
 @mixin lang-switch-btn {
   .lang-switch-btn {
-    @include flex-center;
+    @include mixins.flex-center;
 
     width: 1.9em;
     height: 1.9em;
@@ -141,6 +143,10 @@
       width: 6rem;
       margin-left: 1em;
     }
+  }
+
+  .navbar-icons {
+    @include mixins.flex-center;
   }
 
   .cart-link-wrapper {

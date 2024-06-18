@@ -1,3 +1,5 @@
+@use '../../mixins.scss' as mixins;
+
 .product-card-wrapper {
   display: grid;
   grid-template-rows: repeat(12, calc(100vh / 12));
@@ -35,7 +37,7 @@
 
     .product-price {
       display: block;
-      @include font-style-size(bold, 1.7em);
+      @include mixins.font-style-size(bold, 1.7em);
       margin-top: 1em;
     }
 
@@ -45,7 +47,7 @@
 
     .product-stock,
     .product-out-stock {
-      @include font-style-size(bold, 1.7em);
+      @include mixins.font-style-size(bold, 1.7em);
       color: $aqua;
     }
   }
@@ -103,7 +105,7 @@
     }
 
     .category-type {
-      @include font-style-size(bold, $font-size);
+      @include mixins.font-style-size(bold, $font-size);
     }
   }
 }

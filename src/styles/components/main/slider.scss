@@ -1,3 +1,5 @@
+@use '../../mixins.scss' as mixins;
+
 @mixin arrow-btn {
   position: absolute;
   top: 50%;
@@ -19,7 +21,7 @@
   background-color: $light;
 
   .slider-text {
-    @include flex-center;
+    @include mixins.flex-center;
     text-align: center;
     margin-bottom: 1em;
 

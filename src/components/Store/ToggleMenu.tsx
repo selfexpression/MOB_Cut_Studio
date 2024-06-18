@@ -15,32 +15,28 @@ import { filterProducts } from '../../thunks/databaseThunks';
 import type { AppDispatch } from '../../types/aliases';
 import { SortIcon } from '../Icons/SortIcon';
 
-type ToggleMenuHandler = {
+interface ToggleMenuHandler {
   handleToggleMenu: () => void;
-};
+}
 
-interface MenuProps {
+interface ToggleCurrentBrand {
+  handleCurrentBrand: (e: ChangeEvent<HTMLInputElement>) => void;
+}
+
+interface ToggleCurrentCategory {
+  handleCurrentCategory: (id: number | null) => void;
+}
+
+interface MenuProps extends ToggleMenuHandler {
   isOpenMenu: boolean;
-  handleToggleMenu: () => void;
   List: React.FC<ToggleMenuHandler>;
   TogglerIcon: React.JSX.Element;
   marker: string;
 }
 
-const BrandList: React.FC = () => {
-  const dispatch = useDispatch<AppDispatch>();
+const BrandList: React.FC<ToggleCurrentBrand> = ({ handleCurrentBrand }) => {
   const { initialProducts } = useSelector(getDatabaseState);
-  const { isOpenMenu } = useSelector(getFilterState);
-
-  const handleToggleCheckbox = (e: ChangeEvent<HTMLInputElement>) => {
-    const payload = {
-      name: e.target.name.toLowerCase(),
-      isCheckedInput: e.target.checked,
-    };
-
-    dispatch(filterActions.setCurrentBrandNames(payload));
-    dispatch(filterProducts());
-  };
+  const { isOpenMenu, currentBrandNames } = useSelector(getFilterState);
 
   const brands = _.uniqWith(
     initialProducts.map((product) => product.brand.toLowerCase()),
@@ -48,38 +44,33 @@ const BrandList: React.FC = () => {
 
   return (
     <div
-      className={cn('filter-list brand-list', {
+      className={cn('filter-list', {
         opened: isOpenMenu,
       })}
     >
       {brands.map((brand) => (
-        <div className="item" key={brand}>
+        <label htmlFor={brand} className="item checkbox-item" key={brand}>
           <input
             type="checkbox"
             id={brand}
             name={brand}
-            onChange={handleToggleCheckbox}
+            checked={currentBrandNames.includes(brand.toLowerCase())}
+            onChange={handleCurrentBrand}
           />
-          <label htmlFor={brand}>{brand}</label>
-        </div>
+          <span className="checkmark" />
+          <span>{brand}</span>
+        </label>
       ))}
     </div>
   );
 };
 
-const CategoryList: React.FC<ToggleMenuHandler> = ({ handleToggleMenu }) => {
-  const dispatch = useDispatch<AppDispatch>();
+const CategoryList: React.FC<ToggleCurrentCategory> = ({
+  handleCurrentCategory,
+}) => {
   const { t } = useTranslation();
   const { isOpenMenu } = useSelector(getFilterState);
   const { categories } = useSelector(getDatabaseState);
-
-  const handleCurrentCategory = (id: number | null): void => {
-    const payload = { id };
-
-    dispatch(filterActions.setCurrentCategoryID(payload));
-    dispatch(filterProducts());
-    handleToggleMenu();
-  };
 
   return (
     <ul
@@ -87,9 +78,6 @@ const CategoryList: React.FC<ToggleMenuHandler> = ({ handleToggleMenu }) => {
         opened: isOpenMenu,
       })}
     >
-      <li className="item" onClick={() => handleCurrentCategory(null)}>
-        {t('toggleMenu.filterList.reset')}
-      </li>
       {categories.map(({ id }) => (
         <li key={id} className="item" onClick={() => handleCurrentCategory(id)}>
           {t(`toggleMenu.filterList.categories.${id}`)}
@@ -101,7 +89,7 @@ const CategoryList: React.FC<ToggleMenuHandler> = ({ handleToggleMenu }) => {
 
 const SortList: React.FC<ToggleMenuHandler> = ({ handleToggleMenu }) => {
   const dispatch = useDispatch();
-  const { isOpenMenu } = useSelector(getSortState);
+  const { isOpenMenu, currentValue } = useSelector(getSortState);
   const { t } = useTranslation();
   const sortValues = t('toggleMenu.sortValues', { returnObjects: true });
 
@@ -117,7 +105,13 @@ const SortList: React.FC<ToggleMenuHandler> = ({ handleToggleMenu }) => {
       })}
     >
       {Object.entries(sortValues).map(([key, value]) => (
-        <li key={key} className="item" onClick={() => handleCurrentValue(key)}>
+        <li
+          key={key}
+          className={cn('menu-btn item', {
+            active: key === currentValue,
+          })}
+          onClick={() => handleCurrentValue(key)}
+        >
           {value}
         </li>
       ))}
@@ -149,15 +143,88 @@ const Menu: React.FC<MenuProps> = ({
   );
 };
 
-const FilterList: React.FC<ToggleMenuHandler> = ({ handleToggleMenu }) => (
-  <>
-    <CategoryList handleToggleMenu={handleToggleMenu} />
-    <BrandList />
-  </>
-);
+const FilterList: React.FC<ToggleMenuHandler> = ({ handleToggleMenu }) => {
+  const { t } = useTranslation();
+  const dispatch = useDispatch<AppDispatch>();
+  const { isOpenMenu, isOpenCategories, isOpenBrands } =
+    useSelector(getFilterState);
+
+  const handleToggleCategories = () => {
+    dispatch(filterActions.toggleCategories(!isOpenCategories));
+  };
+
+  const handleToggleBrands = () => {
+    dispatch(filterActions.toggleBrands(!isOpenBrands));
+  };
+
+  const handleCurrentCategory = (id: number | null): void => {
+    const payload = { id };
+
+    dispatch(filterActions.setCurrentCategoryID(payload));
+    dispatch(filterProducts());
+    handleToggleMenu();
+  };
+
+  const handleCurrentBrand = (e: ChangeEvent<HTMLInputElement>) => {
+    const payload = {
+      name: e.target.name.toLowerCase(),
+      isCheckedInput: e.target.checked,
+    };
+
+    dispatch(filterActions.setCurrentBrandNames(payload));
+    dispatch(filterProducts());
+  };
+
+  const handleResetFilters = () => {
+    dispatch(filterActions.setCurrentBrandNames(null));
+    handleCurrentCategory(null);
+    handleToggleMenu();
+  };
+
+  return (
+    <div
+      className={cn('filter-list', {
+        opened: isOpenMenu,
+      })}
+    >
+      <button
+        type="button"
+        aria-label="categories"
+        className={cn('menu-btn item', {
+          active: isOpenCategories,
+        })}
+        onClick={handleToggleCategories}
+      >
+        По категориям
+      </button>
+      {isOpenCategories && (
+        <CategoryList handleCurrentCategory={handleCurrentCategory} />
+      )}
+      <button
+        type="button"
+        aria-label="brands"
+        className={cn('menu-btn item', {
+          active: isOpenBrands,
+        })}
+        onClick={handleToggleBrands}
+      >
+        По производителю
+      </button>
+      {isOpenBrands && <BrandList handleCurrentBrand={handleCurrentBrand} />}
+      <button
+        type="button"
+        aria-label="reset"
+        className="menu-btn item"
+        onClick={handleResetFilters}
+      >
+        {t('toggleMenu.filterList.reset')}
+      </button>
+    </div>
+  );
+};
 
 const FilterMenu: React.FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const { isOpenMenu } = useSelector(getFilterState);
 
   const handleToggleMenu = (): void => {

@@ -1,3 +1,5 @@
+@use '../../mixins.scss' as mixins;
+
 @mixin toggle-line-position {
   position: absolute;
   display: block;
@@ -58,14 +60,14 @@
   }
 }
 
-@mixin toggle-menu($target, $width-value, $toggle-prop, $toggle-value) {
+@mixin toggle-menu($target, $toggle-prop, $toggle-value) {
   .#{$target}-menu {
-    width: $width-value;
+    width: 12em;
     height: 100%;
     border-right: $white-grey-border;
 
     button {
-      @include flex-center;
+      @include mixins.flex-center;
       width: 100%;
       height: 100%;
       background-color: black;
@@ -82,7 +84,7 @@
       margin: 0;
       padding: 0;
       text-wrap: nowrap;
-      color: $aqua;
+      text-align: center;
       list-style: none;
       z-index: 1;
       #{$toggle-prop}: 0;
@@ -93,8 +95,10 @@
         background-color: $white;
         border: $white-grey-border;
         border-top: none;
-        opacity: 0;
         padding: 0.5em;
+        color: $aqua;
+        text-transform: uppercase;
+        font-size: 0.6em;
 
         cursor: pointer;
 
@@ -104,12 +108,17 @@
         }
       }
 
+      .menu-btn {
+        font-size: 0.8em !important;
+
+        &.active {
+          background-color: $white-grey;
+          border-bottom: 1px solid $aqua;
+        }
+      }
+
       &.opened {
         #{$toggle-prop}: #{$toggle-value};
-
-        .item {
-          opacity: 1;
-        }
       }
     }
   }
@@ -127,7 +136,7 @@
     text-transform: uppercase;
 
     span {
-      @include font-style-size(normal, 1.6em);
+      @include mixins.font-style-size(normal, 1.4em);
       color: $aqua;
     }
   }
@@ -141,23 +150,48 @@
       display: flex;
       height: 100%;
 
-      @include toggle-menu(filter, 12em, width, 12em) {
+      @include toggle-menu(filter, width, 12em) {
         .toggle-line {
           @include toggle-line;
         }
       }
 
-      .brand-list {
-        border-top: 0.5em solid $aqua;
-      }
-
-      @include toggle-menu(sort, 12em, height, 12em) {
+      @include toggle-menu(sort, height, 5em) {
         .sort-icon {
           width: 2.2em;
           height: auto;
         }
       }
     }
+  }
+}
+
+.checkbox-item {
+  @include mixins.flex-center;
+
+  input {
+    display: none;
+
+    &:checked + .checkmark::before {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background-color: $aqua;
+        content: "";
+    }
+  }
+
+  .checkmark {
+    position: absolute;
+    left: 1em;
+    width: 10px;
+    height: 10px;
+    border: 0.1px solid $aqua;
+    border-radius: 50%;
   }
 }
 
@@ -168,7 +202,7 @@
       margin: 0 !important;
 
       span {
-        @include font-style-size(normal, 1.2em);
+        @include mixins.font-style-size(normal, 1.2em);
       }
     }
 

@@ -18,3 +18,14 @@
     }
   }
 }
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin font-style-size($style-value, $font-value) {
+  font-weight: $style-value;
+  font-size: $font-value;
+}

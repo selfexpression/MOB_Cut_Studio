@@ -1,3 +1,5 @@
+@use '../../mixins.scss' as mixins;
+
 #team {
   background-color: $light;
   text-align: center;
@@ -9,7 +11,7 @@
     margin-top: 3em;
 
     .team-text {
-      @include flex-center;
+      @include mixins.flex-center;
       flex-direction: column;
       padding: 2em;
 
