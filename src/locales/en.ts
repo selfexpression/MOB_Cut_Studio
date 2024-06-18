@@ -55,20 +55,14 @@ export default {
       description:
         'Entrust your appearance to professionals, and your hair will become not just a haircut, but an art that speaks of your unique individuality',
       teammates: {
-        1: 'Employee 1',
-        2: 'Employee 2',
-        3: 'Employee 3',
-        4: 'Employee 4',
-        5: 'Employee 5',
-        6: 'Employee 6',
+        1: 'Anton Maslov',
+        2: 'Konstantin Golub',
+        3: 'Konstantin Anikin',
       },
       teammatesDescription: {
-        1: 'Description of Employee 1 should be here',
-        2: 'Description of Employee 2 should be here',
-        3: 'Description of Employee 3 should be here',
-        4: 'Description of Employee 4 should be here',
-        5: 'Description of Employee 5 should be here',
-        6: 'Description of Employee 6 should be here',
+        1: "Head of MOB haircut studio and a master with 8 years of experience. Trainer and educator in our space. Image-making, sculpting your image - that's his thing. He values cleanliness in working with hair masses and the aesthetics of combinatory techniques. Attended master classes by industry giants such as Roman Solo, Kirill Tempo, Bogdan Borodin, Alexander Cherepovich. Former technologist of a major All-Russian franchise.",
+        2: "5 years of experience, worked in the CIS, in Southern Russia. After a couple of visits to the master, he remembers all the peculiarities of the bone structure of the head and hair growth of each client. Trained in Novosibirsk under masters such as Alexander Kabanov and Gleb Morozov, other experience acquired from other masters through visual memory skills. Does men's haircuts and beards, also takes on short women's haircuts.",
+        3: '4 years of experience. The moment when the experience and the number of years spent in the chair rather surprises you than pushes you away from booking with this master. The quality of services provided does not yield to our other masters. He has attended a large number of master classes and off-site events. A creative approach and exceeding classical work standards are his trademark.',
       },
     },
     others: {

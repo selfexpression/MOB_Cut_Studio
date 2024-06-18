@@ -21,8 +21,8 @@ const ServiceText: React.FC<Props> = ({ isScrolled }): JSX.Element => {
         'fade-down': isScrolled,
       })}
     >
-      <h1 className="aqua-color">{t('services.header')}</h1>
-      <p className="p-3">{t('services.description')}</p>
+      <h1>{t('services.header')}</h1>
+      <p>{t('services.description')}</p>
     </div>
   );
 };

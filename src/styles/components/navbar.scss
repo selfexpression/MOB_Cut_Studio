@@ -203,10 +203,17 @@
       justify-content: space-between;
       padding: 0.5em;
 
-      .contact-links {
-        margin: 0.5em;
-        color: $light;
-        text-decoration: none;
+      .navbar-contacts {
+        display: flex;
+
+        .contact-links {
+          @include mixins.flex-center;
+          gap: 0.2em;
+          flex-wrap: nowrap;
+          margin: 0.5em;
+          color: $light;
+          text-decoration: none;
+        }
       }
     }
 

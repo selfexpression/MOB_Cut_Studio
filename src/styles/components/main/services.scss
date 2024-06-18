@@ -88,6 +88,14 @@
     width: 50%;
 
     padding: 1em;
+
+    h1 {
+      color: $aqua;
+    }
+
+    p {
+      padding: 1em;
+    }
   }
 
   @include mixins.booking-btn(18em, $aqua, $aqua) {

@@ -93,25 +93,29 @@
   }
 }
 @media screen and (max-width: 1024px) {
-  .team-container {
-    .team-card-container {
-      .team-card {
-        flex-basis: calc(50% - 1em);
+  #team {
+    .team-container {
+      .team-card-container {
+        .team-card {
+          flex-basis: calc(50% - 1em);
+        }
       }
     }
   }
 }
 
 @media screen and (max-width: 560px) {
-  .team-container {
-    .team-text {
-      p {
-        width: 100%;
+  #team {
+    .team-container {
+      .team-text {
+        p {
+          width: 100%;
+        }
       }
-    }
-    .team-card-container {
-      .team-card {
-        flex-basis: calc(100% - 1em);
+      .team-card-container {
+        .team-card {
+          flex-basis: calc(100% - 1em);
+        }
       }
     }
   }

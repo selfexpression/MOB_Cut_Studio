@@ -52,12 +52,12 @@
 }
 
 @media screen and (max-width: 768px) {
-  .video-container {
-    .video-text {
-      padding: 3em;
-
-      p {
-        width: 100%;
+  #video {
+    .video-container {
+      .video-text {
+        p {
+          width: 100%;
+        }
       }
     }
   }
