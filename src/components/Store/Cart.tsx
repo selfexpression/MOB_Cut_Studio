@@ -118,7 +118,7 @@ const CartFooter: React.FC = () => {
   return (
     <div className="cart-footer">
       <Link to={pageRoutes.storePage()}>{t('cart.continueShopping')}</Link>
-      <p>{`${t('cart.cartOuter.total')} ${totalAmount}₽`}</p>
+      <span>{`${t('cart.cartOuter.total')} ${totalAmount}₽`}</span>
     </div>
   );
 };

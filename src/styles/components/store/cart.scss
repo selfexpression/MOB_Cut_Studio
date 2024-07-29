@@ -1,7 +1,6 @@
 .cart-container {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
   height: 100vh;
 
   .empty-cart-items {
@@ -92,6 +91,8 @@
         justify-content: space-between;
         align-items: center;
 
+        margin-top: 2em;
+
         a {
           text-decoration: none;
           padding: 0.5em;
@@ -99,9 +100,8 @@
           color: inherit;
         }
 
-        p {
+        span {
           padding: 0.5em;
-          align-self: flex-end;
         }
       }
 
@@ -202,7 +202,14 @@
       align-items: center;
 
       .cart-outer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         margin: 0;
+
+        h2 {
+          align-self: self-start;
+        }
       }
     }
 
@@ -233,6 +240,6 @@
 
   .form-field,
   .submit-btn {
-    width: 20em;
+    width: 20em !important;
   }
 }
